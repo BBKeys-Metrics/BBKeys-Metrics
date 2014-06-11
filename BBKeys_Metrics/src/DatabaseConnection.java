@@ -25,11 +25,11 @@ public class DatabaseConnection {
 	
 	/**
 	 * Constructor which sets the private variables equal to the parameters passed 
-	 * @param host = computer host name or IP address
-	 * @param port = port that the database is being hosted from
-	 * @param database = name of database
-	 * @param username = user accessing the database
-	 * @param password = user's password
+	 * @param host - computer host name or IP address
+	 * @param port - port that the database is being hosted from
+	 * @param database - name of database
+	 * @param username - user accessing the database
+	 * @param password - user's password
 	 */
 	public DatabaseConnection(String host, String port, String database, String username, String password) throws SQLException {
 		this.host = host;
@@ -43,6 +43,7 @@ public class DatabaseConnection {
 	
 	/**
 	 * Sets up the database connection
+	 * @return void
 	 */
 	private void setUpConnection() throws SQLException {
 		//check to see if the required driver is installed
@@ -59,6 +60,7 @@ public class DatabaseConnection {
 	/**
 	 * Execute the query 
 	 * @param query = SQL Query
+	 * @return void
 	 */
 	public void executeQuery(String query) throws SQLException {
 		//try {
@@ -69,6 +71,7 @@ public class DatabaseConnection {
 	/**
 	 * Execute the query and then display the data from the resulting record set
 	 * @param query = SQL Query
+	 * @return void
 	 */
 	public void executeQueryAndDisplayResults(String query) throws SQLException {
 		Statement s = con.createStatement();
@@ -93,6 +96,7 @@ public class DatabaseConnection {
 	
 	/**
 	 * Returns the result set from the previous query
+	 * @return ResultSet
 	 */
 	public ResultSet getResultSet() {
 		return r;
