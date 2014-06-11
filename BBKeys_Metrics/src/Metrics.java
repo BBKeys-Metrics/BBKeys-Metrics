@@ -1,4 +1,5 @@
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -134,7 +135,16 @@ public class Metrics extends Application {
         
         //start out with the text field having the focus
         userTextField.requestFocus();
-    }
+        
+        
+        DatabaseConnection dbCon;
+		try {
+			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Training", "sa", "SQL2k8#1");	
+			dbCon.executeQueryAndDisplayResults("SELECT * FROM Training.dbo.Departments");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
     
     //main method which launches the application
     public static void main(String[] args) {
