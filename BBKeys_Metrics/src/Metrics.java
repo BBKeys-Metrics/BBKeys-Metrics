@@ -21,36 +21,59 @@ public class Metrics extends Application {
 	private int originalWidth;
 	private int originalHeight;
 	
-	//getter method which returns the static instance of this class
+	/**
+	 * getter method which returns the static instance of this class
+	 * @return
+	 */
 	public static Metrics getInstance() {
 		return instance;
 	}
 	
-	//getter method which returns the primary stage
+	/**
+	 * getter method which returns the primary stage
+	 * @return Stage
+	 */
 	public Stage getStage() {
 		return stage;
 	}
 	
-	//getter method which returns the scene
+	/**
+	 * getter method which returns the scene
+	 * @return Scene
+	 */
 	public Scene getScene() {
 		return scene;
 	}
 	
-	//getter method which returns the original style that was used
+	/**
+	 * getter method which returns the original style that was used
+	 * @return String
+	 */
 	public String getOriginalStyleOfScene() {
 		return originalStyle;
 	}
 	
-	//getter method which returns the original width of the screen
+	/**
+	 * getter method which returns the original width of the screen
+	 * @return int
+	 */
 	public int getOriginalWidth() {
 		return originalWidth;
 	}
 	
-	//getter method which returns the original height of the screen
+	/**
+	 * getter method which returns the original height of the screen
+	 * @return int
+	 */
 	public int getOriginalHeight() {
 		return originalHeight;
 	}
-			
+		
+	/**
+	 * Runs the JavaFX Application
+	 * @param primaryStage - the Stage that will be displayed
+	 * @return void
+	 */
     @Override
     public void start(Stage primaryStage) {
     	//initialize variables to be used by the calling classes
@@ -126,19 +149,29 @@ public class Metrics extends Application {
         
         DatabaseConnection dbCon;
 		try {
-			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Training", "sa", "SQL2k8#1");	
+			User user = new User();
+			user.setUsername("sa");
+			user.setPassword("SQL2k8#1");
+			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Training", user);	
 			dbCon.executeQueryAndDisplayResults("SELECT * FROM Training.dbo.Departments");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
     
-    //main method which launches the application
+    /**
+     * main method which launches the application
+     * @param args - command line arguments
+     * @return void
+     */
     public static void main(String[] args) {
         launch(args);
     }
     
-    //kill all threads when the program is closed
+    /**
+     * kill all threads when the program is closed
+     * @return void
+     */
     @Override
     public void stop() {
         System.exit(0);
