@@ -3,15 +3,16 @@ public class Metric {
 	private String name;
 	private double weight;
 	private int precision;
-	//private ? sortType;
+	private String sortType;
 	
 	/**
-	 * constructor (initializes private variables)
+	 * Constructor (initializes private variables)
 	 */
 	public Metric() {
 		name = "";
 		weight = 0.0;
 		precision = 0;
+		sortType = "";
 	}
 	
 	/**
@@ -63,5 +64,22 @@ public class Metric {
 	 */
 	public int getPrecision() {
 		return precision;
+	}
+	
+	/**
+	 * Set the value of the sortType
+	 * @param sortType - the new value of the sortType
+	 * @return void
+	 */
+	public void setSortType(String sortType) {
+		this.sortType = sortType;
+	}
+	
+	/**
+	 * Get the value of the sortType
+	 * @return String
+	 */
+	public String getSortType() {
+		return sortType;
 	}
 }
