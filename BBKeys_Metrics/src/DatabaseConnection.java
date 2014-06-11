@@ -15,8 +15,7 @@ public class DatabaseConnection {
 	private String host;
 	private String port;
 	private String database;
-	private String username;
-	private String password;
+	private User user;
 	
 	private Connection con = null;
 	private String connectionURL = null;
@@ -28,15 +27,13 @@ public class DatabaseConnection {
 	 * @param host - computer host name or IP address
 	 * @param port - port that the database is being hosted from
 	 * @param database - name of database
-	 * @param username - user accessing the database
-	 * @param password - user's password
+	 * @param user - User object
 	 */
-	public DatabaseConnection(String host, String port, String database, String username, String password) throws SQLException {
+	public DatabaseConnection(String host, String port, String database, User user) throws SQLException {
 		this.host = host;
 		this.port = port;
 		this.database = database;
-		this.username = username;
-		this.password = password;
+		this.user = user;
 		
 		setUpConnection();
 	}
@@ -49,7 +46,7 @@ public class DatabaseConnection {
 		//check to see if the required driver is installed
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + username + ";password=" + password;
+			connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + user.getUsername() + ";password=" + user.getPassword();
 			con = DriverManager.getConnection(connectionURL);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
