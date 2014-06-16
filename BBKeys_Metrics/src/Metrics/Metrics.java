@@ -137,7 +137,7 @@ public class Metrics extends Application {
         scene = new Scene(grid, originalWidth, originalHeight);
         
         //set the style sheets (css) for the scene 
-        scene.getStylesheets().add(Metrics.class.getResource("Metrics.css").toExternalForm());
+        scene.getStylesheets().add(Metrics.class.getResource("../Metrics.css").toExternalForm());
         originalStyle = "-fx-background-image: url(\"background.jpg\")";
         scene.getRoot().setStyle(originalStyle);
         
