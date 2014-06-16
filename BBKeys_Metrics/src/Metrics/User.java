@@ -1,3 +1,5 @@
+package Metrics;
+
 
 public class User extends Employee{
 	private String username;

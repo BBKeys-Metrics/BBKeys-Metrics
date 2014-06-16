@@ -1,3 +1,5 @@
+package Metrics;
+
 
 public class MetricScore {
 	private Metric metric;
