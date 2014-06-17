@@ -22,6 +22,7 @@ public class Metrics extends Application {
 	private String originalStyle;
 	private int originalWidth;
 	private int originalHeight;
+	private User user;
 	
 	/**
 	 * getter method which returns the static instance of this class
@@ -151,7 +152,7 @@ public class Metrics extends Application {
         
         DatabaseConnection dbCon;
 		try {
-			User user = new User();
+			user = new User();
 			user.setUsername("sa");
 			user.setPassword("SQL2k8#1");
 			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Training", user);	
@@ -160,6 +161,14 @@ public class Metrics extends Application {
 			e.printStackTrace();
 		}
 	}
+    
+    /**
+     * getUser returns the user object for other classes to use.
+     * @return User
+     */
+    public User getUser() {
+    	return user;
+    }
     
     /**
      * main method which launches the application
