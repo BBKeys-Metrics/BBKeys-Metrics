@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite, 2 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -90,7 +90,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods, 1 failed,   2 passed</span>
+                    <span class="method-stats">7 methods, 2 failed,   5 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title failed">Failed methods</span>
@@ -101,7 +101,12 @@
                     <div class="method-list-content failed suite-Suite">
                       <span>
                         <img width="3%" src="failed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.NewTest" hash-for-method="f2">f2</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.GradableItemTest" hash-for-method="getScoreString">getScoreString</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.GradableItemTest" hash-for-method="getScoreint">getScoreint</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Suite -->
@@ -115,12 +120,27 @@
                     <div class="method-list-content passed suite-Suite">
                       <span>
                         <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.GradableItemTest" hash-for-method="GradableItem">GradableItem</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.GradableItemTest" hash-for-method="addScore">addScore</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.NewTest2" hash-for-method="f">f</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.NewTest" hash-for-method="f">f</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.GradableItemTest" hash-for-method="getName">getName</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Suite" title="Metrics.GradableItemTest" hash-for-method="setName">setName</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Suite -->
@@ -138,17 +158,28 @@
           <div class="suite-Suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">Metrics.NewTest</span>
+              <span class="class-name">Metrics.GradableItemTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="f2">
-                  </a> <!-- f2 -->
-                  <span class="method-name">f2</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [Fail] but found [Shane]
-	at Metrics.NewTest.f2(NewTest.java:20)
-... Removed 29 stack frames
+                  <a name="getScoreString">
+                  </a> <!-- getScoreString -->
+                  <span class="method-name">getScoreString</span>
+                  <div class="stack-trace">java.lang.NullPointerException
+	at Metrics.GradableItemTest.getScoreString(GradableItemTest.java:38)
+... Removed 24 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getScoreint">
+                  </a> <!-- getScoreint -->
+                  <span class="method-name">getScoreint</span>
+                  <div class="stack-trace">java.lang.NullPointerException
+	at Metrics.GradableItemTest.getScoreint(GradableItemTest.java:32)
+... Removed 24 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -172,14 +203,35 @@
           <div class="suite-Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">Metrics.NewTest</span>
+              <span class="class-name">Metrics.GradableItemTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="f">
-                  </a> <!-- f -->
-                  <span class="method-name">f</span>
+                  <a name="GradableItem">
+                  </a> <!-- GradableItem -->
+                  <span class="method-name">GradableItem</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="addScore">
+                  </a> <!-- addScore -->
+                  <span class="method-name">addScore</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getName">
+                  </a> <!-- getName -->
+                  <span class="method-name">getName</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="setName">
+                  </a> <!-- setName -->
+                  <span class="method-name">setName</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -196,7 +248,7 @@
 &lt;suite name=&quot;Suite&quot;&gt;
   &lt;test name=&quot;Test&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;Metrics.NewTest&quot;/&gt;
+      &lt;class name=&quot;Metrics.GradableItemTest&quot;/&gt;
       &lt;class name=&quot;Metrics.NewTest2&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Test --&gt;
@@ -237,24 +289,40 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(7);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'f')
-data.setCell(0, 2, 'Metrics.NewTest')
-data.setCell(0, 3, 24);
+data.setCell(0, 1, 'GradableItem')
+data.setCell(0, 2, 'Metrics.GradableItemTest')
+data.setCell(0, 3, 13);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'f')
-data.setCell(1, 2, 'Metrics.NewTest2')
-data.setCell(1, 3, 2);
+data.setCell(1, 1, 'getName')
+data.setCell(1, 2, 'Metrics.GradableItemTest')
+data.setCell(1, 3, 4);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'f2')
-data.setCell(2, 2, 'Metrics.NewTest')
-data.setCell(2, 3, 1);
+data.setCell(2, 1, 'addScore')
+data.setCell(2, 2, 'Metrics.GradableItemTest')
+data.setCell(2, 3, 3);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'f')
+data.setCell(3, 2, 'Metrics.NewTest2')
+data.setCell(3, 3, 1);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'getScoreint')
+data.setCell(4, 2, 'Metrics.GradableItemTest')
+data.setCell(4, 3, 1);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'getScoreString')
+data.setCell(5, 2, 'Metrics.GradableItemTest')
+data.setCell(5, 3, 1);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'setName')
+data.setCell(6, 2, 'Metrics.GradableItemTest')
+data.setCell(6, 3, 0);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 27 ms</span>
+              <span class="suite-total-time">Total running time: 23 ms</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -280,23 +348,41 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">Metrics.NewTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Metrics.GradableItemTest</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">f</span>
+                <span class="method-name">GradableItem</span>
                 <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">addScore</span>
+                <span class="method-start">14 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getName</span>
+                <span class="method-start">18 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">f2</span>
-                <span class="method-start">26 ms</span>
+                <span class="method-name">getScoreString</span>
+                <span class="method-start">23 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">getScoreint</span>
+                <span class="method-start">27 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">setName</span>
+                <span class="method-start">31 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">Metrics.NewTest2</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">f</span>
-                <span class="method-start">33 ms</span>
+                <span class="method-start">36 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

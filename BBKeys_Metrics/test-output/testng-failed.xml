@@ -3,11 +3,12 @@
 <suite name="Failed suite [Suite]">
   <test name="Test(failed)">
     <classes>
-      <class name="Metrics.NewTest">
+      <class name="Metrics.GradableItemTest">
         <methods>
-          <include name="f2"/>
+          <include name="getScoreint"/>
+          <include name="getScoreString"/>
         </methods>
-      </class> <!-- Metrics.NewTest -->
+      </class> <!-- Metrics.GradableItemTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
