@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="1" total="3" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="36" started-at="2014-06-16T19:27:28Z" finished-at="2014-06-16T19:27:28Z">
+  <suite name="Suite" duration-ms="89" started-at="2014-06-18T17:33:22Z" finished-at="2014-06-18T17:33:22Z">
     <groups>
     </groups>
-    <test name="Test" duration-ms="36" started-at="2014-06-16T19:27:28Z" finished-at="2014-06-16T19:27:28Z">
+    <test name="Test" duration-ms="89" started-at="2014-06-18T17:33:22Z" finished-at="2014-06-18T17:33:22Z">
       <class name="Metrics.NewTest">
-        <test-method status="PASS" signature="f()[pri:0, instance:Metrics.NewTest@de0a01f]" name="f" duration-ms="15" started-at="2014-06-16T13:27:28Z" finished-at="2014-06-16T13:27:28Z">
+        <test-method status="PASS" signature="f()[pri:0, instance:Metrics.NewTest@de0a01f]" name="f" duration-ms="24" started-at="2014-06-18T11:33:22Z" finished-at="2014-06-18T11:33:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- f -->
-        <test-method status="FAIL" signature="f2()[pri:0, instance:Metrics.NewTest@de0a01f]" name="f2" duration-ms="2" started-at="2014-06-16T13:27:28Z" finished-at="2014-06-16T13:27:28Z">
+        <test-method status="FAIL" signature="f2()[pri:0, instance:Metrics.NewTest@de0a01f]" name="f2" duration-ms="1" started-at="2014-06-18T11:33:22Z" finished-at="2014-06-18T11:33:22Z">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [Fail] but found [Shane]]]>
@@ -56,7 +56,7 @@
         </test-method> <!-- f2 -->
       </class> <!-- Metrics.NewTest -->
       <class name="Metrics.NewTest2">
-        <test-method status="PASS" signature="f()[pri:0, instance:Metrics.NewTest2@66133adc]" name="f" duration-ms="2" started-at="2014-06-16T13:27:28Z" finished-at="2014-06-16T13:27:28Z">
+        <test-method status="PASS" signature="f()[pri:0, instance:Metrics.NewTest2@66133adc]" name="f" duration-ms="2" started-at="2014-06-18T11:33:22Z" finished-at="2014-06-18T11:33:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- f -->
