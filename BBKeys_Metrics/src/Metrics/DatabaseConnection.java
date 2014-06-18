@@ -61,10 +61,23 @@ public class DatabaseConnection {
 	 * @param query = SQL Query
 	 * @return void
 	 */
-	public void executeQuery(String query) throws SQLException {
+	public ResultSet executeQuery(String query) throws SQLException {
 		//try {
 			Statement s = con.createStatement();
 			r = s.executeQuery(query);
+			return r;
+	}
+	
+	public void executeQueryWithoutResult(String query) throws SQLException {
+		//try {
+			Statement s = con.createStatement();
+			s.executeQuery(query);
+	}
+	
+	public void executeUpdate(String query) throws SQLException {
+		//try {
+			Statement s = con.createStatement();
+			s.executeUpdate(query);
 	}
 	
 	/**
