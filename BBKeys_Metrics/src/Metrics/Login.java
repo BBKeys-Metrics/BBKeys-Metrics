@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -140,7 +141,7 @@ public class Login extends Application {
         grid.add(passwordLabel, 0, 1, 1, 1);
         
         //create the password text field
-        TextField password = new TextField();
+        PasswordField password = new PasswordField();
         password.setPrefWidth(300);
         grid.add(password, 1, 1, 4, 1);
         
