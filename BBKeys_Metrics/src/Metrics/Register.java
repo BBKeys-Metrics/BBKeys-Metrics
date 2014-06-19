@@ -246,10 +246,12 @@ public class Register extends Application {
             	//check for valid id (i.e. id exists in people)
             	if (!duplicateID) {
             		try {
-						r = dbCon.executeQuery("");
+						r = dbCon.executeQuery("SELECT COUNT(Peep_ID) FROM Metrics.dbo.People where Peep_ID = '" + userID.getText() + "'");
 	        			r.next();
 	            		if (!r.getString(1).equals("1")) {
 	            			//display error message "Invalid ID"
+	            			actiontarget.setFill(Color.FIREBRICK);
+                            actiontarget.setText("Invalid ID");
 	            		}
 	            		else {
 	            			validID = true;
