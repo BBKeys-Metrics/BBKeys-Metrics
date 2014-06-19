@@ -96,42 +96,20 @@ public class Register extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         
-        //Allow elements to grow as the window is resized
-        //grow horizontally
-        /*
-        ColumnConstraints column0 = new ColumnConstraints();
-        column0.setPercentWidth(30);
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(30);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(40);
-        ColumnConstraints column3 = new ColumnConstraints();
-        column3.setPercentWidth(0);
-        ColumnConstraints column4 = new ColumnConstraints();
-        column4.setPercentWidth(0);
-        grid.getColumnConstraints().addAll(column0, column1, column2, column3, column4);
-        
-        //grow vertically
-        RowConstraints rowConstraints0 = new RowConstraints();
-        rowConstraints0.setPercentHeight(10);
-        RowConstraints rowConstraints1 = new RowConstraints();
-        rowConstraints1.setPercentHeight(10);
-        RowConstraints rowConstraints2 = new RowConstraints();
-        rowConstraints2.setPercentHeight(10);
-        RowConstraints rowConstraints3 = new RowConstraints();
-        rowConstraints3.setPercentHeight(10);
-        RowConstraints rowConstraints4 = new RowConstraints();
-        rowConstraints4.setPercentHeight(60);
-        grid.getRowConstraints().addAll(rowConstraints0, rowConstraints1, rowConstraints2, rowConstraints3, rowConstraints4);
-        */
         //set the minimum width and height of the window
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);
         
+        //set the maximum width and height of the window
+        primaryStage.setMaxWidth(500);
+        primaryStage.setMaxHeight(500);
+        
+        //text which will prompt user for user id
         Text userIDLabel = new Text("User ID:");
         userIDLabel.setId("userid");
-        grid.add(userIDLabel, 0, 0, 1, 1);
+        grid.add(userIDLabel, 0, 0, 1, 1); //column, row, num columns spanned, num rows spanned
         
+        //text field where the user will enter user id
         TextField userID = new TextField();
         userID.setPrefWidth(300);
         grid.add(userID, 1, 0, 4, 1);
@@ -156,37 +134,42 @@ public class Register extends Application {
         password.setPrefWidth(300);
         grid.add(password, 1, 2, 4, 1);
         
-      //create the password text view
+        //create the confirm password text view
         Text confirmPasswordLabel = new Text("Confirm Password:");
         confirmPasswordLabel.setId("confirm password");
         grid.add(confirmPasswordLabel, 0, 3, 1, 1);
         
-        //create the password text field
+        //create the confirm password text field
         PasswordField confirmPassword = new PasswordField();
         confirmPassword.setPrefWidth(300);
         grid.add(confirmPassword, 1, 3, 4, 1);
         
-        //
+        //when the user is in the user id text field and hits enter, go to the username text field
         userID.setOnAction((event) -> {       
         	username.requestFocus();
         });
         
+        //when the user is in the username text field and hits enter, go to the password text field
         username.setOnAction((event) -> {       
         	password.requestFocus();
         });
         
+        //when the user is in the password textfield and hits enter, go to the confrim password text field
         password.setOnAction((event) -> {       
         	confirmPassword.requestFocus();
         });
         
+        //commit to the register button
         Button btnRegister = new Button("Commit");
         btnRegister.setAlignment(Pos.TOP_CENTER);
         grid.add(btnRegister, 0, 4, 2, 1);
         
-        final Text actiontarget = new Text();
+        //error message
+        final Text actiontarget = new Text(); //no value for text so it won't appear in window until text is specified
         grid.add(actiontarget, 1, 5);
         actiontarget.setId("actiontarget");
         
+        //action to perform when the commit button is pressed
         btnRegister.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -257,7 +240,6 @@ public class Register extends Application {
 	            			validID = true;
 	            		}
             		} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
             	}
@@ -301,6 +283,7 @@ public class Register extends Application {
             }
         });
         
+        //when the user is in the confrim password field and hit enter, perform the commit button click
         confirmPassword.setOnAction((event) -> {       
         	btnRegister.fire(); //perform commit button click
         });
@@ -319,11 +302,8 @@ public class Register extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        //start out with the text field having the focus
+        //start out with the user id text field having the focus
         userID.requestFocus();
-        
-        
-        
 	}
     
     /**
