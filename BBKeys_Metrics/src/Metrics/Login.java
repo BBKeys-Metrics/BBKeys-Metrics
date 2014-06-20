@@ -1,5 +1,6 @@
 package Metrics;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.application.Application;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -93,7 +95,7 @@ public class Login extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        
+        /*
         //Allow elements to grow as the window is resized
         //grow horizontally
         ColumnConstraints column0 = new ColumnConstraints();
@@ -120,10 +122,13 @@ public class Login extends Application {
         RowConstraints rowConstraints4 = new RowConstraints();
         rowConstraints4.setPercentHeight(10);
         grid.getRowConstraints().addAll(rowConstraints0, rowConstraints1, rowConstraints2, rowConstraints3, rowConstraints4);
-        
+        */
         //set the minimum width and height of the window
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);
+        
+        primaryStage.setMaxWidth(500);
+        primaryStage.setMaxHeight(500);
         
         //create text view which will prompt the user for a username
         Text usernameLabel = new Text("Username:");
@@ -145,11 +150,6 @@ public class Login extends Application {
         password.setPrefWidth(300);
         grid.add(password, 1, 1, 4, 1);
         
-        //
-        username.setOnAction((event) -> {       
-        	password.requestFocus();
-        });
-        
         Button btnLogin = new Button("Login");
         btnLogin.setAlignment(Pos.TOP_CENTER);
         grid.add(btnLogin, 0, 2, 2, 1);
@@ -158,10 +158,65 @@ public class Login extends Application {
         btnRegister.setAlignment(Pos.TOP_CENTER);
         grid.add(btnRegister, 1, 2, 2, 1);
         
+        //error message
+        final Text actiontarget = new Text(); //no value for text so it won't appear in window until text is specified
+        grid.add(actiontarget, 1, 3);
+        actiontarget.setId("actiontarget");
+        
         btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent e) {                
+            public void handle(ActionEvent e) {    
+            	boolean fieldsBlank = true;
+            	boolean correctLogin = false;
+            	
+            	DatabaseConnection dbCon = null;
+            	ResultSet r = null;
+            	
+            	if (username.getText().equals("") || password.getText().equals("")) {
+            		actiontarget.setFill(Color.FIREBRICK);
+                    actiontarget.setText("All fields are required");
+            	}
+            	else {
+            		fieldsBlank = false;
+            	}
+            	
+            	if (!fieldsBlank) {
+            		user = new User();
+        			user.setUsername("MetricsApp");
+        			user.setPassword("javafx");
+        			try {
+						dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
+	        			r = dbCon.executeQuery("Select COUNT(employeeID) from Metrics.dbo.Users where username = '" + username.getText() + "' and password = '" + password.getText() + "'");
+	        			r.next();
+	        			
+	        			if (!r.getString(1).equals("1")) {
+	        				actiontarget.setFill(Color.FIREBRICK);
+	                        actiontarget.setText("Incorrect Username or Password");
+	        			}
+	        			else {
+	        				correctLogin = true;
+	        			}
+        			} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+            	}
+            	
+            	if (correctLogin) {
+            		//redirect to user home page
+    				Metrics metric = new Metrics();
+                    metric.start(primaryStage);  //open in same window
+            	}
             }
+        });
+        
+        //
+        username.setOnAction((event) -> {       
+        	password.requestFocus();
+        });
+        
+        //
+        password.setOnAction((event) -> {       
+        	btnLogin.fire(); //perform commit button click
         });
         
         btnRegister.setOnAction(new EventHandler<ActionEvent>() {
@@ -191,18 +246,6 @@ public class Login extends Application {
         
         //start out with the text field having the focus
         username.requestFocus();
-        
-        
-        DatabaseConnection dbCon;
-		try {
-			user = new User();
-			user.setUsername("sa");
-			user.setPassword("SQL2k8#1");
-			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Training", user);	
-			dbCon.executeQueryAndDisplayResults("SELECT * FROM Training.dbo.Departments");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
     
     /**
