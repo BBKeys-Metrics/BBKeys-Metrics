@@ -265,20 +265,24 @@ public class Register extends Application {
             		String id = userID.getText();
     				String name = username.getText();
     				String pass = password.getText();
+    				
+    				//encrypt password
     				String encryptedPassword = "";
+    				
+    				
+    				// Hash a password for the first time
+    				encryptedPassword = BCrypt.hashpw(pass, BCrypt.gensalt());
     				
     				//add userID, username, password to the users table in the database
     				try {
-						dbCon.executeUpdate("INSERT INTO Metrics.dbo.Users (employeeID, username, password) VALUES (" + id + ", '" + name + "', '" + pass + "')");
+						dbCon.executeUpdate("INSERT INTO Metrics.dbo.Users (employeeID, username, password) VALUES (" + id + ", '" + name + "', '" + encryptedPassword + "')");
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
     				
-    				//encrypt password
-    				
     				//redirect to user home page
-    				Metrics metric = new Metrics();
-                    metric.start(primaryStage);  //open in same window
+    				//Metrics metric = new Metrics();
+                    //metric.start(primaryStage);  //open in same window
             	}        	
             }
         });
