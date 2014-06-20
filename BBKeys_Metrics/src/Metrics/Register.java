@@ -101,8 +101,8 @@ public class Register extends Application {
         primaryStage.setMinHeight(500);
         
         //set the maximum width and height of the window
-        primaryStage.setMaxWidth(500);
-        primaryStage.setMaxHeight(500);
+        //primaryStage.setMaxWidth(501);
+        //primaryStage.setMaxHeight(501);
         
         //text which will prompt user for user id
         Text userIDLabel = new Text("User ID:");
@@ -281,8 +281,8 @@ public class Register extends Application {
 					}
     				
     				//redirect to user home page
-    				//Metrics metric = new Metrics();
-                    //metric.start(primaryStage);  //open in same window
+    				Metrics metric = new Metrics();
+                    metric.start(primaryStage);  //open in same window
             	}        	
             }
         });

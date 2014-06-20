@@ -130,8 +130,8 @@ public class Login extends Application {
         primaryStage.setMinHeight(500);
         
         //set the maximum width and height of the window
-        primaryStage.setMaxWidth(500);
-        primaryStage.setMaxHeight(500);
+        //primaryStage.setMaxWidth(501);
+        //primaryStage.setMaxHeight(501);
         
         //create text view which will prompt the user for a username
         Text usernameLabel = new Text("Username:");
