@@ -1,0 +1,26 @@
+package TestingMVC;
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class View extends Application{
+	private static final View instance = new View();
+	private static Stage theStage;
+	
+	private View() {
+		
+	}
+	
+	public static View getInstance() {
+		return instance;
+	}
+	
+	public void start(Stage primaryStage) throws Exception {
+		theStage = primaryStage;
+		ScoresScene scoreView = new ScoresScene();
+		theStage.setScene(scoreView.getScene());
+		//Login loginView = new Login();
+		//loginView.start(theStage);
+	}
+
+}
