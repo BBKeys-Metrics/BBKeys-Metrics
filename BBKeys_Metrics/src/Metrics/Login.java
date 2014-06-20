@@ -174,6 +174,7 @@ public class Login extends Application {
             public void handle(ActionEvent e) {    
             	boolean fieldsBlank = true;
             	boolean correctLogin = false;
+            	boolean validUsername = false;
             	
             	DatabaseConnection dbCon = null;
             	ResultSet r = null;
@@ -196,19 +197,39 @@ public class Login extends Application {
         				//connect to the database
 						dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user); 
 						
-						//execute query 
-						//check for valid username and password combination
-	        			r = dbCon.executeQuery("Select COUNT(employeeID) from Metrics.dbo.Users where username = '" + username.getText() + "' and password = '" + password.getText() + "'");
+	    				//check that the username exists
+	    				r = dbCon.executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username.getText() + "'");
+	    				r.next();
+	    				
+	    				if (!r.getString(1).equals("1")) { //if there were no users with the specified username
+	    					//display error message "Invalid Username"
+	    					actiontarget.setFill(Color.FIREBRICK);
+	                        actiontarget.setText("Invalid Username");
+	    				}
+	    				else { //there is a user with the specified username
+	    					validUsername = true;
+	    				}
+        			} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+            	}
+            	
+            	if (validUsername) {
+    				try {
+						//get the password for the specifiec user
+	        			r = dbCon.executeQuery("Select password from Metrics.dbo.Users where username = '" + username.getText() + "'");
 	        			r.next();
+	        			String passwordFromDB = r.getString(1);
 	        			
-	        			if (!r.getString(1).equals("1")) { //if the username and password combination were invalid
-	        				//display error message "Incorrect Username or Password"
+	        			//Check that an unencrypted password matches one that has previously been hashed
+	        			if (!BCrypt.checkpw(password.getText(), passwordFromDB)) { //if the username and password combination were invalid
+	        				//display error message "Invalid Password"
 	        				actiontarget.setFill(Color.FIREBRICK);
-	                        actiontarget.setText("Incorrect Username or Password");
+	                        actiontarget.setText("Invalid Password");
 	        			}
-	        			else { //Username and Password combination were valid
+	    				else { //Username and Password combination were valid
 	        				correctLogin = true;
-	        			}
+	    				}
         			} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
