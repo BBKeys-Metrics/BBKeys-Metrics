@@ -122,6 +122,9 @@ public class Metrics extends Application {
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);
         
+        primaryStage.setMaxWidth(500);
+        primaryStage.setMaxHeight(500);
+        
         //create text view which will prompt the user for a runnable item
         Text enterMetric = new Text("Enter Metric");
         enterMetric.setId("enter-runnable"); //used with css
