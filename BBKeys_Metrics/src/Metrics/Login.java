@@ -95,6 +95,7 @@ public class Login extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
+        
         /*
         //Allow elements to grow as the window is resized
         //grow horizontally
@@ -123,10 +124,12 @@ public class Login extends Application {
         rowConstraints4.setPercentHeight(10);
         grid.getRowConstraints().addAll(rowConstraints0, rowConstraints1, rowConstraints2, rowConstraints3, rowConstraints4);
         */
+        
         //set the minimum width and height of the window
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);
         
+        //set the maximum width and height of the window
         primaryStage.setMaxWidth(500);
         primaryStage.setMaxHeight(500);
         
@@ -150,10 +153,12 @@ public class Login extends Application {
         password.setPrefWidth(300);
         grid.add(password, 1, 1, 4, 1);
         
+        //login button
         Button btnLogin = new Button("Login");
         btnLogin.setAlignment(Pos.TOP_CENTER);
         grid.add(btnLogin, 0, 2, 2, 1);
         
+        //register as a new user button
         Button btnRegister = new Button("Register");
         btnRegister.setAlignment(Pos.TOP_CENTER);
         grid.add(btnRegister, 1, 2, 2, 1);
@@ -163,6 +168,7 @@ public class Login extends Application {
         grid.add(actiontarget, 1, 3);
         actiontarget.setId("actiontarget");
         
+        //action to be performed when the user hits the login button
         btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {    
@@ -172,28 +178,35 @@ public class Login extends Application {
             	DatabaseConnection dbCon = null;
             	ResultSet r = null;
             	
-            	if (username.getText().equals("") || password.getText().equals("")) {
+            	//check for empty fields
+            	if (username.getText().equals("") || password.getText().equals("")) { //one or more fields were blank
             		actiontarget.setFill(Color.FIREBRICK);
                     actiontarget.setText("All fields are required");
             	}
-            	else {
+            	else { //no fields were blank
             		fieldsBlank = false;
             	}
             	
             	if (!fieldsBlank) {
+            		//set up connection to database
             		user = new User();
         			user.setUsername("MetricsApp");
         			user.setPassword("javafx");
         			try {
-						dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
+        				//connect to the database
+						dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user); 
+						
+						//execute query 
+						//check for valid username and password combination
 	        			r = dbCon.executeQuery("Select COUNT(employeeID) from Metrics.dbo.Users where username = '" + username.getText() + "' and password = '" + password.getText() + "'");
 	        			r.next();
 	        			
-	        			if (!r.getString(1).equals("1")) {
+	        			if (!r.getString(1).equals("1")) { //if the username and password combination were invalid
+	        				//display error message "Incorrect Username or Password"
 	        				actiontarget.setFill(Color.FIREBRICK);
 	                        actiontarget.setText("Incorrect Username or Password");
 	        			}
-	        			else {
+	        			else { //Username and Password combination were valid
 	        				correctLogin = true;
 	        			}
         			} catch (SQLException e1) {
@@ -201,7 +214,7 @@ public class Login extends Application {
 					}
             	}
             	
-            	if (correctLogin) {
+            	if (correctLogin) { //if the Username and Password combination were valid
             		//redirect to user home page
     				Metrics metric = new Metrics();
                     metric.start(primaryStage);  //open in same window
@@ -209,23 +222,22 @@ public class Login extends Application {
             }
         });
         
-        //
+        //when the user is in the username field and hits enter, switch to the password field
         username.setOnAction((event) -> {       
         	password.requestFocus();
         });
         
-        //
+        //when the user is in the password field and hits enter, perform login button click
         password.setOnAction((event) -> {       
-        	btnLogin.fire(); //perform commit button click
+        	btnLogin.fire(); //perform login button click
         });
         
+        //action to be performed when the user hits the register button
         btnRegister.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
             	//create new application and open in new window
             	Register register = new Register();
-                Stage stage = new Stage();
-                //metric.start(stage); //open in new window
                 register.start(primaryStage);  //open in same window
             }
         });
