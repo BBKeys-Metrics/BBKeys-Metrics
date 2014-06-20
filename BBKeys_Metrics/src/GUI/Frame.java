@@ -13,7 +13,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import java.util.ArrayList;
+
+import Metrics.Metrics;
 
 
 /*
@@ -62,6 +65,9 @@ public class Frame extends Application{
 		AnchorPane.setBottomAnchor(this.buttonBox(), 10.0);
                
         scene = new Scene(root, 800, 800);
+        
+        //Metrics metric = new Metrics();
+        //metric.start(primaryStage);  //open in same window
 	}
 	
 	private VBox buttonBox(){
