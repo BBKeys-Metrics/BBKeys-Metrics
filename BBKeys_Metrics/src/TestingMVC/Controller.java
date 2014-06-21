@@ -1,11 +1,9 @@
 package TestingMVC;
 
 import Metrics.Preferences;
-import Metrics.User;
 
 public class Controller {
 	private static final Controller instance = new Controller();
-	
 	private Controller() {
 	};
 	
@@ -13,18 +11,8 @@ public class Controller {
 		return instance;
 	}
 
-	public User getUser() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Preferences getPrefs(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public void main(String[] args){
-		View.launch(args);
+	public Preferences getPrefs(String user) {
+		return Model.getInstance().getPrefs(user);
 	}
 }
 

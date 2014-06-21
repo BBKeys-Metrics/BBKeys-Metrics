@@ -8,7 +8,6 @@ public class View extends Application{
 	private static Stage theStage;
 	
 	private View() {
-		
 	}
 	
 	public static View getInstance() {
@@ -19,8 +18,13 @@ public class View extends Application{
 		theStage = primaryStage;
 		ScoresScene scoreView = new ScoresScene();
 		theStage.setScene(scoreView.getScene());
+		theStage.show();
 		//Login loginView = new Login();
 		//loginView.start(theStage);
+	}
+	
+	public Stage getStage() {
+		return theStage;
 	}
 
 }

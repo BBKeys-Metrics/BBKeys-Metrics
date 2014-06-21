@@ -14,6 +14,10 @@ public class Preferences {
 		prefs = null;
 	}
 	
+	public Preferences(String[] prefData) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Sets the preference for a specific Metric as to whether or not to display the Metric for the current User
 	 * @param metric - the Metric that will have the display preference changed
@@ -31,5 +35,10 @@ public class Preferences {
 	 */
 	public Boolean getPreference(Metric metric) {
 		return true;
+	}
+	
+	public Boolean getPreference(int pos) {
+		return true;
+	}
 	}
 }

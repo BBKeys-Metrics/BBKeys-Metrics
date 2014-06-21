@@ -1,12 +1,14 @@
 package TestingMVC;
 
+import Metrics.Preferences;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class ScoresScene {
 	GridPane grid = new GridPane();
-
 	
 	public ScoresScene() {
 		 
@@ -15,19 +17,19 @@ public class ScoresScene {
 	public Scene getScene() {
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
-				Controller controller = Controller.getInstance();
-				Label name = new Label("User Name:");
-				grid.add(name, 0, 0);
-				//Preferences pref = controller.getPrefs(user);
-				//grid.add(pref.view());
-				/*Platform.runLater(new Runnable() {
+				final Preferences pref = Model.getInstance().getPrefs("Rick");
+				Platform.runLater(new Runnable() {
 					public void run() {
-						Controller.getInstance().getStage().show();
+						
+						Label name = new Label(pref.getPreference(0).toString());
+						grid.add(name, 0, 0);
 					}
-				});*/
+				});
+				
 			}
 		});
 		t1.start();
+		grid.add(new Button("Press Me"), 1, 0);
 		Scene scene = new Scene(grid, 300, 200);
 		return scene;
 	}
