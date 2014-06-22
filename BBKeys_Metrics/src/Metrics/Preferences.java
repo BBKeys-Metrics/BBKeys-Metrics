@@ -40,5 +40,4 @@ public class Preferences {
 	public Boolean getPreference(int pos) {
 		return true;
 	}
-	}
 }
