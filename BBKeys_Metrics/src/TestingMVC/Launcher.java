@@ -14,8 +14,7 @@ public class Launcher extends Application {
 
 	@Override
 	public void start(Stage arg0) {
-		arg0.setScene(new ScoresScene().getScene());
-		arg0.show();
+		Controller.getInstance().initialize(arg0);
 	}
 }
 

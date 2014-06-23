@@ -1,6 +1,7 @@
 package Metrics;
 
 import java.util.Map;
+import java.util.Set;
 
 
 public class Preferences {
@@ -37,7 +38,7 @@ public class Preferences {
 		return true;
 	}
 	
-	public Boolean getPreference(int pos) {
-		return true;
+	public Set<Metric> getMetrics() {
+		return prefs.keySet();
 	}
 }

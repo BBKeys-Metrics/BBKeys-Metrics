@@ -14,7 +14,7 @@ public class View extends Application{
 		return instance;
 	}
 	
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		theStage = primaryStage;
 		ScoresScene scoreView = new ScoresScene();
 		theStage.setScene(scoreView.getScene());
