@@ -34,15 +34,14 @@ import java.util.ArrayList;
  *   Summer Smith
  */
 
-class MyScores extends Application{
+class MyScores{
 	private Scene myScores;
 	private ArrayList<String> metricNames;
 	
 	/**
 	 * Start 
 	 */
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void main(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("My Scores");
 		buildPage();
 		primaryStage.setScene(myScores);
