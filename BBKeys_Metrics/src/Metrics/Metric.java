@@ -17,6 +17,13 @@ public class Metric {
 		sortType = "";
 	}
 	
+	public Metric(String truth) {
+		name = truth;
+		weight = 0.0;
+		precision = 0;
+		sortType = "";
+	}
+	
 	/**
 	 * Set the name of the Metric
 	 * @param name - new name of the Metric

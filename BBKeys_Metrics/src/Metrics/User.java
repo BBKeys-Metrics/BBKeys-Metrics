@@ -14,6 +14,14 @@ public class User extends Employee{
 	}
 	
 	/**
+	 * Constructor (initialize private variables)
+	 */
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+	
+	/**
 	 * Set the value of the username of the User
 	 * @param username - the new value of the username
 	 * @return void
