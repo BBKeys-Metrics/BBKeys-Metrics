@@ -1,13 +1,31 @@
 package Metrics;
 
+import java.sql.SQLException;
+
 
 public class Employee extends GradableItem{
 	private EmployeePic picture;
 	private String id;
+	private User user = new User("sa", "SQL2k8#1");
+	private DatabaseConnection dbCon = null;
 	
+	/**
+	 * Constructor - Creates the new employee object and initializes the picture of the employee
+	 * @param id
+	 */
 	public Employee(String id) {
+		//create the database connection
+		try {
+			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		//initialize the employee id
 		this.id = id;
-		picture = null;
+		
+		//initialize the employee picture
+		picture = new EmployeePic(dbCon.getConnection(), id);
 	}
 	
 	/**
@@ -21,7 +39,7 @@ public class Employee extends GradableItem{
 	
 	/**
 	 * Get the value of the picture for the Employee
-	 * @return byte[]
+	 * @return EmployeePic
 	 */
 	public EmployeePic getPicture() {
 		return picture;

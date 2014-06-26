@@ -14,11 +14,15 @@ import javax.imageio.ImageIO;
 
 public class EmployeePic {
 	private byte[] fileBytes;
-	BufferedImage bufferedImage;
-	Image image;
+	private BufferedImage bufferedImage;
+	private Image image;
 	
-	public EmployeePic() {
-		fileBytes = null;
+	public Image getImage() {
+		return image;
+	}
+	
+	public EmployeePic(Connection conn, String employeeID) {
+		image = setImage(conn, employeeID);
 	}
 	
 	/**
@@ -27,7 +31,7 @@ public class EmployeePic {
 	 * @param employeeID = employee id for the image desired
 	 * @return 
 	 */
-	public Image getImage(Connection conn, String employeeID) {
+	private Image setImage(Connection conn, String employeeID) {
          String query;
          try {
         	 //set up the query to get the varbinary data

@@ -138,8 +138,6 @@ public class Metrics extends Application {
         TextField userTextField = new TextField();
         userTextField.setPrefWidth(300);
         grid.add(userTextField, 1, 0, 4, 1);
-                        
-        
         
         Image image = null;
         DatabaseConnection dbCon;
@@ -150,12 +148,12 @@ public class Metrics extends Application {
 			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
 			
 			//load the image from the database
-			image = new EmployeePic().getImage(dbCon.getConnection(), "1");
+			image = new EmployeePic(dbCon.getConnection(), "1").getImage();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		//convert buffered image to java fx image
+		//convert the image to a JavaFX ImageView
         ImageView imView = new ImageView(image);
         
         //set width of image
