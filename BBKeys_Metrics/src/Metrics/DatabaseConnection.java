@@ -24,6 +24,10 @@ public class DatabaseConnection {
 	private ResultSet r = null;
 	ResultSetMetaData rsmd = null;
 	
+	public Connection getConnection() {
+		return con;
+	}
+	
 	/**
 	 * Constructor which sets the private variables equal to the parameters passed 
 	 * @param host - computer host name or IP address
