@@ -158,8 +158,11 @@ public class Metrics extends Application {
 			user = new User();
 			user.setUsername("sa");
 			user.setPassword("SQL2k8#1");
-			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Training", user);	
-			dbCon.executeQueryAndDisplayResults("SELECT * FROM Training.dbo.Departments");
+			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);	
+			//dbCon.executeQueryAndDisplayResults("SELECT * FROM Training.dbo.Departments");
+			
+			EmployeePic pic = new EmployeePic();
+			pic.getImageData(dbCon.getConnection());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
