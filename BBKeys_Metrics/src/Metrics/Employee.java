@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 
 public class Employee extends GradableItem{
+	//initialize private variables
 	private EmployeePic picture;
 	private String id;
 	private User user = new User("sa", "SQL2k8#1");
