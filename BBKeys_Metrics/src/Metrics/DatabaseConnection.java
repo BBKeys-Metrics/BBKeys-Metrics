@@ -24,6 +24,10 @@ public class DatabaseConnection {
 	private ResultSet r = null;
 	ResultSetMetaData rsmd = null;
 	
+	/**
+	 * Getter method which returns the database connection
+	 * @return Connection
+	 */
 	public Connection getConnection() {
 		return con;
 	}
@@ -49,10 +53,14 @@ public class DatabaseConnection {
 	 * @return void
 	 */
 	private void setUpConnection() throws SQLException {
-		//check to see if the required driver is installed
 		try {
+			//check to see if the required driver is installed
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			
+			//set up connection String
 			connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + user.getUsername() + ";password=" + user.getPassword();
+			
+			//create the connection
 			con = DriverManager.getConnection(connectionURL);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -66,22 +74,32 @@ public class DatabaseConnection {
 	 * @return void
 	 */
 	public ResultSet executeQuery(String query) throws SQLException {
-		//try {
-			Statement s = con.createStatement();
-			r = s.executeQuery(query);
-			return r;
+		Statement s = con.createStatement();
+		r = s.executeQuery(query);
+		return r;
 	}
 	
+	/**
+	 * This method executes a query that doesn't return any results such as
+	 * a delete statement.
+	 * @param query = SQL query
+	 * @return void
+	 * @throws SQLException
+	 */
 	public void executeQueryWithoutResult(String query) throws SQLException {
-		//try {
-			Statement s = con.createStatement();
-			s.executeQuery(query);
+		Statement s = con.createStatement();
+		s.executeQuery(query);
 	}
 	
+	/**
+	 * This method executes an update query statement such as Update or Insert
+	 * @param query
+	 * @return void
+	 * @throws SQLException
+	 */
 	public void executeUpdate(String query) throws SQLException {
-		//try {
-			Statement s = con.createStatement();
-			s.executeUpdate(query);
+		Statement s = con.createStatement();
+		s.executeUpdate(query);
 	}
 	
 	/**
