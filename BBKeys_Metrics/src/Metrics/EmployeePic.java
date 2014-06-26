@@ -7,12 +7,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class EmployeePic {
-	public void getImageData(Connection conn) {
+	public void getImageData(Connection conn, String employeeID) {
          byte[] fileBytes = null;
          String query;
          
          try {
-             query = "SELECT DocData FROM EmployeePics WHERE EmployeeID = '1'";
+             query = "SELECT DocData FROM EmployeePics WHERE EmployeeID = '" + employeeID + "'";
              Statement state = conn.createStatement();
              ResultSet rs = state.executeQuery(query);
              if (rs.next()) {

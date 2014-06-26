@@ -156,7 +156,7 @@ public class Metrics extends Application {
 			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
 			
 			//load the image from the database and write it to the temporary image file
-			new EmployeePic().getImageData(dbCon.getConnection());
+			new EmployeePic().getImageData(dbCon.getConnection(), "1");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
