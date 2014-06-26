@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Login extends Application {
+final public class Login extends Application {
     //variables that will be used in the runnable classes 
 	private static Login instance;
 	private Stage stage;
@@ -278,14 +278,6 @@ public class Login extends Application {
         //start out with the text field having the focus
         username.requestFocus();
 	}
-    
-    /**
-     * getUser returns the user object for other classes to use.
-     * @return User
-     */
-    public User getUser() {
-    	return user;
-    }
     
     /**
      * main method which launches the application
