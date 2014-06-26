@@ -1,7 +1,7 @@
 package Metrics;
 
 
-public class User extends Employee{
+public class User{
 	private String username;
 	private String password;
 	

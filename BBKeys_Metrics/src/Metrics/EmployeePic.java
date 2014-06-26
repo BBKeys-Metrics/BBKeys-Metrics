@@ -7,9 +7,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
+
 import javax.imageio.ImageIO;
 
 public class EmployeePic {
+	private byte[] fileBytes;
+	BufferedImage bufferedImage;
+	Image image;
+	
+	public EmployeePic() {
+		fileBytes = null;
+	}
 	
 	/**
 	 * This method reads a varbinary item from a database and writes that as a temporary image file
@@ -17,8 +27,7 @@ public class EmployeePic {
 	 * @param employeeID = employee id for the image desired
 	 * @return 
 	 */
-	public BufferedImage getImageData(Connection conn, String employeeID) {
-         byte[] fileBytes = null;
+	public Image getImage(Connection conn, String employeeID) {
          String query;
          try {
         	 //set up the query to get the varbinary data
@@ -38,15 +47,16 @@ public class EmployeePic {
                  //convert byte array to ByteArrayInputStream
                  ByteArrayInputStream bais = new ByteArrayInputStream(fileBytes);
                  try {
-                     return ImageIO.read(bais);
+                     bufferedImage = ImageIO.read(bais);
                  } catch (IOException e) {
-                     throw new RuntimeException(e);
+                	 throw new RuntimeException(e);
                  }
             }     
          }
          catch (Exception e) {
              e.printStackTrace();
          }
-		return null;
+         
+         return SwingFXUtils.toFXImage(bufferedImage, null);
     }
 }

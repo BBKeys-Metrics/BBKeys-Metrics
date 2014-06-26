@@ -47,7 +47,7 @@ public class Department extends GradableItem{
 	 * @return Employee
 	 */
 	public Employee getEmployee(int index) {
-		Employee emp = new Employee();
+		Employee emp = new Employee("1");
 		
 		return emp;
 	}
@@ -58,7 +58,7 @@ public class Department extends GradableItem{
 	 * @return Employee
 	 */
 	public Employee getEmployee(String name) {
-		Employee emp = new Employee();
+		Employee emp = new Employee("1");
 		
 		return emp;
 	}

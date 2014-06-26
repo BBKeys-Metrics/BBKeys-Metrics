@@ -141,7 +141,7 @@ public class Metrics extends Application {
                         
         
         
-        BufferedImage bufferedImage = null;
+        Image image = null;
         DatabaseConnection dbCon;
 		try {
 			user = new User();
@@ -150,13 +150,12 @@ public class Metrics extends Application {
 			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
 			
 			//load the image from the database
-			bufferedImage = new EmployeePic().getImageData(dbCon.getConnection(), "1");
+			image = new EmployeePic().getImage(dbCon.getConnection(), "1");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		//convert buffered image to java fx image
-        Image image = SwingFXUtils.toFXImage(bufferedImage, null);
         ImageView imView = new ImageView(image);
         
         //set width of image

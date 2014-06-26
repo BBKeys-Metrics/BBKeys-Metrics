@@ -2,20 +2,12 @@ package Metrics;
 
 
 public class Employee extends GradableItem{
-	private byte[] picture;
-	private int id;
+	private EmployeePic picture;
+	private String id;
 	
-	/**
-	 * Constructor (initializes the private variables)
-	 */
-	public Employee() {
+	public Employee(String id) {
+		this.id = id;
 		picture = null;
-		id = 0;
-	}
-	
-	public Employee(String[] data) {
-		picture = data[0].getBytes();
-		id = Integer.parseInt(data[1]);
 	}
 	
 	/**
@@ -23,7 +15,7 @@ public class Employee extends GradableItem{
 	 * @param picture - the new value of the picture
 	 * @return void
 	 */
-	public void setPicture(byte[] picture) {
+	public void setPicture(EmployeePic picture) {
 		this.picture = picture;
 	}
 	
@@ -31,15 +23,15 @@ public class Employee extends GradableItem{
 	 * Get the value of the picture for the Employee
 	 * @return byte[]
 	 */
-	public byte[] getPicture() {
+	public EmployeePic getPicture() {
 		return picture;
 	}
 	
-	public int getID() {
+	public String getID() {
 		return id;
 	}
 	
-	public void setID(int id) {
+	public void setID(String id) {
 		this.id = id;
 	}
 }
