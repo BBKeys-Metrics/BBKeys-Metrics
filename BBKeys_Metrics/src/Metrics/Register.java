@@ -12,9 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -99,10 +97,6 @@ public class Register extends Application {
         //set the minimum width and height of the window
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);
-        
-        //set the maximum width and height of the window
-        //primaryStage.setMaxWidth(501);
-        //primaryStage.setMaxHeight(501);
         
         //text which will prompt user for user id
         Text userIDLabel = new Text("User ID:");
@@ -268,7 +262,6 @@ public class Register extends Application {
     				
     				//encrypt password
     				String encryptedPassword = "";
-    				
     				
     				// Hash a password for the first time
     				encryptedPassword = BCrypt.hashpw(pass, BCrypt.gensalt());

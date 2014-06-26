@@ -94,42 +94,9 @@ final public class Login extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
         
-        /*
-        //Allow elements to grow as the window is resized
-        //grow horizontally
-        ColumnConstraints column0 = new ColumnConstraints();
-        column0.setPercentWidth(20);
-        ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(20);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(60);
-        ColumnConstraints column3 = new ColumnConstraints();
-        column3.setPercentWidth(0);
-        ColumnConstraints column4 = new ColumnConstraints();
-        column4.setPercentWidth(0);
-        grid.getColumnConstraints().addAll(column0, column1, column2, column3, column4);
-        
-        //grow vertically
-        RowConstraints rowConstraints0 = new RowConstraints();
-        rowConstraints0.setPercentHeight(10);
-        RowConstraints rowConstraints1 = new RowConstraints();
-        rowConstraints1.setPercentHeight(5);
-        RowConstraints rowConstraints2 = new RowConstraints();
-        rowConstraints2.setPercentHeight(10);
-        RowConstraints rowConstraints3 = new RowConstraints();
-        rowConstraints3.setPercentHeight(65);
-        RowConstraints rowConstraints4 = new RowConstraints();
-        rowConstraints4.setPercentHeight(10);
-        grid.getRowConstraints().addAll(rowConstraints0, rowConstraints1, rowConstraints2, rowConstraints3, rowConstraints4);
-        */
-        
         //set the minimum width and height of the window
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);
-        
-        //set the maximum width and height of the window
-        //primaryStage.setMaxWidth(501);
-        //primaryStage.setMaxHeight(501);
         
         //create text view which will prompt the user for a username
         Text usernameLabel = new Text("Username:");
