@@ -1,10 +1,15 @@
 package Metrics;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import javax.imageio.ImageIO;
 
 public class EmployeePic {
 	
@@ -12,8 +17,9 @@ public class EmployeePic {
 	 * This method reads a varbinary item from a database and writes that as a temporary image file
 	 * @param conn = database connection
 	 * @param employeeID = employee id for the image desired
+	 * @return 
 	 */
-	public void getImageData(Connection conn, String employeeID) {
+	public BufferedImage getImageData(Connection conn, String employeeID) {
          byte[] fileBytes = null;
          String query;
          try {
@@ -31,18 +37,18 @@ public class EmployeePic {
             	 //get current image
                  fileBytes = rs.getBytes(1);
                  
-                 //create new file
-                 OutputStream targetFile = new FileOutputStream("temp.JPG");
-                 
-                 //write the new file
-                 targetFile.write(fileBytes);
-                 
-                 //close the new file
-                 targetFile.close();
+                 //convert byte array to ByteArrayInputStream
+                 ByteArrayInputStream bais = new ByteArrayInputStream(fileBytes);
+                 try {
+                     return ImageIO.read(bais);
+                 } catch (IOException e) {
+                     throw new RuntimeException(e);
+                 }
             }     
          }
          catch (Exception e) {
              e.printStackTrace();
          }
+		return null;
     }
 }

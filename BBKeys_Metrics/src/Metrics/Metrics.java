@@ -147,7 +147,7 @@ public class Metrics extends Application {
                         
         
         
-        //BufferedImage bufferedImage = null;
+        BufferedImage bufferedImage = null;
         DatabaseConnection dbCon;
 		try {
 			user = new User();
@@ -155,25 +155,23 @@ public class Metrics extends Application {
 			user.setPassword("SQL2k8#1");
 			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
 			
-			//load the image from the database and write it to the temporary image file
-			new EmployeePic().getImageData(dbCon.getConnection(), "1");
+			//load the image from the database
+			bufferedImage = new EmployeePic().getImageData(dbCon.getConnection(), "1");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		
-		//load the temporary image file
-        BufferedImage bufferedImage = null;
-		try {
-			bufferedImage = ImageIO.read(new File("temp.jpg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//convert buffered image to java fx image
         Image image = SwingFXUtils.toFXImage(bufferedImage, null);
- 
         ImageView imView = new ImageView(image);
+        
+        //set width of image
         imView.setFitWidth(100);
+        
+        //keep scaling of image
         imView.setPreserveRatio(true);
+        
+        //add image to screen
         grid.add(imView, 0, 2, 1, 1);
         
 		//set the size of the window
