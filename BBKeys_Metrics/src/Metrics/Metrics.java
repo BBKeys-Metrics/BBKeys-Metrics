@@ -1,12 +1,22 @@
 package Metrics;
 
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
+
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelWriter;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -122,8 +132,8 @@ public class Metrics extends Application {
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(500);
         
-        primaryStage.setMaxWidth(500);
-        primaryStage.setMaxHeight(500);
+        //primaryStage.setMaxWidth(500);
+        //primaryStage.setMaxHeight(500);
         
         //create text view which will prompt the user for a runnable item
         Text enterMetric = new Text("Enter Metric");
@@ -135,7 +145,38 @@ public class Metrics extends Application {
         userTextField.setPrefWidth(300);
         grid.add(userTextField, 1, 0, 4, 1);
                         
-        //set the size of the window
+        
+        
+        //BufferedImage bufferedImage = null;
+        DatabaseConnection dbCon;
+		try {
+			user = new User();
+			user.setUsername("sa");
+			user.setPassword("SQL2k8#1");
+			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
+			
+			//load the image from the database and write it to the temporary image file
+			new EmployeePic().getImageData(dbCon.getConnection());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		//load the temporary image file
+        BufferedImage bufferedImage = null;
+		try {
+			bufferedImage = ImageIO.read(new File("temp.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+ 
+        ImageView imView = new ImageView(image);
+        imView.setFitWidth(100);
+        imView.setPreserveRatio(true);
+        grid.add(imView, 0, 2, 1, 1);
+        
+		//set the size of the window
         originalWidth = 500;
         originalHeight = 500;
         scene = new Scene(grid, originalWidth, originalHeight);
@@ -151,21 +192,6 @@ public class Metrics extends Application {
         
         //start out with the text field having the focus
         userTextField.requestFocus();
-        
-        
-        DatabaseConnection dbCon;
-		try {
-			user = new User();
-			user.setUsername("sa");
-			user.setPassword("SQL2k8#1");
-			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);	
-			//dbCon.executeQueryAndDisplayResults("SELECT * FROM Training.dbo.Departments");
-			
-			EmployeePic pic = new EmployeePic();
-			pic.getImageData(dbCon.getConnection());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
     
     /**
