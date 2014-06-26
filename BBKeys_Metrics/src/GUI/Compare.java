@@ -100,6 +100,7 @@ class Compare{
 			;
 		else 
 			return tableView();
+		return null;
 	
 	}
 	
