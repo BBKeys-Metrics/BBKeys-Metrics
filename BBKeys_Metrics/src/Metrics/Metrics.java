@@ -4,6 +4,9 @@ package Metrics;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
@@ -85,6 +88,8 @@ public class Metrics extends Application {
     public void start(Stage primaryStage) {
     	//initialize variables to be used by the calling classes
     	instance = this;
+    	
+    	Logger logger = LoggerFactory.getLogger(Metrics.class);
         
         //set the title of the window
         primaryStage.setTitle("Metrics");
