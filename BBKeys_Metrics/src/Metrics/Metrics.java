@@ -90,6 +90,9 @@ public class Metrics extends Application {
     	instance = this;
     	
     	Logger logger = LoggerFactory.getLogger(Metrics.class);
+    	logger.error("This is an error");
+    	logger.info("info");
+    	logger.trace("trace");
         
         //set the title of the window
         primaryStage.setTitle("Metrics");
