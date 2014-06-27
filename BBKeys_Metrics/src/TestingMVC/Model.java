@@ -24,7 +24,7 @@ public class Model {
 	}
 	
 	public Employee getEmployee(String user) {
-		return new Employee();
+		return new Employee("1");
 	}
 	
 	public Employee getEmployee() {
@@ -32,7 +32,7 @@ public class Model {
 		else {
 			ResultSet r = null;
 			try {
-				r = source.executeQuery("Select * FROM Metrics.dbo.Employee WHERE id = '" + theUser.getID() + "'");
+				r = source.executeQuery("Select * FROM Metrics.dbo.Employee WHERE id = (Select EmployeeID FROM Metrics.dbo.Users WHERE Username = '" + theUser.getUsername() + "')");
 				r.next();
 				ResultSetMetaData rsmd = r.getMetaData();
 				int columns = rsmd.getColumnCount();
@@ -40,7 +40,7 @@ public class Model {
 				for (int i = 1; i <= columns; i++) {
 					empData[i-1] = r.getString(i);
 				}
-				return new Employee(empData);
+				return new Employee("1");
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
