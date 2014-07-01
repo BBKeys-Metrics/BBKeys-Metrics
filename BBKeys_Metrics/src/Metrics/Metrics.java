@@ -144,22 +144,12 @@ public class Metrics extends Application {
         TextField userTextField = new TextField();
         userTextField.setPrefWidth(300);
         grid.add(userTextField, 1, 0, 4, 1);
-        
-        Image image = null;
-        DatabaseConnection dbCon;
-		try {
-			//user = new User();
-			//user.setUsername("sa");
-			//user.setPassword("SQL2k8#1");
-			//dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
-			dbCon = new DatabaseConnection();
-			//load the image from the database
-			image = new EmployeePic("1").getImage();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
-		//convert the image to a JavaFX ImageView
+		Preferences prefs = new Preferences("sherd");
+		prefs.printPrefs();
+		
+		//get the image and convert it to a JavaFX ImageView
+		Image image = new EmployeePic("1").getImage();
         ImageView imView = new ImageView(image);
         
         //set width of image
