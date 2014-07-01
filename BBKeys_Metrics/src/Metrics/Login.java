@@ -58,11 +58,8 @@ public class Login extends Thread{
     	}
     	
     	if (!fieldsBlank) {
-    		//set up connection to database
-    		//user = new User();
 			try {
 				//connect to the database
-				//dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user); 
 				dbCon = new DatabaseConnection();
 				//check that the username exists
 				r = dbCon.executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username + "'");

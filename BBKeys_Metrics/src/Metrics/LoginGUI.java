@@ -1,8 +1,5 @@
 package Metrics;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -26,7 +22,6 @@ final public class LoginGUI extends Application {
 	private int originalWidth;
 	private int originalHeight;
 	private Text actiontarget;
-	//private User user;
 	
 	
 	public Text getActionTarget() {
@@ -162,7 +157,7 @@ final public class LoginGUI extends Application {
             @Override
             public void handle(ActionEvent e) {
             	//create new application and open in new window
-            	Register register = new Register();
+            	RegisterGUI register = new RegisterGUI();
                 register.start(primaryStage);  //open in same window
             }
         });
