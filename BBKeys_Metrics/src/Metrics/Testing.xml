@@ -4,6 +4,7 @@
 <classes>
 <class name="Metrics.GradableItemTest"/>
 <class name="Metrics.MetricTest"/>
+<class name="Metrics.UserTest"/>
 </classes>
 </test> <!-- Test -->
 </suite> <!-- Suite -->

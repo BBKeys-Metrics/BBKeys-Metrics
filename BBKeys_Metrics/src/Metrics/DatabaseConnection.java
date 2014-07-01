@@ -1,11 +1,13 @@
 package Metrics;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 /**
  * 
@@ -13,7 +15,7 @@ import java.sql.Statement;
  *
  */
 public class DatabaseConnection {
-	
+	private static DatabaseConnection instance;
 	private String host;
 	private String port;
 	private String database;
@@ -32,6 +34,26 @@ public class DatabaseConnection {
 		return con;
 	}
 	
+	public DatabaseConnection() throws SQLException {
+		instance = this;
+		Properties properties = new Properties();
+		try {
+			//fill properties with the data from the file
+			
+			properties.load(User.class.getResourceAsStream("../databaseConnection.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//set data equal the value of the property named mydata
+		host = properties.getProperty("host");
+		port = properties.getProperty("port");
+		database = properties.getProperty("database");
+		user = new User();
+		
+		setUpConnection();
+	}
+	
 	/**
 	 * Constructor which sets the private variables equal to the parameters passed 
 	 * @param host - computer host name or IP address
@@ -39,6 +61,7 @@ public class DatabaseConnection {
 	 * @param database - name of database
 	 * @param user - User object
 	 */
+	/*
 	public DatabaseConnection(String host, String port, String database, User user) throws SQLException {
 		this.host = host;
 		this.port = port;
@@ -46,7 +69,7 @@ public class DatabaseConnection {
 		this.user = user;
 		
 		setUpConnection();
-	}
+	}*/
 	
 	/**
 	 * Sets up the database connection
@@ -134,5 +157,9 @@ public class DatabaseConnection {
 	 */
 	public ResultSet getResultSet() {
 		return r;
+	}
+
+	public static DatabaseConnection getInstance() {
+		return instance;
 	}
 }

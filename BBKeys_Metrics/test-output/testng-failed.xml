@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]">
-  <test name="Test(failed)">
+<suite name="Failed suite [Default suite]">
+  <test name="Default test(failed)">
     <classes>
-      <class name="Metrics.GradableItemTest">
+      <class name="Metrics.DatabaseConnectionTest">
         <methods>
-          <include name="getScoreint"/>
-          <include name="getScoreString"/>
+          <include name="executeQueryWithoutResult"/>
+          <include name="executeUpdate"/>
+          <include name="getInstance"/>
+          <include name="setUpConnection"/>
+          <include name="getResultSet"/>
+          <include name="getConnection"/>
         </methods>
-      </class> <!-- Metrics.GradableItemTest -->
+      </class> <!-- Metrics.DatabaseConnectionTest -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

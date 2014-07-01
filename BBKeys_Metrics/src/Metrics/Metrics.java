@@ -148,13 +148,13 @@ public class Metrics extends Application {
         Image image = null;
         DatabaseConnection dbCon;
 		try {
-			user = new User();
-			user.setUsername("sa");
-			user.setPassword("SQL2k8#1");
-			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
-			
+			//user = new User();
+			//user.setUsername("sa");
+			//user.setPassword("SQL2k8#1");
+			//dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
+			dbCon = new DatabaseConnection();
 			//load the image from the database
-			image = new EmployeePic(dbCon.getConnection(), "1").getImage();
+			image = new EmployeePic("1").getImage();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

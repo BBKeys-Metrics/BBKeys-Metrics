@@ -156,12 +156,10 @@ final public class Login extends Application {
             	if (!fieldsBlank) {
             		//set up connection to database
             		user = new User();
-        			user.setUsername("MetricsApp");
-        			user.setPassword("javafx");
         			try {
         				//connect to the database
-						dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user); 
-						
+						//dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user); 
+						dbCon = new DatabaseConnection();
 	    				//check that the username exists
 	    				r = dbCon.executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username.getText() + "'");
 	    				r.next();

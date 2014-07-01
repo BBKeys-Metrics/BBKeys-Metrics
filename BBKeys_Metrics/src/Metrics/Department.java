@@ -1,5 +1,6 @@
 package Metrics;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -47,7 +48,13 @@ public class Department extends GradableItem{
 	 * @return Employee
 	 */
 	public Employee getEmployee(int index) {
-		Employee emp = new Employee("1");
+		Employee emp = null;
+		try {
+			emp = new Employee("1");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return emp;
 	}
@@ -58,7 +65,13 @@ public class Department extends GradableItem{
 	 * @return Employee
 	 */
 	public Employee getEmployee(String name) {
-		Employee emp = new Employee("1");
+		Employee emp = null;
+		try {
+			emp = new Employee("1");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return emp;
 	}

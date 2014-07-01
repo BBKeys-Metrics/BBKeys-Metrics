@@ -24,7 +24,12 @@ public class Model {
 	}
 	
 	public Employee getEmployee(String user) {
-		return new Employee("1");
+		try {
+			return new Employee("1");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public Employee getEmployee() {

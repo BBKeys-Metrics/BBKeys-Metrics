@@ -3,11 +3,16 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Metrics.NewTest">
+      <class name="Metrics.DatabaseConnectionTest">
         <methods>
-          <include name="f2"/>
+          <include name="executeQueryWithoutResult"/>
+          <include name="executeUpdate"/>
+          <include name="getInstance"/>
+          <include name="setUpConnection"/>
+          <include name="getResultSet"/>
+          <include name="getConnection"/>
         </methods>
-      </class> <!-- Metrics.NewTest -->
+      </class> <!-- Metrics.DatabaseConnectionTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -16,29 +17,30 @@ public class EmployeePic {
 	private byte[] fileBytes;
 	private BufferedImage bufferedImage;
 	private Image image;
+	private DatabaseConnection dbCon;
 	
 	public Image getImage() {
 		return image;
 	}
 	
-	public EmployeePic(Connection conn, String employeeID) {
-		image = setImage(conn, employeeID);
+	public EmployeePic(String employeeID) throws SQLException {
+		dbCon = new DatabaseConnection();
+		image = setImage(employeeID);
 	}
 	
 	/**
 	 * This method reads a varbinary item from a database and writes that as a temporary image file
-	 * @param conn = database connection
 	 * @param employeeID = employee id for the image desired
 	 * @return 
 	 */
-	private Image setImage(Connection conn, String employeeID) {
+	private Image setImage(String employeeID) {
          String query;
          try {
         	 //set up the query to get the varbinary data
              query = "SELECT DocData FROM EmployeePics WHERE EmployeeID = '" + employeeID + "'";
              
              //create query
-             Statement state = conn.createStatement();
+             Statement state = dbCon.getConnection().createStatement();
              
              //execute query
              ResultSet rs = state.executeQuery(query);

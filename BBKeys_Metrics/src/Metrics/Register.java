@@ -202,9 +202,10 @@ public class Register extends Application {
             		//check for duplicate id in database 
             		try {
             			user = new User();
-            			user.setUsername("MetricsApp");
-            			user.setPassword("javafx");
-            			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);	
+            			//user.setUsername("MetricsApp");
+            			//user.setPassword("javafx");
+            			//dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);	
+            			dbCon = new DatabaseConnection();
             			r = dbCon.executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where employeeID = '" + userID.getText() + "'");
             			r.next();
             			

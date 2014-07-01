@@ -7,26 +7,18 @@ public class Employee extends GradableItem{
 	//initialize private variables
 	private EmployeePic picture;
 	private String id;
-	private User user = new User("sa", "SQL2k8#1");
-	private DatabaseConnection dbCon = null;
 	
 	/**
 	 * Constructor - Creates the new employee object and initializes the picture of the employee
 	 * @param id
+	 * @throws SQLException 
 	 */
-	public Employee(String id) {
-		//create the database connection
-		try {
-			dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+	public Employee(String id) throws SQLException {		
 		//initialize the employee id
 		this.id = id;
 		
 		//initialize the employee picture
-		picture = new EmployeePic(dbCon.getConnection(), id);
+		picture = new EmployeePic(id);
 	}
 	
 	/**

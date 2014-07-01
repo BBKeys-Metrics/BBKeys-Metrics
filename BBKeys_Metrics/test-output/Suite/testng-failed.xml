@@ -9,6 +9,19 @@
           <include name="getScoreString"/>
         </methods>
       </class> <!-- Metrics.GradableItemTest -->
+      <class name="Metrics.MetricTest">
+        <methods>
+          <include name="setPrecision"/>
+          <include name="setSortType"/>
+          <include name="getSortType"/>
+          <include name="getWeight"/>
+          <include name="setName"/>
+          <include name="getName"/>
+          <include name="getPrecision"/>
+          <include name="setWeight"/>
+          <include name="Metric"/>
+        </methods>
+      </class> <!-- Metrics.MetricTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

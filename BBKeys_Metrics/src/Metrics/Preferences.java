@@ -11,7 +11,7 @@ public class Preferences {
 	 * Constructor (initializes private variables based on the User)
 	 * @param user - User that the preferences will be setup for
 	 */
-	public Preferences(User user) {
+	public Preferences(String user) {
 		prefs = null;
 	}
 	
