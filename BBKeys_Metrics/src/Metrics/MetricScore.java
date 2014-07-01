@@ -8,9 +8,9 @@ public class MetricScore {
 	/**
 	 * Constructor (initializes private variables)
 	 */
-	public MetricScore() {
-		metric = null;
-		value = 0.0;
+	public MetricScore(Metric metric, double value) {
+		this.metric = metric;
+		this.value = value;
 	}
 	
 	/**

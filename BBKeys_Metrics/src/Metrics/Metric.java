@@ -10,18 +10,11 @@ public class Metric {
 	/**
 	 * Constructor (initializes private variables)
 	 */
-	public Metric() {
-		name = "";
-		weight = 0.0;
-		precision = 0;
-		sortType = "";
-	}
-	
-	public Metric(String truth) {
-		name = truth;
-		weight = 0.0;
-		precision = 0;
-		sortType = "";
+	public Metric(String name, double weight, int precision, String sortType) {
+		this.name = name;
+		this.weight = weight;
+		this.precision = precision;
+		this.sortType = sortType;
 	}
 	
 	/**

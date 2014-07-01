@@ -1,8 +1,5 @@
 package Metrics;
 
-
-import java.sql.SQLException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +24,6 @@ public class Metrics extends Application {
 	private String originalStyle;
 	private int originalWidth;
 	private int originalHeight;
-	//private User user;
 	
 	/**
 	 * getter method which returns the static instance of this class
