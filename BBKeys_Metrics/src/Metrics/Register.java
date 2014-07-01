@@ -3,6 +3,7 @@ package Metrics;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import GUI.RegisterGUI;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
