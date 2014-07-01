@@ -84,6 +84,7 @@ public class Model {
 		source.connectTo(connectionURL);
 			
 		if (source.hasSource()) return true;
-		else return false;
+		else 
+			return false;
 	}
 }

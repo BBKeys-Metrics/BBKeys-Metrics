@@ -15,7 +15,7 @@ public class Controller {
 	public void initialize(Stage primaryStage) {
 		getSettings();
 		View.getInstance().start(primaryStage);
-		Model.getInstance().setUser(new User());
+		Model.getInstance().setUser(new User("username"));
 	}
 	
 	private void getSettings() {

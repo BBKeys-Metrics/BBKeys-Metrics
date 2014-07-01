@@ -38,8 +38,8 @@ public class Preferences {
 	 * @param display - the new preference value as to whether or not to display the Metric for the current User
 	 * @return void
 	 */
-	public void setPreference(String metric, Boolean display) {
-		prefs.put(metric, display);
+	public void setPreference(Metric metric, Boolean display) {
+		prefs.put(metric.getName(), display);
 	}
 	
 	/**
@@ -47,8 +47,8 @@ public class Preferences {
 	 * @param metric - the Metric that the preference value is being searched for
 	 * @return Boolean
 	 */
-	public Boolean getPreference(String metric) {
-		return prefs.get(metric);
+	public Boolean getPreference(Metric metric) {
+		return prefs.get(metric.getName());
 	}
 	
 	/**
