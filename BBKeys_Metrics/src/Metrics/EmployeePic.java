@@ -23,7 +23,7 @@ public class EmployeePic {
 		return image;
 	}
 	
-	public EmployeePic(String employeeID) throws SQLException {
+	public EmployeePic(String employeeID) {
 		dbCon = new DatabaseConnection();
 		image = setImage(employeeID);
 	}

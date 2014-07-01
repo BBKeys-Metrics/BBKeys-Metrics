@@ -8,22 +8,12 @@ public class DatabaseConnectionTest {
 
   @Test
   public void DatabaseConnection() {
-    try {
-		new DatabaseConnection();
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	  new DatabaseConnection();
   }
 
   @Test
   public void executeQuery() {
-	  try {
 		new DatabaseConnection().executeQuery("Select * From Users");
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
   }
 
   @Test

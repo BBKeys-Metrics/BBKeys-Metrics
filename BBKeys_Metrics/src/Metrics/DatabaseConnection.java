@@ -34,12 +34,11 @@ public class DatabaseConnection {
 		return con;
 	}
 	
-	public DatabaseConnection() throws SQLException {
+	public DatabaseConnection() {
 		instance = this;
 		Properties properties = new Properties();
 		try {
 			//fill properties with the data from the file
-			
 			properties.load(User.class.getResourceAsStream("../databaseConnection.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -75,7 +74,7 @@ public class DatabaseConnection {
 	 * Sets up the database connection
 	 * @return void
 	 */
-	private void setUpConnection() throws SQLException {
+	private void setUpConnection() {
 		try {
 			//check to see if the required driver is installed
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -84,7 +83,11 @@ public class DatabaseConnection {
 			connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + user.getUsername() + ";password=" + user.getPassword();
 			
 			//create the connection
-			con = DriverManager.getConnection(connectionURL);
+			try {
+				con = DriverManager.getConnection(connectionURL);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			System.out.println("Driver not installed");
@@ -96,9 +99,15 @@ public class DatabaseConnection {
 	 * @param query = SQL Query
 	 * @return ResultSet
 	 */
-	public ResultSet executeQuery(String query) throws SQLException {
-		Statement s = con.createStatement();
-		r = s.executeQuery(query);
+	public ResultSet executeQuery(String query) {
+		Statement s;
+		try {
+			s = con.createStatement();
+			r = s.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return r;
 	}
 	
