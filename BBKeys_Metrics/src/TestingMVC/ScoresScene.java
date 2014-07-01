@@ -27,8 +27,8 @@ public class ScoresScene {
 						public void run() {
 							Set<Metric> metrics = pref.getMetrics();
 							for(Metric m : metrics) {
-							Label name = new Label(pref.getPreference(m).toString());
-							grid.add(name, 0, 0);
+								Label name = new Label(pref.getPreference(m).toString());
+								grid.add(name, 0, 0);
 							}
 						}
 					});
