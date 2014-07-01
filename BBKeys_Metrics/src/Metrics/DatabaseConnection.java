@@ -19,7 +19,9 @@ public class DatabaseConnection {
 	private String host;
 	private String port;
 	private String database;
-	private User user;
+	private String username;
+	private String password;
+	//private User user;
 	
 	private Connection con = null;
 	private String connectionURL = null;
@@ -48,7 +50,9 @@ public class DatabaseConnection {
 		host = properties.getProperty("host");
 		port = properties.getProperty("port");
 		database = properties.getProperty("database");
-		user = new User();
+		username = properties.getProperty("username");
+		password = properties.getProperty("password");
+		//user = new User();
 		
 		setUpConnection();
 	}
@@ -80,7 +84,7 @@ public class DatabaseConnection {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			
 			//set up connection String
-			connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + user.getUsername() + ";password=" + user.getPassword();
+			connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + username + ";password=" + password;
 			
 			//create the connection
 			try {
