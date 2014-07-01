@@ -78,15 +78,14 @@ class MyScores{
 	private VBox employeeInfo(){
 		VBox employeeInfoBox = new VBox();
 		
-		employeeInfoBox.setPadding(new Insets(15));
 		employeeInfoBox.setSpacing(10);
 		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
        
 		//TODO: Add call to getEmployeeName()
-		String empName = "John Jingleheimer";
+		Label empName = new Label ("John Jingleheimer");
 		//TODO: Add call to getEmployeePhoto();
 		
-		employeeInfoBox.getChildren().addAll(empName);
+		employeeInfoBox.getChildren().add(empName);
 	        
 		return employeeInfoBox;
 	}
