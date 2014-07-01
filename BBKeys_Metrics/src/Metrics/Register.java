@@ -25,7 +25,7 @@ public class Register extends Application {
 	private String originalStyle;
 	private int originalWidth;
 	private int originalHeight;
-	private User user;
+	//private User user;
 	
 	/**
 	 * getter method which returns the static instance of this class
@@ -201,7 +201,7 @@ public class Register extends Application {
             	if (passwordsMatch) {
             		//check for duplicate id in database 
             		try {
-            			user = new User();
+            			//user = new User();
             			//user.setUsername("MetricsApp");
             			//user.setPassword("javafx");
             			//dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user);	
@@ -303,14 +303,6 @@ public class Register extends Application {
         //start out with the user id text field having the focus
         userID.requestFocus();
 	}
-    
-    /**
-     * getUser returns the user object for other classes to use.
-     * @return User
-     */
-    public User getUser() {
-    	return user;
-    }
     
     /**
      * main method which launches the application

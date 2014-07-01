@@ -25,7 +25,7 @@ final public class Login extends Application {
 	private String originalStyle;
 	private int originalWidth;
 	private int originalHeight;
-	private User user;
+	//private User user;
 	
 	/**
 	 * getter method which returns the static instance of this class
@@ -155,7 +155,7 @@ final public class Login extends Application {
             	
             	if (!fieldsBlank) {
             		//set up connection to database
-            		user = new User();
+            		//user = new User();
         			try {
         				//connect to the database
 						//dbCon = new DatabaseConnection("SHANE-PC", "1433", "Metrics", user); 

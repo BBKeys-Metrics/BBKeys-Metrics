@@ -27,7 +27,7 @@ public class Metrics extends Application {
 	private String originalStyle;
 	private int originalWidth;
 	private int originalHeight;
-	private User user;
+	//private User user;
 	
 	/**
 	 * getter method which returns the static instance of this class
@@ -188,14 +188,6 @@ public class Metrics extends Application {
         //start out with the text field having the focus
         userTextField.requestFocus();
 	}
-    
-    /**
-     * getUser returns the user object for other classes to use.
-     * @return User
-     */
-    public User getUser() {
-    	return user;
-    }
     
     /**
      * main method which launches the application

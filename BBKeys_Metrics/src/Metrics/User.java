@@ -15,13 +15,12 @@ public class User{
 		Properties properties = new Properties();
 		try {
 			//fill properties with the data from the file
-			
 			properties.load(User.class.getResourceAsStream("../user.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		//set data equal the value of the property named mydata
+		//set data equal the value of the properties
 		username = properties.getProperty("username");
 		password = properties.getProperty("password");
 	}
