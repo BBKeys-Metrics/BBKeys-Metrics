@@ -10,6 +10,10 @@ public class Preferences {
 	private Map<String, Boolean> prefs;
 	private DatabaseConnection dbCon ;
 	
+	public Map<String, Boolean> getPrefs() {
+		return prefs;
+	}
+	
 	/**
 	 * Constructor (initializes private variables based on the User)
 	 * @param user - User that the preferences will be setup for
