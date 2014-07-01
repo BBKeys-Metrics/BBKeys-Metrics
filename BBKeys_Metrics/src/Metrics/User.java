@@ -1,5 +1,8 @@
 package Metrics;
 
+import java.io.IOException;
+import java.util.Properties;
+
 
 public class User{
 	private String username;
@@ -9,16 +12,18 @@ public class User{
 	 * Constructor (initialize private variables)
 	 */
 	public User() {
-		username = "";
-		password = "";
-	}
-	
-	/**
-	 * Constructor (initialize private variables)
-	 */
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
+		Properties properties = new Properties();
+		try {
+			//fill properties with the data from the file
+			
+			properties.load(User.class.getResourceAsStream("../user.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//set data equal the value of the property named mydata
+		username = properties.getProperty("username");
+		password = properties.getProperty("password");
 	}
 	
 	/**
