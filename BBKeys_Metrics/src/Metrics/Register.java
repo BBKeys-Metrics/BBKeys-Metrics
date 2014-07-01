@@ -62,10 +62,7 @@ public class Register extends Thread {
     	
     	if (!fieldsBlank) {
     		//compare first password field with second password field
-        	String firstPassword = password;
-        	String secondPassword = confirmPassword;
-        	
-        	if (!firstPassword.equals(secondPassword)) { //passwords don't match
+        	if (!password.equals(confirmPassword)) { //passwords don't match
         		//display error message "Passwords don't match"
         		Platform.runLater(new Runnable() {
                 	@Override
@@ -150,19 +147,15 @@ public class Register extends Thread {
     	}
     	
     	if (!duplicateUsername){
-    		String id = userID;
-			String name = username;
-			String pass = password;
-			
 			//encrypt password
 			String encryptedPassword = "";
 			
 			// Hash a password for the first time
-			encryptedPassword = BCrypt.hashpw(pass, BCrypt.gensalt());
+			encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 			
 			//add userID, username, password to the users table in the database
 			try {
-				dbCon.executeUpdate("INSERT INTO Metrics.dbo.Users (employeeID, username, password) VALUES (" + id + ", '" + name + "', '" + encryptedPassword + "')");
+				dbCon.executeUpdate("INSERT INTO Metrics.dbo.Users (employeeID, username, password) VALUES (" + userID + ", '" + username + "', '" + encryptedPassword + "')");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -175,7 +168,6 @@ public class Register extends Thread {
                     metric.start(primaryStage);  //open in same window
             	}
             });
-			
     	}        	
     }
 }

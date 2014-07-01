@@ -116,7 +116,6 @@ public class Login extends Thread{
 	                    metric.start(primaryStage);  //open in same window
 	            	}
 	            });
-				
 			}
     	}
 	}
