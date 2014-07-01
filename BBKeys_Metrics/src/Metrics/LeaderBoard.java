@@ -38,7 +38,7 @@ public class LeaderBoard {
 	 * @return void
 	 */
 	public void addGradableItem(GradableItem gradable) {
-		
+		gradables.add(gradable);
 	}
 	
 	/**
@@ -47,9 +47,7 @@ public class LeaderBoard {
 	 * @return GradableItem
 	 */
 	public GradableItem getGradableItem(int index) {
-		GradableItem gradable = new GradableItem();
-		
-		return gradable;
+		return gradables.get(index);
 	}
 	
 	/**
@@ -58,9 +56,14 @@ public class LeaderBoard {
 	 * @return GradableItem
 	 */
 	public GradableItem getGradableItem(String name) {
-		GradableItem gradable = new GradableItem();
+		for (int i = 0; i < gradables.size(); i++) {
+			if (gradables.get(i).getName().equals(name)) {
+				return gradables.get(i);
+			}
+		}
 		
-		return gradable;
+		//no item found with specified name
+		return null;
 	}
 	
 	/**

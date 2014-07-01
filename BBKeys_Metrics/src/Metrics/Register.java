@@ -38,6 +38,7 @@ public class Register extends Thread {
     	ResultSet r = null;
     	DatabaseConnection dbCon = null;
     	
+    	//check for empty fields
     	if (userID.equals("") || username.equals("") || password.equals("") || confirmPassword.equals("")) {
     		Platform.runLater(new Runnable() {
             	@Override
