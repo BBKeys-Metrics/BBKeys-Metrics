@@ -94,7 +94,7 @@ public class DatabaseConnection {
 	/**
 	 * Execute the query 
 	 * @param query = SQL Query
-	 * @return void
+	 * @return ResultSet
 	 */
 	public ResultSet executeQuery(String query) throws SQLException {
 		Statement s = con.createStatement();
