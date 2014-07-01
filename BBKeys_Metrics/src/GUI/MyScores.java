@@ -6,14 +6,16 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Project: BBKeys-Metrics
@@ -82,7 +84,8 @@ class MyScores{
 		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
        
 		//TODO: Add call to getEmployeeName()
-		Label empName = new Label ("John Jingleheimer");
+		Label empName = new Label("John Jingleheimer");
+
 		//TODO: Add call to getEmployeePhoto();
 		
 		employeeInfoBox.getChildren().add(empName);
@@ -128,7 +131,8 @@ class MyScores{
 		HBox formattedScores = new HBox();
 		
 		for (int i = 0; i < metricNames.size(); i++){
-			formattedScores.add(formatMetric(metricNames.get(i)));
+			Label label = new Label(metricNames.get(i));
+			formattedScores.getChildren().add(label);
 		}			
 		
 		return formattedScores;
