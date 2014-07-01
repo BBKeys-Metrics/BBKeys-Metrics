@@ -1,5 +1,7 @@
-package Metrics;
+package GUI;
 
+import Metrics.Login;
+import Metrics.Metrics;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
