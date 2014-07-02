@@ -111,8 +111,8 @@ public class Model {
 		return null;
 	}
 	
-	public boolean establishConnection() {
-		String connectionURL = "jdbc:sqlserver://" + "SHANE-PC" + ":" + 1433 + ";databaseName=" + "Metrics" + ";user=" + theUser.getUsername() + ";password=" + theUser.getUsername();
+	public boolean login(String username, String password) {
+		String connectionURL = "jdbc:sqlserver://" + "127.0.0.1" + ":" + 1433 + ";databaseName=" + "Metrics" + ";user=" + username + ";password=" + password;
 		source = DatabaseSource.getInstance();
 		source.connectTo(connectionURL);
 			

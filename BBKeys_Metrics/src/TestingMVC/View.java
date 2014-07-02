@@ -1,7 +1,7 @@
 package TestingMVC;
 
-import Metrics.LoginGUI;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class View extends Application{
@@ -17,14 +17,14 @@ public class View extends Application{
 	
 	public void start(Stage primaryStage) {
 		theStage = primaryStage;
-		theStage.setScene(ScoresGUI.getInstance().getScene());
+		theStage.setScene(LoginGUI.getInstance().getScene());
 		theStage.show();
 		//Login loginView = new Login();
 		//loginView.start(theStage);
 	}
 	
-	public Stage getStage() {
-		return theStage;
+	public void setScene(Scene newScene) {
+		theStage.setScene(newScene);
 	}
 
 }

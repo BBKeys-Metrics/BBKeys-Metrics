@@ -21,7 +21,7 @@ public class DatabaseSource implements DataSource {
 
 	@Override
 	public boolean connectTo(String dataSource) {
-		if (connectionString.equals(dataSource)) return true;
+		if (dataSource.equals(connectionString)) return true;
 		connectionString = dataSource;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

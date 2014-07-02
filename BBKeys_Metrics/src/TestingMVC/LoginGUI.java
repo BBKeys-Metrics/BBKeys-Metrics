@@ -1,9 +1,7 @@
 package TestingMVC;
 
-import Metrics.Login;
 import Metrics.Metrics;
 import Metrics.RegisterGUI;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,17 +12,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-final public class LoginGUI extends Application {
+final public class LoginGUI {
     //variables that will be used in the runnable classes 
-	private static LoginGUI instance;
-	private Stage stage;
-	private Scene scene;
-	private String originalStyle;
-	private int originalWidth;
-	private int originalHeight;
-	private Text actiontarget;
+	private static LoginGUI instance = new LoginGUI();
+	private static Text actiontarget;
 	
 	
 	public Text getActionTarget() {
@@ -37,69 +29,17 @@ final public class LoginGUI extends Application {
 	public static LoginGUI getInstance() {
 		return instance;
 	}
-	
+
 	/**
-	 * getter method which returns the primary stage
-	 * @return Stage
-	 */
-	public Stage getStage() {
-		return stage;
-	}
-	
-	/**
-	 * getter method which returns the scene
+	 * Return the Login scene
 	 * @return Scene
 	 */
-	public Scene getScene() {
-		return scene;
-	}
-	
-	/**
-	 * getter method which returns the original style that was used
-	 * @return String
-	 */
-	public String getOriginalStyleOfScene() {
-		return originalStyle;
-	}
-	
-	/**
-	 * getter method which returns the original width of the screen
-	 * @return int
-	 */
-	public int getOriginalWidth() {
-		return originalWidth;
-	}
-	
-	/**
-	 * getter method which returns the original height of the screen
-	 * @return int
-	 */
-	public int getOriginalHeight() {
-		return originalHeight;
-	}
-		
-	/**
-	 * Runs the JavaFX Application
-	 * @param primaryStage - the Stage that will be displayed
-	 * @return void
-	 */
-    @Override
-    public void start(Stage primaryStage) {
-    	//initialize variables to be used by the calling classes
-    	instance = this;
-        
-        //set the title of the window
-        primaryStage.setTitle("Login");
-        
+    public Scene getScene() {
         //create the grid which will hold all of the elements
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        
-        //set the minimum width and height of the window
-        primaryStage.setMinWidth(500);
-        primaryStage.setMinHeight(500);
         
         //create text view which will prompt the user for a username
         Text usernameLabel = new Text("Username:");
@@ -140,7 +80,7 @@ final public class LoginGUI extends Application {
         btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {    
-            	Login login = new Login(username.getText(), password.getText(), primaryStage);
+            	Login login = new Login(username.getText(), password.getText());
             	login.start();
             }
         });
@@ -160,44 +100,19 @@ final public class LoginGUI extends Application {
             @Override
             public void handle(ActionEvent e) {
             	//create new application and open in new window
-            	RegisterGUI register = new RegisterGUI();
-                register.start(primaryStage);  //open in same window
+                View.getInstance().setScene(RegisterGUI.getInstance().getScene());
             }
         });
                         
         //set the size of the window
-        originalWidth = 500;
-        originalHeight = 500;
-        scene = new Scene(grid, originalWidth, originalHeight);
+        Scene scene = new Scene(grid);
         
         //set the style sheets (css) for the scene 
         scene.getStylesheets().add(Metrics.class.getResource("../Metrics.css").toExternalForm());
-        originalStyle = "-fx-background-image: url(\"background.jpg\")";
+        String originalStyle = "-fx-background-image: url(\"background.jpg\")";
         scene.getRoot().setStyle(originalStyle);
-        
-        //display the window
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        
         //start out with the text field having the focus
         username.requestFocus();
+        return scene;
 	}
-    
-    /**
-     * main method which launches the application
-     * @param args - command line arguments
-     * @return void
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
-    /**
-     * kill all threads when the program is closed
-     * @return void
-     */
-    @Override
-    public void stop() {
-        System.exit(0);
-    }
 }
