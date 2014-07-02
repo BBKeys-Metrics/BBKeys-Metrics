@@ -3,7 +3,11 @@ package TestingMVC;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
+
 import Metrics.Employee;
+import Metrics.Preference;
 import Metrics.Preferences;
 import Metrics.User;
 
@@ -55,20 +59,25 @@ public class Model {
 		return null;
 	}
 	
-	public Preferences getPrefs(Employee employee) {
+	public Metric getMetric()
+	
+	public Preferences getPreferences(Employee employee) {
 		if (source == null || !source.hasSource()) return null;
 		else {
 			ResultSet r = null;
 			try {
 				r = source.executeQuery("Select * FROM Metrics.dbo.Preference WHERE employeeID = '" + employee.getID() + "'");
-				r.next();
-				ResultSetMetaData rsmd = r.getMetaData();
-				int columns = rsmd.getColumnCount();
-				String[] prefData = new String[columns];
-				for (int i = 1; i <= columns; i++) {
-					prefData[i-1] = r.getString(i);
+				Set<Preference> prefs = new HashSet();
+				while (r.next()) {
+					ResultSetMetaData rsmd = r.getMetaData();
+					int columns = rsmd.getColumnCount();
+					String[] prefData = new String[columns];
+					for (int i = 1; i <= columns; i++) {
+						prefData[i-1] = r.getString(i);
+					}
+					Preference pref = new Preference(getMetric(Integer.decode(prefData[1]),Boolean.getBoolean(prefData[2])));
+					prefs.add(pref);
 				}
-				return new Preferences(prefData);
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

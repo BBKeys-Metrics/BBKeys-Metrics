@@ -4,17 +4,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class Preferences {
-	private Map<String, Boolean> prefs;
+	private Set<Preference> prefs;
 	private DatabaseConnection dbCon ;
 	
 	/**
 	 * Constructor (initializes private variables based on the User)
 	 * @param user - User that the preferences will be setup for
 	 */
-	public Preferences(String user) {
+	/*public Preferences(String user) {
 		prefs = new HashMap<String, Boolean>();
 		try {
 			dbCon = new DatabaseConnection();
@@ -28,6 +29,14 @@ public class Preferences {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}*/
+	
+	public Preferences() {
+		
+	}
+	
+	public Preferences(Set<Preference> prefs) {
+		this.prefs = prefs;
 	}
 
 	/**
@@ -40,6 +49,10 @@ public class Preferences {
 	 */
 	public void setPreference(Metric metric, Boolean display) {
 		prefs.put(metric.getName(), display);
+	}
+	
+	public void setPreference(Preference pref) {
+		prefs.put(pref.getMetric(), pref.getDisplay())
 	}
 	
 	/**
