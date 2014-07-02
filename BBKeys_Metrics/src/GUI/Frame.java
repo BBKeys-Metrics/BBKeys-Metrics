@@ -12,7 +12,6 @@ import javafx.event.EventHandler;
 
 import java.util.ArrayList;
 
-import Metrics.Metrics;
 import TestingMVC.View;
 
 
