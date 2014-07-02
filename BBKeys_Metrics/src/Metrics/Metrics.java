@@ -88,10 +88,10 @@ public class Metrics extends Application {
     	//initialize variables to be used by the calling classes
     	instance = this;
     	
-    	Logger logger = LoggerFactory.getLogger(Metrics.class);
-    	logger.error("This is an error");
-    	logger.info("info");
-    	logger.trace("trace");
+    	//Logger logger = LoggerFactory.getLogger(Metrics.class);
+    	//logger.error("This is an error");
+    	//logger.info("info");
+    	//logger.trace("trace");
         
         //set the title of the window
         primaryStage.setTitle("Metrics");
@@ -148,10 +148,10 @@ public class Metrics extends Application {
         
         Employee user = Controller.getInstance().getEmployeeByName("sherd");
 		
-		Set<Preference> prefs = Model.getInstance().getPreferences(user);
-		for (Preference p : prefs) {
-			System.out.println(p);
-		}
+		//Set<Preference> prefs = Model.getInstance().getPreferences(user);
+		//for (Preference p : prefs) {
+			//System.out.println(p);
+		//}
 		
 		//get the image and convert it to a JavaFX ImageView
 		Image image = new EmployeePic("1").getImage();

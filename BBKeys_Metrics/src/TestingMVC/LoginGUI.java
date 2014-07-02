@@ -75,6 +75,7 @@ final public class LoginGUI {
         grid.add(actiontarget, 1, 3);
         actiontarget.setId("actiontarget");
         
+        
         //action to be performed when the user hits the login button
         btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
