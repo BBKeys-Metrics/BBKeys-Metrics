@@ -9,14 +9,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.event.EventHandler;
-<<<<<<< HEAD
 
 import java.util.ArrayList;
 
 import Metrics.Metrics;
 import TestingMVC.View;
-=======
->>>>>>> branch 'master' of https://github.com/BBKeys-Metrics/BBKeys-Metrics
+
 
 
 /*
@@ -93,7 +91,6 @@ abstract class Frame extends Application{
 	 */
 	public void fillMetricNames(){
 		metricNames = new ArrayList<String>();
-		CheckBox newBox = new CheckBox();
 		//Replace with DB call
 		//Temporary static data
 		metricNames.add("Speed");

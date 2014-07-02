@@ -124,13 +124,7 @@ class Compare extends Frame{
 		return plot;
 	}
 	*/
-	
-<<<<<<< HEAD
-	@Override
-	public void start(Stage arg0) throws Exception {
-		// TODO Auto-generated method stub
-		
-=======
+
 	/**
 	 * Calls to the database to get the names of the 
 	 * metrics that will be listed.
@@ -140,6 +134,12 @@ class Compare extends Frame{
 		//TODO: Add database call to fill array
 		metricNames.add("Speed");
 		metricNames.add("Accuracy");
+	}
+
+	@Override
+	public void start(Stage arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/**
