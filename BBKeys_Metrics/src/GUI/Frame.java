@@ -20,10 +20,10 @@ import TestingMVC.View;
  * File:    Frame
  *
  * Summary:
- *   Frame is the basic framework for the GUI.  It holds the 
- *   navigation buttons and provides a window for the subsequent 
- *   pages (leader board, my scores, and compare) to open in.
- *   It is a parent class from which subsequent user pages inheret. 
+ *   Frame is the basic framework for the GUI.  It creates the
+ *   navigation buttons, and contains other abstract methods
+ *   that should be implemented in subsequent 
+ *   pages (leader board, my scores, and compare).
  * 
  * Author:
  *   Summer Smith
@@ -33,21 +33,27 @@ import TestingMVC.View;
 
 
 abstract class Frame extends Application{
+	//Public variables for use in sub-classes
 	public Scene scene;
 	public ArrayList<String> metricNames; //TODO: Change to type Metric OR GradeableItem???
 	
+	//The three navigation buttons
 	private Button myScores = new Button();
 	private Button compare = new Button();
 	private Button leaderBoard = new Button();
 		
-	/**
-     * Abstract methods to be defined in sub-classes
-     */
+    // Abstract methods to be defined in sub-classes
 	abstract public Scene getScene();
 	abstract public void buildPage();
 	
 	
-	private VBox buttonBox(){
+	/**
+	 * Defines the behaviors for the three navigation
+	 * buttons.
+	 * 
+	 * @return VBox
+	 */
+	public VBox navigationBox(){
 		VBox buttonBox = new VBox();
 		
 		myScores.setText("My Scores");
@@ -84,8 +90,8 @@ abstract class Frame extends Application{
 	}
 	
 	/**
-	 * accesses the database to find out what metrics are available, and 
-	 * generates a checkbox for each metric.
+	 * accesses the database to find out what metrics are available, places
+	 * those items into a list for easy access.
 	 */
 	public void fillMetricNames(){
 		metricNames = new ArrayList<String>();

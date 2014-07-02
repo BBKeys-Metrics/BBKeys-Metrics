@@ -4,6 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import java.util.ArrayList;
 
 
@@ -52,12 +56,20 @@ public class LeaderBoard extends Frame{
 	public Scene getScene(){
 		return this.scene;
 	}
-	
+
+	/**
+	 * Singleton 
+	 * @return LeaderBoard object instance
+	 */
 	public LeaderBoard getInstance(){
 		return this;
 	}
 	
-	
+	/**
+	 * Start
+	 * @param primaryStage
+	 * @throws Exception
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		fillMetricNames();
@@ -69,12 +81,14 @@ public class LeaderBoard extends Frame{
 	}
 	
 	/**
-	 * Loads the elements into the page
+	 * Loads elements into the scene
 	 */
 	@Override
 	public void buildPage(){
-	        
-	    }
+		BorderPane root = new BorderPane();		
+		
+		root.setBottom(this.navigationBox());
+	}
 	
 	
 	

@@ -2,10 +2,10 @@ package GUI;
 
 
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -44,30 +44,39 @@ class MyScores extends Frame{
 		return this.scene;
 	}
 	
+	/**
+	 * Singleton 
+	 * @return MyScores Object Instance
+	 */
 	public MyScores getInstance(){
 		return this;
 	}
 	
-	
 	/**
-	 * Start 
+	 * Start
+	 * @param primaryStage
+	 * @throws Exception
 	 */
-	public void main(Stage primaryStage) throws Exception {
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("My Scores");
 		buildPage();
 		primaryStage.setScene(scene);
 	}
 		
 	/**
-	 * Loads the elements into the page
+	 * Loads elements into the scene
 	 */
 	@Override
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
 		fillMetricNames();
+		GridPane grid = new GridPane();
 		
+		//root.setCenter(grid);
 		root.setTop(this.employeeInfo());
 		root.setCenter(this.formatScores());
+		root.setBottom(this.navigationBox());
 		
 		scene = new Scene (root, 600, 600);
 	}
@@ -119,12 +128,6 @@ class MyScores extends Frame{
 		
 		
 		return score;
-	}
-
-	@Override
-	public void start(Stage arg0) throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 
 	
