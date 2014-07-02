@@ -1,11 +1,15 @@
 package TestingMVC;
 
+import Metrics.Employee;
 import Metrics.Metric;
 import Metrics.User;
 import javafx.stage.Stage;
 
 public class Controller {
 	private static final Controller instance = new Controller();
+	private Employee user;
+	
+	
 	private Controller() {
 	};
 	
@@ -16,7 +20,6 @@ public class Controller {
 	public void initialize(Stage primaryStage) {
 		getSettings();
 		View.getInstance().start(primaryStage);
-		Model.getInstance().setUser(new User("username"));
 	}
 	
 	private void getSettings() {
@@ -27,6 +30,12 @@ public class Controller {
 	
 	public Metric getMetricByID(Integer ID) {
 		return null;
+	}
+	
+	public Employee getEmployeeByName(String name) {
+		int id = ResultSetBuilder.getID(Model.getInstance().getEmployeeIDByName(name));
+		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployee(id));
+		
 	}
 
 }

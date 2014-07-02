@@ -5,6 +5,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import TestingMVC.Controller;
 import TestingMVC.Model;
 import TestingMVC.Preference;
 import javafx.application.Application;
@@ -145,7 +146,7 @@ public class Metrics extends Application {
         userTextField.setPrefWidth(300);
         grid.add(userTextField, 1, 0, 4, 1);
         
-        Employee user = Model.getInstance().getEmployee("sherd");
+        Employee user = Controller.getInstance().getEmployeeByName("sherd");
 		
 		Set<Preference> prefs = Model.getInstance().getPreferences(user);
 		for (Preference p : prefs) {

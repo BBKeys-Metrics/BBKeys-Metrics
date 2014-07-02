@@ -24,7 +24,7 @@ public class ScoresGUI {
 		GridPane grid = new GridPane();
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
-				Employee employee = Model.getInstance().getEmployee();
+				Employee employee = Controller.getInstance().getEmployeeByName(Controller.getInstance().get);
 				Set<Preference> prefs = Model.getInstance().getPreferences(employee);
 				if (prefs != null) {
 					Platform.runLater(new Runnable() {
