@@ -1,6 +1,6 @@
-package Metrics;
+package TestingMVC;
 
-import TestingMVC.Controller;
+import Metrics.Metric;
 
 public class Preference {
 	private Metric metric;

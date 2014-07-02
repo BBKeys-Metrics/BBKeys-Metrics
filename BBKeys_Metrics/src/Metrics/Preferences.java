@@ -2,31 +2,15 @@ package Metrics;
 
 import java.util.Set;
 
+import TestingMVC.Model;
+import TestingMVC.Preference;
+
 
 public class Preferences {
 	private Set<Preference> prefs;
 	
-	/**
-	 * Constructor (initializes private variables based on the User)
-	 * @param user - User that the preferences will be setup for
-	 */
-	/*public Preferences(String user) {
-		prefs = new HashMap<String, Boolean>();
-		try {
-			dbCon = new DatabaseConnection();
-			ResultSet r = dbCon.executeQuery("SELECT name, display FROM user_preferences WHERE username = '" + user + "'");
-			while (r.next()) {
-				//add each row to the map
-				String metric = r.getString(1);
-				boolean display = r.getBoolean(2);
-				prefs.put(metric, display);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}*/
-	
-	public Preferences() {
+	public Preferences(Employee user) {
+		prefs = Model.getInstance().getPreferences(user);
 		
 	}
 	

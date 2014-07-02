@@ -3,8 +3,6 @@ package TestingMVC;
 import java.util.Set;
 
 import Metrics.Employee;
-import Metrics.Preference;
-import Metrics.Preferences;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,9 +25,8 @@ public class ScoresGUI {
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				Employee employee = Model.getInstance().getEmployee();
-				Preferences pref = Model.getInstance().getPreferences(employee);
-				Set<Preference> prefs = pref.getAllPreferences();
-				if (pref != null) {
+				Set<Preference> prefs = Model.getInstance().getPreferences(employee);
+				if (prefs != null) {
 					Platform.runLater(new Runnable() {
 						public void run() {
 							for(Preference p : prefs) {

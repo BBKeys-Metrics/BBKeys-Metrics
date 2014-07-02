@@ -1,9 +1,12 @@
 package Metrics;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import TestingMVC.Model;
+import TestingMVC.Preference;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -144,8 +147,10 @@ public class Metrics extends Application {
         
         Employee user = Model.getInstance().getEmployee("sherd");
 		
-		Preferences prefs = Model.getInstance().getPreferences(user);
-		prefs.printPrefs();
+		Set<Preference> prefs = Model.getInstance().getPreferences(user);
+		for (Preference p : prefs) {
+			System.out.println(p);
+		}
 		
 		//get the image and convert it to a JavaFX ImageView
 		Image image = new EmployeePic("1").getImage();

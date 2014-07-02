@@ -8,8 +8,6 @@ import java.util.Set;
 
 import Metrics.Employee;
 import Metrics.Metric;
-import Metrics.Preference;
-import Metrics.Preferences;
 import Metrics.User;
 
 public class Model {
@@ -85,7 +83,7 @@ public class Model {
 		return null;
 	}
 	
-	public Preferences getPreferences(Employee employee) {
+	public Set<Preference> getPreferences(Employee employee) {
 		if (source == null || !source.hasSource()) return null;
 		else {
 			ResultSet r = null;
@@ -102,6 +100,7 @@ public class Model {
 					Preference pref = new Preference(getMetric(Integer.parseInt(prefData[1])),Boolean.getBoolean(prefData[2]));
 					prefs.add(pref);
 				}
+				return prefs;
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
