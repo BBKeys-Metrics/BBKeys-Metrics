@@ -1,10 +1,6 @@
 package GUI;
 
-import java.awt.Insets;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -88,7 +84,6 @@ class MyScores extends Frame{
        
 		//TODO: Add call to getEmployeeName()
 		Label empName = new Label("John Jingleheimer");
-
 		//TODO: Add call to getEmployeePhoto();
 		
 		employeeInfoBox.getChildren().add(empName);
@@ -96,23 +91,6 @@ class MyScores extends Frame{
 		return employeeInfoBox;
 	}
 	
-	/**
-	 * Gets employee's name from the data base
-	 * based on login.
-	 * @return ??
-	 */
-	private void getEmployeeName(){
-		//TODO:  Add database call
-	}
-	
-	/**
-	 * Gets employee's image from the data base
-	 * based on login.
-	 * @return ??
-	 */
-	private void getEmployeePhoto(){
-		//TODO:  Add database call
-	}
 	
 	/**
 	 * For each metric in the metricNames array list,
@@ -148,5 +126,6 @@ class MyScores extends Frame{
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

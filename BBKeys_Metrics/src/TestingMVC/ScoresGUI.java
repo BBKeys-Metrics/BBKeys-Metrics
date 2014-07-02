@@ -3,31 +3,34 @@ package TestingMVC;
 import java.util.Set;
 
 import Metrics.Employee;
-import Metrics.Metric;
-import Metrics.Preferences;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class ScoresScene {
-	GridPane grid = new GridPane();
+public class ScoresGUI {
+	static private ScoresGUI instance= new ScoresGUI();
 	
-	public ScoresScene() {
+	private ScoresGUI() {
+		
+	}
+	
+	public static ScoresGUI getInstance() {
+		return instance;
 	}
 	
 	public Scene getScene() {
+		GridPane grid = new GridPane();
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
-				Employee employee = Model.getInstance().getEmployee();
-				Preferences pref = Model.getInstance().getPrefs(employee);
-				if (pref != null) {
+				Employee employee = Controller.getInstance().getEmployeeByName(Controller.getInstance().get);
+				Set<Preference> prefs = Model.getInstance().getPreferences(employee);
+				if (prefs != null) {
 					Platform.runLater(new Runnable() {
 						public void run() {
-							Set<Metric> metrics = pref.getMetrics();
-							for(Metric m : metrics) {
-								Label name = new Label(pref.getPreference(m).toString());
+							for(Preference p : prefs) {
+								Label name = new Label(p.getMetric().getName());
 								grid.add(name, 0, 0);
 							}
 						}

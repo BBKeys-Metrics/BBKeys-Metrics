@@ -21,7 +21,7 @@ public class DatabaseSource implements DataSource {
 
 	@Override
 	public boolean connectTo(String dataSource) {
-		if (connectionString.equals(dataSource)) return true;
+		if (dataSource.equals(connectionString) && con != null) return true;
 		connectionString = dataSource;
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -31,7 +31,7 @@ public class DatabaseSource implements DataSource {
 			e.printStackTrace();
 			System.out.println("Driver not installed");
 		} catch (SQLException e) {
-			System.out.println("Connection Failed.");
+			e.printStackTrace();
 		}
 		con = null;
 		connectionString = null;

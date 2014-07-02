@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="Libraries/slf4j-api-1.7.7.jar"/>
 	<classpathentry kind="lib" path="Libraries/logback-core-1.1.2.jar"/>
 	<classpathentry kind="lib" path="Libraries/logback-classic-1.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Microsoft JDBC Driver 4.0 for SQL Server/sqljdbc_4.0/enu/sqljdbc4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,14 +1,7 @@
 package GUI;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -81,13 +74,6 @@ class Compare extends Frame{
 		scene = new Scene (root, 600, 600);
 	}
 	
-	/**
-	 * 
-	 */
-	private void getView(){
-		//should form a drop-down menu with scatterplot and table as the options.
-		//Returns whichever is selected by the user.
-	}
 	
 	/**
 	 * Takes in a metric, gets the user's score,
@@ -99,6 +85,7 @@ class Compare extends Frame{
 	 * @param view- graph or scatterplot
 	 * @return VBox
 	 */
+	/* Is never used. Removed - Richard
 	private VBox metricCompare(String metricName, String view){
 		//Format data according to view
 		if(view.equals("plot"))
@@ -109,23 +96,26 @@ class Compare extends Frame{
 		return null;
 	
 	}
+	*/
 	
 	/**
 	 * Returns the comparative data in table format
 	 * @return VBox
 	 */
+	/* Is never used, removed. - Richard
 	private VBox tableView(){
 		VBox table = new VBox();
 		
 		//call getData to retrieve data
 		
 		return table;
-	}
+	}*/
 	
 	/**
 	 * Returns the comparative data in scatter plot format
 	 * @return VBox
 	 */
+	/* Is never used, removed. - Richard
 	private VBox plotView(){
 		VBox plot = new VBox();
 		
@@ -133,10 +123,36 @@ class Compare extends Frame{
 		
 		return plot;
 	}
+	*/
 	
+<<<<<<< HEAD
 	@Override
 	public void start(Stage arg0) throws Exception {
 		// TODO Auto-generated method stub
 		
+=======
+	/**
+	 * Calls to the database to get the names of the 
+	 * metrics that will be listed.
+	 */
+	private void getMetrics(){
+		metricNames = new ArrayList<String>();
+		//TODO: Add database call to fill array
+		metricNames.add("Speed");
+		metricNames.add("Accuracy");
 	}
+	
+	/**
+	 * 
+	 * @param unit-what unit of data (current user, high score, avg) that
+	 * needs to be retrieved 
+	 */
+	/* Is never used, removed. - Richard
+	private float getData(String unit){
+		//TODO: Change return type to METRIC
+		float data = 84;
+		return data;
+>>>>>>> branch 'master' of https://github.com/BBKeys-Metrics/BBKeys-Metrics
+	}
+	*/
 }
