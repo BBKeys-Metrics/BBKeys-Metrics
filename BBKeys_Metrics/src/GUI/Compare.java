@@ -12,7 +12,7 @@ import TestingMVC.Controller;
  * Project: BBKeys-Metrics
  * File:    Compare 
  *
- * Summary:
+ * Summary: 
  *   Compare compares the user’s data to the department 
  *   average and the top score in the department. The user 
  *   can view this data in different ways, in order to 
