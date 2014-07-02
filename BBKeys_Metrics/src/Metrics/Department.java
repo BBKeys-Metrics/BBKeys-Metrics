@@ -1,19 +1,18 @@
 package Metrics;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 
 public class Department extends GradableItem{
 	private int numEmployees;
-	private ArrayList<Employee> employees;
+	//private ArrayList<Employee> employees;
 	
 	/**
 	 * Constructor (initializes private variables)
 	 */
 	public Department() {
 		numEmployees = 0;
-		employees = null;
+		//employees = null;
 	}
 	
 	/**

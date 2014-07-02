@@ -4,10 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
 import java.util.ArrayList;
 
 
@@ -33,7 +29,7 @@ public class LeaderBoard extends Application{
 	private Scene scene;
 	
 	//holds the formatted leader data
-	private ArrayList<VBox> leaders;
+	//private ArrayList<VBox> leaders; Not used.
 	private ArrayList<CheckBox> metricCheckBoxes;
 	private ArrayList<String> metricTypes; //TODO: Change to type Metric OR GradeableItem???
 	
@@ -75,27 +71,5 @@ public class LeaderBoard extends Application{
 			
 	}
 	
-	/**
-	 * accesses the database to retrieve the leaders for the given metric
-	 * 
-	 * @param metric
-	 */
-	private void fillLeadersList(String metric){
-		
-	}
-	
-	/**
-	 * formats data for each leader
-	 * @return VBox
-	 */
-	private VBox formatLeader(){
-		VBox box = new VBox();
-		//Get name
-		//Get picture
-		//Format name and picture appropriately into vbox
-		//
-		
-		return box;
-	}
 
 }

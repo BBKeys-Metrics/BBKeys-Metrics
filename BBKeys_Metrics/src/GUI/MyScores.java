@@ -1,21 +1,14 @@
 package GUI;
 
-import java.awt.Insets;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /*
  * Project: BBKeys-Metrics
@@ -92,23 +85,6 @@ class MyScores{
 		return employeeInfoBox;
 	}
 	
-	/**
-	 * Gets employee's name from the data base
-	 * based on login.
-	 * @return ??
-	 */
-	private void getEmployeeName(){
-		//TODO:  Add database call
-	}
-	
-	/**
-	 * Gets employee's image from the data base
-	 * based on login.
-	 * @return ??
-	 */
-	private void getEmployeePhoto(){
-		//TODO:  Add database call
-	}
 	
 	/**
 	 * Calls to the database to get the names of the 
@@ -137,28 +113,7 @@ class MyScores{
 		return formattedScores;
 	}
 	
-	/**
-	 * 
-	 * @param metricName
-	 * @return VBox
-	 */
-	private VBox formatMetric(String metricName){
-		VBox score = new VBox();
-		
-		
-		
-		return score;
-	}
-	
-	/**
-	 * 
-	 * @param unit-what unit of data (day, week, month) that
-	 * needs to be retrieved 
-	 */
-	private float getData(String unit){
-		//TODO: Change return type to METRIC
-		float data = 84;
-		return data;
-	}
+
+
 	
 }
