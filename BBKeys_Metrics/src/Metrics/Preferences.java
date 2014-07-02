@@ -1,15 +1,10 @@
 package Metrics;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 
 public class Preferences {
 	private Set<Preference> prefs;
-	private DatabaseConnection dbCon ;
 	
 	/**
 	 * Constructor (initializes private variables based on the User)
@@ -48,20 +43,26 @@ public class Preferences {
 	 * @return void
 	 */
 	public void setPreference(Metric metric, Boolean display) {
-		prefs.put(metric.getName(), display);
+		prefs.add(new Preference(metric, display));
 	}
 	
 	public void setPreference(Preference pref) {
-		prefs.put(pref.getMetric(), pref.getDisplay())
+		prefs.add(pref);
 	}
 	
 	/**
 	 * Get the preference value for a given Metric
 	 * @param metric - the Metric that the preference value is being searched for
-	 * @return Boolean
+	 * @return boolean
 	 */
-	public Boolean getPreference(Metric metric) {
-		return prefs.get(metric.getName());
+	public boolean getPreference(Metric metric) {
+		for (Preference p : prefs) {
+			if (p.getMetric().equals(metric)) {
+				return p.getDisplay();
+			}
+		}
+		System.out.println("Metric:" + metric.getName() + "not in user preferences.");
+		return false;
 	}
 	
 	/**
@@ -70,8 +71,13 @@ public class Preferences {
 	 * and stored.
 	 */
 	public void printPrefs() {
-		for(String key: prefs.keySet()) {
-			System.out.println(key + " - " + prefs.get(key));
+		for(Preference p : prefs) {
+			System.out.println(p);
 		}
+	}
+
+	public Set<Preference> getAllPreferences() {
+		// TODO Auto-generated method stub
+		return prefs;
 	}
 }

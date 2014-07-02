@@ -1,6 +1,6 @@
 package Metrics;
 
-import TestingMVC.Model;
+import TestingMVC.Controller;
 
 public class Preference {
 	private Metric metric;
@@ -12,8 +12,15 @@ public class Preference {
 	}
 	
 	public Preference(String[] args) {
-		metric = Model.getInstance().getMetric(Integer.decode(args[1]));
+		metric = Controller.getInstance().getMetricByID(Integer.decode(args[1]));
 		display = Boolean.valueOf(args[2]);
 	}
 
+	public Metric getMetric() {
+		return metric;
+	}
+	
+	public boolean getDisplay() {
+		return display;
+	}
 }

@@ -1,11 +1,11 @@
 package Metrics;
 
 
-import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import TestingMVC.Model;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -144,8 +144,10 @@ public class Metrics extends Application {
         TextField userTextField = new TextField();
         userTextField.setPrefWidth(300);
         grid.add(userTextField, 1, 0, 4, 1);
+        
+        Employee user = Model.getInstance().getEmployee("sherd");
 		
-		Preferences prefs = new Preferences("sherd");
+		Preferences prefs = Model.getInstance().getPreferences(user);
 		prefs.printPrefs();
 		
 		//get the image and convert it to a JavaFX ImageView

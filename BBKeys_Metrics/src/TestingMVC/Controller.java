@@ -1,5 +1,6 @@
 package TestingMVC;
 
+import Metrics.Metric;
 import Metrics.User;
 import javafx.stage.Stage;
 
@@ -22,6 +23,10 @@ public class Controller {
 		//TODO: load settings from somewhere.
 		//Location of database, first view, etc.
 		System.out.println("Controller.getSettings() not implemented.");
+	}
+	
+	public Metric getMetricByID(Integer ID) {
+		return null;
 	}
 
 }

@@ -3,7 +3,7 @@ package TestingMVC;
 import java.util.Set;
 
 import Metrics.Employee;
-import Metrics.Metric;
+import Metrics.Preference;
 import Metrics.Preferences;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -12,22 +12,22 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class ScoresScene {
-	GridPane grid = new GridPane();
 	
 	public ScoresScene() {
 	}
 	
-	public Scene getScene() {
+	public static Scene getScene() {
+		GridPane grid = new GridPane();
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				Employee employee = Model.getInstance().getEmployee();
-				Preferences pref = Model.getInstance().getPrefs(employee);
+				Preferences pref = Model.getInstance().getPreferences(employee);
+				Set<Preference> prefs = pref.getAllPreferences();
 				if (pref != null) {
 					Platform.runLater(new Runnable() {
 						public void run() {
-							Set<Metric> metrics = pref.getMetrics();
-							for(Metric m : metrics) {
-								Label name = new Label(pref.getPreference(m).toString());
+							for(Preference p : prefs) {
+								Label name = new Label(p.getMetric().getName());
 								grid.add(name, 0, 0);
 							}
 						}
