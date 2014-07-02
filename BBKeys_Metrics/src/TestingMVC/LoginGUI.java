@@ -1,7 +1,7 @@
 package TestingMVC;
 
 import Metrics.Metrics;
-import Metrics.RegisterGUI;
+import GUI.RegisterGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
