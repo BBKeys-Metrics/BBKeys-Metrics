@@ -10,7 +10,7 @@ import TestingMVC.Controller;
 
 /**
  * Project: BBKeys-Metrics
- * File:    Compare
+ * File:    Compare 
  *
  * Summary:
  *   Compare compares the user’s data to the department 
