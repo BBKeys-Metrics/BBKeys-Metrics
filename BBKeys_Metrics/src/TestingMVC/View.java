@@ -17,8 +17,7 @@ public class View extends Application{
 	
 	public void start(Stage primaryStage) {
 		theStage = primaryStage;
-		ScoresGUI scoreView = new ScoresGUI();
-		theStage.setScene(scoreView.getScene());
+		theStage.setScene(ScoresGUI.getInstance().getScene());
 		theStage.show();
 		//Login loginView = new Login();
 		//loginView.start(theStage);

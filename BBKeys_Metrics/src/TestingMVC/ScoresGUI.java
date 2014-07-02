@@ -12,11 +12,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class ScoresGUI {
+	static private ScoresGUI instance= new ScoresGUI();
 	
-	public ScoresGUI() {
+	private ScoresGUI() {
+		
 	}
 	
-	public static Scene getScene() {
+	public static ScoresGUI getInstance() {
+		return instance;
+	}
+	
+	public Scene getScene() {
 		GridPane grid = new GridPane();
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
