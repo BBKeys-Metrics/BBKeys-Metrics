@@ -36,9 +36,22 @@ import java.util.List;
  *   Summer Smith
  */
 
-class MyScores{
-	private Scene myScores;
-	private ArrayList<String> metricNames;
+class MyScores extends Frame{
+
+	/**
+	 * Getter for my scores, the primary scene for the 
+	 * "My Scores" page.
+	 * @return Scene
+	 */
+	@Override 
+	public Scene getScene(){
+		return this.scene;
+	}
+	
+	public MyScores getInstance(){
+		return this;
+	}
+	
 	
 	/**
 	 * Start 
@@ -46,31 +59,21 @@ class MyScores{
 	public void main(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("My Scores");
 		buildPage();
-		primaryStage.setScene(myScores);
+		primaryStage.setScene(scene);
 	}
-	
+		
 	/**
-	 * Getter for myScores, the primary scene for the 
-	 * "My Scores" page.
-	 * @return Scene
+	 * Loads the elements into the page
 	 */
-	public Scene getMyScoresScene(){
-		return myScores;
-	}
-	
-	/**
-	 * Creates a scene to be loaded into the frame
-	 * 
-	 * @return Scene
-	 */
-	private void buildPage(){
+	@Override
+	public void buildPage(){
 		BorderPane root = new BorderPane();		
-		getMetrics();
+		fillMetricNames();
 		
 		root.setTop(this.employeeInfo());
 		root.setCenter(this.formatScores());
 		
-		myScores = new Scene (root, 600, 600);
+		scene = new Scene (root, 600, 600);
 	}
 	
 	/**
@@ -112,17 +115,6 @@ class MyScores{
 	}
 	
 	/**
-	 * Calls to the database to get the names of the 
-	 * metrics that will be listed.
-	 */
-	private void getMetrics(){
-		metricNames = new ArrayList<String>();
-		//TODO: Add database call to fill array
-		metricNames.add("Speed");
-		metricNames.add("Accuracy");
-	}
-	
-	/**
 	 * For each metric in the metricNames array list,
 	 * a vbox is created and added into the hbox.
 	 * @return HBox
@@ -150,16 +142,11 @@ class MyScores{
 		
 		return score;
 	}
-	
-	/**
-	 * 
-	 * @param unit-what unit of data (day, week, month) that
-	 * needs to be retrieved 
-	 */
-	private float getData(String unit){
-		//TODO: Change return type to METRIC
-		float data = 84;
-		return data;
+
+	@Override
+	public void start(Stage arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

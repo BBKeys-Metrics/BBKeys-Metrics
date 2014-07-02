@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+import TestingMVC.Controller;
+
 /**
  * Project: BBKeys-Metrics
  * File:    Compare
@@ -30,9 +32,22 @@ import java.util.ArrayList;
  *   Summer Smith
  */
 
-class Compare{
-	private Scene compare;
-	private ArrayList<String> metricNames;
+
+class Compare extends Frame{
+	
+	/**
+	 * Getter for compare, the primary scene for the 
+	 * "Compare" page.
+	 * @return Scene
+	 */
+	@Override 
+	public Scene getScene(){
+		return this.scene;
+	}
+	
+	public Compare getInstance(){
+		return this;
+	}
 	
 	/**
 	 * Start
@@ -42,26 +57,17 @@ class Compare{
 	public void main(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Compare");
 		buildPage();
-		primaryStage.setScene(compare);
+		primaryStage.setScene(scene);
 	}
 	
-	/**
-	 * Getter for compare, the primary scene for the 
-	 * "Compare" page.
-	 * @return Scene
-	 */
-	public Scene getCompareScene(){
-		return compare;
-	}
 	
 	/**
-	 * Creates a scene to be loaded into the frame
-	 * 
-	 * @return Scene
+	 * Loads the elements into the page
 	 */
-	private void buildPage(){
+	@Override
+	public void buildPage(){
 		BorderPane root = new BorderPane();		
-		getMetrics();
+		fillMetricNames();
 		
 		//Call getView to find out if the view is table or scatterplot
 		
@@ -72,7 +78,7 @@ class Compare{
 		//root.setTop(this.metric());
 		//root.setCenter(this.formatScores());
 		
-		compare = new Scene (root, 600, 600);
+		scene = new Scene (root, 600, 600);
 	}
 	
 	/**
@@ -128,25 +134,9 @@ class Compare{
 		return plot;
 	}
 	
-	/**
-	 * Calls to the database to get the names of the 
-	 * metrics that will be listed.
-	 */
-	private void getMetrics(){
-		metricNames = new ArrayList<String>();
-		//TODO: Add database call to fill array
-		metricNames.add("Speed");
-		metricNames.add("Accuracy");
-	}
-	
-	/**
-	 * 
-	 * @param unit-what unit of data (current user, high score, avg) that
-	 * needs to be retrieved 
-	 */
-	private float getData(String unit){
-		//TODO: Change return type to METRIC
-		float data = 84;
-		return data;
+	@Override
+	public void start(Stage arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 }

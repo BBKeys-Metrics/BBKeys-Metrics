@@ -26,54 +26,61 @@ import java.util.ArrayList;
  * 
  * Author:
  *   Summer Smith
+ *
+ *
+ *logic for making check boxes
+ *for (int i = 0; i < metricNames.size(); i++){
+			//Generate a checkbox for each metric type
+			newBox.setText(metricNames.get(i));
+			//Default is ALL checkboxes are checked
+			newBox.setSelected(true);
+			metricCheckBoxes.add(newBox);
+		}
+ *
+ *
  */
 
 
-public class LeaderBoard extends Application{
-	private Scene scene;
+public class LeaderBoard extends Frame{
 	
 	//holds the formatted leader data
 	private ArrayList<VBox> leaders;
 	private ArrayList<CheckBox> metricCheckBoxes;
-	private ArrayList<String> metricTypes; //TODO: Change to type Metric OR GradeableItem???
+	
+	/**
+	 * Getter for leader board, the primary scene for the 
+	 * "Leader Board" page.
+	 * @return Scene
+	 */
+	@Override 
+	public Scene getScene(){
+		return this.scene;
+	}
+	
+	public LeaderBoard getInstance(){
+		return this;
+	}
 	
 	
 	@Override
 	public void start(Stage primaryStage) {
-		fillMetricTypes();
+		fillMetricNames();
 		
-		setScene();
+		buildPage();
         primaryStage.setTitle("LeaderBoard");
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
 	
-	 public void setScene(){
+	/**
+	 * Loads the elements into the page
+	 */
+	@Override
+	public void buildPage(){
 	        
 	    }
 	
-	/**
-	 * accesses the database to find out what metrics are available, and 
-	 * generates a checkbox for each metric.
-	 */
-	private void fillMetricTypes(){
-		metricTypes = new ArrayList<String>();
-		CheckBox newBox = new CheckBox();
-		//Replace with DB call
-		//Temporary static data
-		metricTypes.add("Speed");
-		metricTypes.add("Accuracy");
-		metricTypes.add("Helpfullness");
-		
-		for (int i = 0; i < metricTypes.size(); i++){
-			//Generate a checkbox for each metric type
-			newBox.setText(metricTypes.get(i));
-			//Default is ALL checkboxes are checked
-			newBox.setSelected(true);
-			metricCheckBoxes.add(newBox);
-		}
-			
-	}
+	
 	
 	/**
 	 * accesses the database to retrieve the leaders for the given metric

@@ -17,6 +17,7 @@ import javafx.event.EventHandler;
 import java.util.ArrayList;
 
 import Metrics.Metrics;
+import TestingMVC.View;
 
 
 /*
@@ -27,48 +28,29 @@ import Metrics.Metrics;
  *   Frame is the basic framework for the GUI.  It holds the 
  *   navigation buttons and provides a window for the subsequent 
  *   pages (leader board, my scores, and compare) to open in.
+ *   It is a parent class from which subsequent user pages inheret. 
  * 
  * Author:
  *   Summer Smith
+ *   
+ *   
  */
 
 
-public class Frame extends Application{
-	private Scene scene;
-
+abstract class Frame extends Application{
+	public Scene scene;
+	public ArrayList<String> metricNames; //TODO: Change to type Metric OR GradeableItem???
+	
 	private Button myScores = new Button();
 	private Button compare = new Button();
 	private Button leaderBoard = new Button();
-	
-	/**
-     * Calls appropriate functions to set up the window.
-     * 
-     * @param primaryStage 
-     */
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		setScene();
-        primaryStage.setScene(scene);
-        primaryStage.show();
-	}
-	
-	/**
-	 * Initializes the root pane and calls functions to
-	 * ...
-	 */
-	public void setScene(){
-		AnchorPane root= new AnchorPane();
-        
-        //root.setTop(this.hbox1());
-        //root.setCenter(this.hbox2());
 		
-		AnchorPane.setBottomAnchor(this.buttonBox(), 10.0);
-               
-        scene = new Scene(root, 800, 800);
-        
-        //Metrics metric = new Metrics();
-        //metric.start(primaryStage);  //open in same window
-	}
+	/**
+     * Abstract methods to be defined in sub-classes
+     */
+	abstract public Scene getScene();
+	abstract public void buildPage();
+	
 	
 	private VBox buttonBox(){
 		VBox buttonBox = new VBox();
@@ -87,7 +69,7 @@ public class Frame extends Application{
 		compare.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	//load Compare page
+            	View.getInstance().setScene(Compare.getInstance().getScene());
             }
 		});
 		
@@ -106,6 +88,31 @@ public class Frame extends Application{
 		return buttonBox();
 	}
 	
+	/**
+	 * accesses the database to find out what metrics are available, and 
+	 * generates a checkbox for each metric.
+	 */
+	public void fillMetricNames(){
+		metricNames = new ArrayList<String>();
+		CheckBox newBox = new CheckBox();
+		//Replace with DB call
+		//Temporary static data
+		metricNames.add("Speed");
+		metricNames.add("Accuracy");
+		metricNames.add("Helpfullness");		
+	}
+	
+	/**
+	 * 
+	 * @param unit-what unit of data (current user, high score, avg) that
+	 * needs to be retrieved 
+	 */
+	public float getData(String unit){
+		//TODO: Change return type to METRIC
+		//Controller.getInstance().getData();
+		float data = 84;
+		return data;
+	}
 	
 	
 }
