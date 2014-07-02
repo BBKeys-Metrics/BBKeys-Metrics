@@ -11,9 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class ScoresScene {
+public class ScoresGUI {
 	
-	public ScoresScene() {
+	public ScoresGUI() {
 	}
 	
 	public static Scene getScene() {
