@@ -13,10 +13,8 @@ public class GradableItemTest {
 
   @Test
   public void addScore() {
-	  MetricScore ms = new MetricScore();
-	  Metric metric = new Metric();
-	  metric.setName("Shane");
-	  ms.setMetric(metric);
+	  Metric metric = new Metric("Hours Slept", 1.0, 0, "4");
+	  MetricScore ms = new MetricScore(metric, 8.0);
 	  gi.addScore(ms);
   }
 

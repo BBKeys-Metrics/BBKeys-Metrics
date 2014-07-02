@@ -38,7 +38,7 @@ public class GradableItem {
 	 * @return void
 	 */
 	public void addScore(MetricScore score) {
-		
+		scores.add(score);
 	}
 	
 	/**
@@ -47,9 +47,7 @@ public class GradableItem {
 	 * @return MetricScore
 	 */
 	public MetricScore getScore(int index) {
-		MetricScore theScore = null;
-		
-		return theScore;
+		return scores.get(index);
 	}
 	
 	/**
@@ -58,8 +56,13 @@ public class GradableItem {
 	 * @return MetricScore
 	 */
 	public MetricScore getScore(String name) {
-		MetricScore theScore = null;
+		for (int i = 0; i < scores.size(); i++) {
+			if (scores.get(i).getMetric().getName().equals(name)) {
+				return scores.get(i);
+			}
+		}
 		
-		return theScore;
+		//if the metric score doesn't exist, return null
+		return null;
 	}
 }

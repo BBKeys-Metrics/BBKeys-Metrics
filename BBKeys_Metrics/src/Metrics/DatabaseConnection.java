@@ -21,7 +21,6 @@ public class DatabaseConnection {
 	private String database;
 	private String username;
 	private String password;
-	//private User user;
 	
 	private Connection con = null;
 	private String connectionURL = null;
@@ -52,27 +51,9 @@ public class DatabaseConnection {
 		database = properties.getProperty("database");
 		username = properties.getProperty("username");
 		password = properties.getProperty("password");
-		//user = new User();
 		
 		setUpConnection();
 	}
-	
-	/**
-	 * Constructor which sets the private variables equal to the parameters passed 
-	 * @param host - computer host name or IP address
-	 * @param port - port that the database is being hosted from
-	 * @param database - name of database
-	 * @param user - User object
-	 */
-	/*
-	public DatabaseConnection(String host, String port, String database, User user) throws SQLException {
-		this.host = host;
-		this.port = port;
-		this.database = database;
-		this.user = user;
-		
-		setUpConnection();
-	}*/
 	
 	/**
 	 * Sets up the database connection
