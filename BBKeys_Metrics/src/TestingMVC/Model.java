@@ -59,14 +59,26 @@ public class Model {
 		return null;
 	}
 	
-	public Metric getMetric()
+	public Metric getMetric(Integer metricID) {
+		if (source == null || !source.hasSource()) return null;
+		else {
+			ResultSet r = null;
+			try {
+				r = source.executeQuery("Select * FROM Metrics.dbo.Metrics WHERE metricID = '" + metricID + "'");
+				ResultSetMetaData rsmd = r.getMetaData();
+				int columns = rsmd.getColumnCount();
+				String[] prefData = new String[columns];
+				for (int i = 1; i < columns; i++);
+			}
+		}
+	}
 	
 	public Preferences getPreferences(Employee employee) {
 		if (source == null || !source.hasSource()) return null;
 		else {
 			ResultSet r = null;
 			try {
-				r = source.executeQuery("Select * FROM Metrics.dbo.Preference WHERE employeeID = '" + employee.getID() + "'");
+				r = source.executeQuery("Select * FROM Metrics.dbo.Preferences WHERE employeeID = '" + employee.getID() + "'");
 				Set<Preference> prefs = new HashSet();
 				while (r.next()) {
 					ResultSetMetaData rsmd = r.getMetaData();
