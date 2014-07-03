@@ -77,6 +77,7 @@ class MyScores extends Frame{
 		
 		//root.setCenter(grid);
 		root.setTop(this.employeeInfo());
+		root.setLeft(timeUnit);
 		root.setCenter(this.formatScores());
 		root.setBottom(this.navigationBox());
 		
@@ -130,11 +131,12 @@ class MyScores extends Frame{
 	private VBox formatMetric(Metric metric){
 		VBox scoreBox = new VBox();
 		
-		MetricScore employeeScore = getEmployeeMetricScore(metric);
-		Label name = new Label(metric.getName());
+		MetricScore employeeScore = getEmployeeMetricScore(metric, timeUnit.getValue());
 		//Need a better way to display Doubles  
 		//TextField score = new TextField(employeeScore.getValue());
 		
+		Label name = new Label(metric.getName());
+				
 		scoreBox.getChildren().addAll(name);
 		
 		return scoreBox;

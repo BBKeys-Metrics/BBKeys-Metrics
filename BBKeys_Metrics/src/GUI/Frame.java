@@ -1,6 +1,8 @@
 package GUI;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import Metrics.*;
 
 import java.util.ArrayList;
@@ -39,6 +42,15 @@ abstract class Frame extends Application{
 	public Scene scene;
 	public ArrayList<Metric> metrics; //TODO: Change to type Metric OR GradeableItem???
 	public Employee employee;
+	public ObservableList<String> timeUnits = 
+		    FXCollections.observableArrayList(
+		            "Day",
+		            "Week",
+		            "Month",
+		            "Six Months",
+		            "Year"
+		        );
+	final ComboBox<String> timeUnit = new ComboBox<String>(timeUnits);
 	
 	//The three navigation buttons
 	private Button myScores = new Button();
@@ -110,31 +122,59 @@ abstract class Frame extends Application{
 		metrics.add(helpfulness);		
 	}
 	
-	/**
-	 * 
-	 * @param unit-what unit of data (current user, high score, avg) that
-	 * needs to be retrieved 
-	 */
-	public float getData(String unit){
-		//TODO: Change return type to METRIC
-		//Controller.getInstance().getData();
-		float data = 84;
-		return data;
-	}
+
 	
 	/**
 	 * Given a metric, the employees score for that metric will
 	 * be retrieved and returned.
 	 * 
 	 * @param metric -- the name of the metric score to be retrieved
+	 * @param unit-what unit of data (current user, high score, avg) that
+	 * needs to be retrieved 
 	 * @return MetricScore
 	 */
-	public MetricScore getEmployeeMetricScore(Metric metric){
+	public MetricScore getEmployeeMetricScore(Metric metric, String timeUnit){
 		
 		//Temporary Data -- should be changed to db call
 		MetricScore temp = new MetricScore(metric, 50);
 		return temp;
 	}
+	
+	/**
+	 * Given a metric, the average score for that metric will
+	 * be retrieved and returned.
+	 * 
+	 * @param metric -- the name of the metric score to be retrieved
+	 * @param unit-what unit of data (current user, high score, avg) that
+	 * needs to be retrieved 
+	 * @return MetricScore
+	 */
+	public MetricScore getAverageScore(Metric metric, String timeUnit){
+		
+		//Temporary Data -- should be changed to db call
+		MetricScore temp = new MetricScore(metric, 50);
+		return temp;
+	}
+	
+	/**
+	 * Given a metric, the average score for that metric will
+	 * be retrieved and returned.
+	 * 
+	 * @param metric -- the name of the metric score to be retrieved
+	 * @param unit -- what unit of data (current user, high score, avg) that
+	 * needs to be retrieved 
+	 * @param rank -- the rank of the top score desired to retrieve, allows
+	 * this function to retrieve data for top x employees (as limited by
+	 * preferences)
+	 * @return MetricScore
+	 */
+	public MetricScore getTopScore(Metric metric, String timeUnit, int rank){
+		
+		//Temporary Data -- should be changed to db call
+		MetricScore temp = new MetricScore(metric, 50);
+		return temp;
+	}
+	
 	
 	
 }
