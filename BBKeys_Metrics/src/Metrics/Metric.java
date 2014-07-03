@@ -17,6 +17,13 @@ public class Metric {
 		sortType = "";
 	}
 
+	public Metric(String mName, double mWeight, int mPrecision, String mSortType){
+		name = mName;
+		weight = mWeight;
+		precision = mPrecision;
+		sortType = mSortType;
+	}
+	
 	public Metric(String truth) {
 		name = truth;
 		weight = 0.0;
