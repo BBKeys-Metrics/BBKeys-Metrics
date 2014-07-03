@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Metrics.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
@@ -29,18 +30,6 @@ import java.util.ArrayList;
  * 
  * Author:
  *   Summer Smith
- *
- *
- *logic for making check boxes
- *for (int i = 0; i < metrics.size(); i++){
-			//Generate a checkbox for each metric type
-			newBox.setText(metrics.get(i));
-			//Default is ALL checkboxes are checked
-			newBox.setSelected(true);
-			metricCheckBoxes.add(newBox);
-		}
- *
- *
  */
 
 
@@ -49,6 +38,7 @@ public class LeaderBoard extends Frame{
 	//holds the formatted leader data
 	//private ArrayList<VBox> leaders; Not used.
 	private ArrayList<CheckBox> metricCheckBoxes;
+	private int numTopEmployeesToShow = 5;
 	
 	/**
 	 * Getter for leader board, the primary scene for the 
@@ -90,10 +80,108 @@ public class LeaderBoard extends Frame{
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
 		
+		
+		root.setTop(this.makeCheckBoxes());
+		root.setLeft(timeUnit);
+		root.setCenter(this.formatLeaders());
 		root.setBottom(this.navigationBox());
+		
+		scene = new Scene (root, 600, 600);
 	}
 	
-	
+	/**
+	 * Creates a series of checkboxes, one box for
+	 * each metric type.  Formats them into a vbox
+	 * for display purposes.
+	 * @return VBox
+	 */
+	private VBox makeCheckBoxes(){
+		VBox box = new VBox();
+		
+		CheckBox newBox = new CheckBox();
+		
+		for (int i = 0; i < metrics.size(); i++){
+			//Generate a check kbox for each metric type
+			newBox.setText(metrics.get(i).getName());
+			
+			//Default is ALL check boxes are checked
+			newBox.setSelected(true);
+			metricCheckBoxes.add(newBox);
+		}
+		return box;
+	}
 	
 
+	/**
+	 * Formats the top x leaders, each leader in their own VBox.
+	 * Returns an hbox holding all of the leader sub-boxes.
+	 * 
+	 * @return HBox
+	 */
+	private HBox formatLeaders(){
+		HBox leadersBox = new HBox();
+		
+		for (int i = 1; i < numTopEmployeesToShow; i++){
+			//PLEASE DO NOT CHANGE, comment out if needed. -Summer
+			//leadersBox.add(this.formatLeaderScores(i));
+		}
+		
+		return leadersBox;
+	
+	}
+	
+	/**
+	 * Creates a VBox holding an employees name and his scores.
+	 * The scores displayed are those selected in the checkboxes.
+	 * 
+	 * @param rank -- an integer indigating the ranked position
+	 * of the leader for which the vbox is being created.
+	 * I.E. 1 indicates the highest ranked employee,
+	 * 4 indicates the fourth higheste employee, ect.
+	 * @return VBox
+	 */
+	private GridPane formatLeaderScores(int rank){
+		GridPane leaderBox = new GridPane();
+		
+		//Retrieve employee name
+		//Retrieve employee picture
+		//??getTopEmployee (see Frame)
+		
+		//Retrieve overall score
+		//Add overall score
+		
+		for (int i = 0; i < metricCheckBoxes.size(); i++)
+		{
+			if (metricCheckBoxes.get(i).isSelected()){
+				//Use name of checkbox to get metric
+		
+				//leaderBox.add(this.formatMetric(metric, rank));
+			}
+
+		}
+	
+		return leaderBox;		
+	}
+	
+	/**
+	 * Returns am hbox holding the metric name and the score the
+	 * employee recieved on that metric.
+	 * 
+	 * @param metricName
+	 * @return HBox
+	 */
+	private HBox formatMetric(Metric metric, int leaderRank){
+		HBox scoreBox = new HBox();
+		
+		MetricScore topScore = getTopScore(metric, timeUnit.getValue(), leaderRank);
+		//Need a better way to display Doubles  
+		//TextField score = new TextField(employeeScore.getValue());
+		
+		Label name = new Label(metric.getName());
+				
+		scoreBox.getChildren().addAll(name);
+		
+		return scoreBox;
+	}
+	
 }

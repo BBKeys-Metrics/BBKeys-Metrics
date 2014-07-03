@@ -75,7 +75,6 @@ class MyScores extends Frame{
 		fillMetrics();
 		GridPane grid = new GridPane();
 		
-		//root.setCenter(grid);
 		root.setTop(this.employeeInfo());
 		root.setLeft(timeUnit);
 		root.setCenter(this.formatScores());

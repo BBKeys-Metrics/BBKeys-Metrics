@@ -175,6 +175,17 @@ abstract class Frame extends Application{
 		return temp;
 	}
 	
+	/*public Employee getTopEmployee(String timeUnit, int rank){
+		
+		//Temporary Data -- should be changed to db call
+		try{
+		Employee myEmp = new Employee("12345");
+		}catch (Exception E){
+			
+		}
+		return myEmp;
+	}*/
+	
 	
 	
 }

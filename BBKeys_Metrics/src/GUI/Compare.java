@@ -80,6 +80,7 @@ class Compare extends Frame{
 			//root.setCenter(this.plotCompare());
 		//else
 		root.setCenter(this.tableCompare());
+		root.setLeft(timeUnit);
 		root.setBottom(this.navigationBox());
 		
 		scene = new Scene (root, 600, 600);
@@ -109,9 +110,6 @@ class Compare extends Frame{
 		metricTable.add(myScoreLabel, 1, 0);
 		metricTable.add(averageLabel, 2, 0);
 		metricTable.add(topScoreLabel, 3, 0);
-		
-		//Add dropdowns
-		metricTable.add(timeUnit, 4, 0);
 		
 		Label metricName;
 		
