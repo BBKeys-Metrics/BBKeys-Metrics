@@ -8,8 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Metrics.Metric;
-import Metrics.MetricScore;
+import Metrics.*;
 import java.util.ArrayList;
 import java.util.List;
 import TestingMVC.Controller;
@@ -72,11 +71,11 @@ class Compare extends Frame{
 	@Override
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
-		fillMetricNames();
+		fillMetrics();
 		
 		//Call getView to find out if the view is table or scatterplot
 		
-		//for(int i = 0; i < metricNames.size(); i++)
+		//for(int i = 0; i < metrics.size(); i++)
 		//     Call metricCompare for each metric
 		
 				

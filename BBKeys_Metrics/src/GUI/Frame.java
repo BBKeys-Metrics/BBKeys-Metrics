@@ -2,16 +2,17 @@ package GUI;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
-import javafx.event.EventHandler;
-import Metrics.Metric;
-import Metrics.MetricScore;
+import Metrics.*;
+
 import java.util.ArrayList;
+
 import TestingMVC.View;
 
 
@@ -36,7 +37,8 @@ import TestingMVC.View;
 abstract class Frame extends Application{
 	//Public variables for use in sub-classes
 	public Scene scene;
-	public ArrayList<Metric> metricNames; //TODO: Change to type Metric OR GradeableItem???
+	public ArrayList<Metric> metrics; //TODO: Change to type Metric OR GradeableItem???
+	public Employee employee;
 	
 	//The three navigation buttons
 	private Button myScores = new Button();
@@ -94,19 +96,18 @@ abstract class Frame extends Application{
 	 * accesses the database to find out what metrics are available, places
 	 * those items into a list for easy access.
 	 */
-	public void fillMetricNames(){
-		metricNames = new ArrayList<Metric>();
-		//Replace with DB call
-		//Temporary static data
-		Metric speed = new Metric();
-		speed.setName("Speed");
-		speed.setWeight(0);
-		speed.setPrecision(0);
-		speed.setSortType("High");
+	public void fillMetrics(){
+		metrics = new ArrayList<Metric>();
 		
-		metricNames.setName("Speed");
-		metricNames.add("Accuracy");
-		metricNames.add("Helpfullness");		
+		//TODOReplace with DB call
+		//Temporary static data
+		Metric speed = new Metric("Speed", 0, 0, "Low");
+		Metric accuracy = new Metric("Accuracy", 0, 0, "High");
+		Metric helpfulness = new Metric("Helpfulness", 0, 0, "High");
+		
+		metrics.add(speed);
+		metrics.add(accuracy);
+		metrics.add(helpfulness);		
 	}
 	
 	/**
@@ -119,6 +120,20 @@ abstract class Frame extends Application{
 		//Controller.getInstance().getData();
 		float data = 84;
 		return data;
+	}
+	
+	/**
+	 * Given a metric, the employees score for that metric will
+	 * be retrieved and returned.
+	 * 
+	 * @param metric -- the name of the metric score to be retrieved
+	 * @return MetricScore
+	 */
+	public MetricScore getEmployeeMetricScore(Metric metric){
+		
+		//Temporary Data -- should be changed to db call
+		MetricScore temp = new MetricScore(metric, 50);
+		return temp;
 	}
 	
 	

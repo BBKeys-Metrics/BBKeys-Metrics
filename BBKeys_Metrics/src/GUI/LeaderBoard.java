@@ -8,8 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Metrics.Metric;
-import Metrics.MetricScore;
+import Metrics.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
@@ -33,9 +32,9 @@ import java.util.ArrayList;
  *
  *
  *logic for making check boxes
- *for (int i = 0; i < metricNames.size(); i++){
+ *for (int i = 0; i < metrics.size(); i++){
 			//Generate a checkbox for each metric type
-			newBox.setText(metricNames.get(i));
+			newBox.setText(metrics.get(i));
 			//Default is ALL checkboxes are checked
 			newBox.setSelected(true);
 			metricCheckBoxes.add(newBox);
@@ -76,7 +75,7 @@ public class LeaderBoard extends Frame{
 	 */
 	@Override
 	public void start(Stage primaryStage) {
-		fillMetricNames();
+		fillMetrics();
 		
 		buildPage();
         primaryStage.setTitle("LeaderBoard");

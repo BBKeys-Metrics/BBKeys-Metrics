@@ -4,13 +4,14 @@ package GUI;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Metrics.Metric;
-import Metrics.MetricScore;
+import Metrics.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +72,7 @@ class MyScores extends Frame{
 	@Override
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
-		fillMetricNames();
+		fillMetrics();
 		GridPane grid = new GridPane();
 		
 		//root.setCenter(grid);
@@ -93,9 +94,12 @@ class MyScores extends Frame{
 		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
        
 		//TODO: Add call to getEmployeeName()
-		Label empName = new Label("John Jingleheimer");
-		//TODO: Add call to getEmployeePhoto();
+		Label empName = new Label(employee.getID());
 		
+		//Need to get image view working
+		//Resource:http://docs.oracle.com/javafx/2/api/javafx/scene/image/ImageView.html
+		//ImageView pic = new ImageView(employee.getPicture());
+	
 		employeeInfoBox.getChildren().add(empName);
 	        
 		return employeeInfoBox;
@@ -110,29 +114,28 @@ class MyScores extends Frame{
 	private HBox formatScores(){
 		HBox formattedScoresBox = new HBox();
 		
-		for (int i = 0; i < metricNames.size(); i++){
-			Label label = new Label(metricNames.get(i));
-			formattedScoresBox.getChildren().add(this.formatMetric(metric));
+		for (int i = 0; i < metrics.size(); i++){			
+			formattedScoresBox.getChildren().add(this.formatMetric(metrics.get(i)));
 		}			
 		
 		return formattedScoresBox;
 	}
 	
 	/**
-	 * 
+	 * Returns a vbox holding the metric name and the score the
+	 * employee recieved on that metric.
 	 * @param metricName
 	 * @return VBox
 	 */
-	private VBox formatMetric(MetricScore metric){
+	private VBox formatMetric(Metric metric){
 		VBox scoreBox = new VBox();
 		
-		Label name = new Label(metric.getMetric().getName());
+		MetricScore employeeScore = getEmployeeMetricScore(metric);
+		Label name = new Label(metric.getName());
 		//Need a better way to display Doubles  
-		//DONT FIX THIS ERROR PLEASE I AM WORKING ON IT.  Feel free to comment it out
-		//--Summer
-		TextField score = new TextField(metric.getValue());
+		//TextField score = new TextField(employeeScore.getValue());
 		
-		scoreBox.getChildren().addAll(name, score);
+		scoreBox.getChildren().addAll(name);
 		
 		return scoreBox;
 	}
