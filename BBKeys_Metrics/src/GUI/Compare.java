@@ -1,12 +1,17 @@
 package GUI;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import Metrics.Metric;
+import Metrics.MetricScore;
 import java.util.ArrayList;
-
+import java.util.List;
 import TestingMVC.Controller;
 
 /**
@@ -125,7 +130,7 @@ class Compare extends Frame{
 		VBox plot = new VBox();
 		
 		//call getData to retrieve data
-		
+		//http://docs.oracle.com/javafx/2/charts/area-chart.htm
 		return plot;
 	}
 

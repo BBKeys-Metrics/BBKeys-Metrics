@@ -9,7 +9,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import Metrics.Metric;
+import Metrics.MetricScore;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,14 +108,14 @@ class MyScores extends Frame{
 	 * @return HBox
 	 */
 	private HBox formatScores(){
-		HBox formattedScores = new HBox();
+		HBox formattedScoresBox = new HBox();
 		
 		for (int i = 0; i < metricNames.size(); i++){
 			Label label = new Label(metricNames.get(i));
-			formattedScores.getChildren().add(label);
+			formattedScoresBox.getChildren().add(this.formatMetric(metric));
 		}			
 		
-		return formattedScores;
+		return formattedScoresBox;
 	}
 	
 	/**
@@ -122,12 +123,18 @@ class MyScores extends Frame{
 	 * @param metricName
 	 * @return VBox
 	 */
-	private VBox formatMetric(String metricName){
-		VBox score = new VBox();
+	private VBox formatMetric(MetricScore metric){
+		VBox scoreBox = new VBox();
 		
+		Label name = new Label(metric.getMetric().getName());
+		//Need a better way to display Doubles  
+		//DONT FIX THIS ERROR PLEASE I AM WORKING ON IT.  Feel free to comment it out
+		//--Summer
+		TextField score = new TextField(metric.getValue());
 		
+		scoreBox.getChildren().addAll(name, score);
 		
-		return score;
+		return scoreBox;
 	}
 
 	

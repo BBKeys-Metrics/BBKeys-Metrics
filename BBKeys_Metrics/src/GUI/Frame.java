@@ -9,7 +9,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.event.EventHandler;
-
+import Metrics.Metric;
+import Metrics.MetricScore;
 import java.util.ArrayList;
 import TestingMVC.View;
 
@@ -35,7 +36,7 @@ import TestingMVC.View;
 abstract class Frame extends Application{
 	//Public variables for use in sub-classes
 	public Scene scene;
-	public ArrayList<String> metricNames; //TODO: Change to type Metric OR GradeableItem???
+	public ArrayList<Metric> metricNames; //TODO: Change to type Metric OR GradeableItem???
 	
 	//The three navigation buttons
 	private Button myScores = new Button();
@@ -86,7 +87,7 @@ abstract class Frame extends Application{
 		buttonBox.setAlignment(Pos.CENTER_RIGHT);
 		buttonBox.getChildren().addAll(myScores, compare, leaderBoard);
 		
-		return buttonBox();
+		return buttonBox;
 	}
 	
 	/**
@@ -94,10 +95,16 @@ abstract class Frame extends Application{
 	 * those items into a list for easy access.
 	 */
 	public void fillMetricNames(){
-		metricNames = new ArrayList<String>();
+		metricNames = new ArrayList<Metric>();
 		//Replace with DB call
 		//Temporary static data
-		metricNames.add("Speed");
+		Metric speed = new Metric();
+		speed.setName("Speed");
+		speed.setWeight(0);
+		speed.setPrecision(0);
+		speed.setSortType("High");
+		
+		metricNames.setName("Speed");
 		metricNames.add("Accuracy");
 		metricNames.add("Helpfullness");		
 	}
