@@ -1,6 +1,10 @@
 package Metrics;
 
+import java.util.Calendar;
 import java.util.Set;
+import java.util.TreeSet;
+
+import TestingMVC.TimeSpan;
 
 
 public class GradableItem {
@@ -51,8 +55,31 @@ public class GradableItem {
 	 * @param index - location within the ArrayList that the MetricScore is located
 	 * @return MetricScore
 	 */
-	public Set<MetricScore> getScores() {
-		return scores;
+	public Set<MetricScore> getScores(TimeSpan span) {
+		Set<MetricScore> inTime = new TreeSet<MetricScore>();
+		for (MetricScore m : scores) {
+			Calendar today = Calendar.getInstance();
+			if (span == TimeSpan.DAY) {
+				today.add(Calendar.DAY_OF_YEAR, -1);
+			}
+			else if (span == TimeSpan.WEEK) {
+				today.add(Calendar.WEEK_OF_YEAR, -1);
+			}
+			else if (span == TimeSpan.MONTH) {
+				today.add(Calendar.MONTH, -1);
+			}
+			else if (span == TimeSpan.YEAR) {
+				today.add(Calendar.YEAR, -1);
+			}
+			else { // span == TimeSpan.EVER or broken
+				today.setTimeInMillis(0); // Year 0
+			}
+			if (m.getDate().compareTo(today) > 0) {
+				inTime.add(m);
+			}
+		}
+		
+		return inTime;
 	}
 	
 	/**

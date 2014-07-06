@@ -1,16 +1,20 @@
 package Metrics;
 
+import java.util.Calendar;
+
 
 public class MetricScore {
 	private Metric metric;
 	private double value;
+	private Calendar day;
 	
 	/**
 	 * Constructor (initializes private variables)
 	 */
-	public MetricScore(Metric metric, double value) {
+	public MetricScore(Metric metric, double value, Calendar day) {
 		this.metric = metric;
 		this.value = value;
+		this.day = day;
 	}
 	
 	/**
@@ -45,5 +49,9 @@ public class MetricScore {
 	 */
 	public double getValue() {
 		return value;
+	}
+	
+	public Calendar getDate() {
+		return day;
 	}
 }
