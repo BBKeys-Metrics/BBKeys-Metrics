@@ -8,6 +8,7 @@ import java.util.Set;
 
 import Metrics.Employee;
 import Metrics.Metric;
+import Metrics.MetricScore;
 
 public class Model {
 	private static final Model instance = new Model();
@@ -20,7 +21,7 @@ public class Model {
 		return instance;
 	}
 	
-	public ResultSet getEmployeeByID(int empID) {
+	public ResultSet getEmployeeByID(String empID) {
 		if (source == null || !source.hasSource()) return null;
 		else {
 			return source.executeQuery("Select * FROM Metrics.dbo.Employee WHERE id = '" + empID + "'");
@@ -31,7 +32,7 @@ public class Model {
 	public ResultSet getEmployeeIDByName(String name) {
 		if (source == null || !source.hasSource()) return null;
 		else {
-			return source.executeQuery("Select EmployeeID FROM Metrics.dbo.Employee WHERE username = '" + name + "'");
+			return source.executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + name + "'");
 				
 		}
 	}
@@ -51,13 +52,17 @@ public class Model {
 				String name = metricData[2];
 				float weight = Float.parseFloat(metricData[3]);
 				int precision = Integer.parseInt(metricData[4]);
-				int sortType = Integer.parseInt(metricData[5]);
+				String sortType = metricData[5];
 				Metric m = new Metric(name, weight, precision, sortType);
 				return m;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+		return null;
+	}
+	
+	public Set<MetricScore> getMetricScores(String id) {
 		return null;
 	}
 	

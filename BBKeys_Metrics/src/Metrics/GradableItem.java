@@ -1,11 +1,11 @@
 package Metrics;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 
 public class GradableItem {
-	private String name;
-	private ArrayList<MetricScore> scores;
+	protected String name;
+	protected Set<MetricScore> scores;
 	
 	/**
 	 * Constructor (initializes private variables)
@@ -13,6 +13,11 @@ public class GradableItem {
 	public GradableItem() {
 		name = "";
 		scores = null;
+	}
+	
+	public GradableItem(String name, Set<MetricScore> scores) {
+		this.name = name;
+		this.scores = scores;
 	}
 	
 	/**
@@ -46,8 +51,8 @@ public class GradableItem {
 	 * @param index - location within the ArrayList that the MetricScore is located
 	 * @return MetricScore
 	 */
-	public MetricScore getScore(int index) {
-		return scores.get(index);
+	public Set<MetricScore> getScores() {
+		return scores;
 	}
 	
 	/**
@@ -55,13 +60,10 @@ public class GradableItem {
 	 * @param name - name of the MetricScore to be found
 	 * @return MetricScore
 	 */
-	public MetricScore getScore(String name) {
-		for (int i = 0; i < scores.size(); i++) {
-			if (scores.get(i).getMetric().getName().equals(name)) {
-				return scores.get(i);
-			}
+	public MetricScore getScore(Metric type) {
+		for (MetricScore m : scores) {
+			if (m.getMetric() == type) return m;
 		}
-		
 		//if the metric score doesn't exist, return null
 		return null;
 	}

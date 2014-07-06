@@ -1,6 +1,7 @@
 package Metrics;
 
 import java.sql.SQLException;
+import java.util.Set;
 
 
 public class Employee extends GradableItem{
@@ -19,6 +20,12 @@ public class Employee extends GradableItem{
 		
 		//initialize the employee picture
 		picture = new EmployeePic(id);
+	}
+	
+	public Employee(String name, String id, Set<MetricScore> scores, EmployeePic pic) {
+		super(name, scores);
+		picture = pic;
+		this.id = id;
 	}
 	
 	/**

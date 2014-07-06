@@ -2,7 +2,6 @@ package TestingMVC;
 
 import Metrics.Employee;
 import Metrics.Metric;
-import Metrics.User;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -37,7 +36,7 @@ public class Controller {
 	}
 	
 	public Employee getEmployeeByName(String name) {
-		int id = ResultSetBuilder.buildID(Model.getInstance().getEmployeeIDByName(name));
+		String id = ResultSetBuilder.buildID(Model.getInstance().getEmployeeIDByName(name));
 		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployeeByID(id));
 		
 	}

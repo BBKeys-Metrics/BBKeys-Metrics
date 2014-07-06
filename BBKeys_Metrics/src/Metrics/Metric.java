@@ -1,6 +1,9 @@
 package Metrics;
 
-
+/*
+ * Why is sortType a string? I think this should be an enum or plain int. - Richard
+ * 
+ * */
 public class Metric {
 	private String name;
 	private double weight;
