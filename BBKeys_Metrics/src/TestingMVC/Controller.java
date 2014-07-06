@@ -17,6 +17,10 @@ public class Controller {
 		return instance;
 	}
 	
+	public Employee getUser(){
+		return user;
+	}
+	
 	public void initialize(Stage primaryStage) {
 		getSettings();
 		View.getInstance().start(primaryStage);
@@ -33,8 +37,8 @@ public class Controller {
 	}
 	
 	public Employee getEmployeeByName(String name) {
-		int id = ResultSetBuilder.getID(Model.getInstance().getEmployeeIDByName(name));
-		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployee(id));
+		int id = ResultSetBuilder.buildID(Model.getInstance().getEmployeeIDByName(name));
+		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployeeByID(id));
 		
 	}
 

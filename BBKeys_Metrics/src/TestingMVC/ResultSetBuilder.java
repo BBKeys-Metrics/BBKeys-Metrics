@@ -15,7 +15,7 @@ public class ResultSetBuilder {
 		for (int i = 1; i <= columns; i++) {
 			empData[i-1] = r.getString(i);
 		}
-		String name = empData[1]
+		String name = empData[1];
 		return new Employee();
 	}
 	
