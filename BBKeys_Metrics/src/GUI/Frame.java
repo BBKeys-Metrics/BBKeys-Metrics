@@ -111,13 +111,20 @@ abstract class Frame extends Application{
 	public void fillMetrics(){
 		metrics = new ArrayList<Metric>();
 		
-		//TODOReplace with DB call
-		//Temporary static data
+		//Instead of filling manually, I need access to a DB with all of the
+		//metrics that should be displayed (as defined in preferences).  
+		//As you determine, we can either parse through a list 
+		// that exists in another object (if another object has a 
+		// list of display metrics) or add each individual metric
+		// individually.
+		Controller.getAllMetrics();
+		
+		//Temporary static data --DELETE WHEN ABOVE IS COMPLETED.  Thanks!
 		Metric speed = new Metric("Speed", 0, 0, "Low");
 		Metric accuracy = new Metric("Accuracy", 0, 0, "High");
 		Metric helpfulness = new Metric("Helpfulness", 0, 0, "High");
 		
-		metrics.add(speed);
+		metrics.add();
 		metrics.add(accuracy);
 		metrics.add(helpfulness);		
 	}
@@ -134,9 +141,11 @@ abstract class Frame extends Application{
 	 * @return MetricScore
 	 */
 	public MetricScore getEmployeeMetricScore(Metric metric, String timeUnit){
-		
-		//Temporary Data -- should be changed to db call
-		MetricScore temp = new MetricScore(metric, 50);
+		//Change geDBEmployeeSccore to whatever you want.
+		//  It needs to get score for a given metric, for the current user (employee) that is logged in to the app.
+		//  Needs to return the correct average for the given time unit (day, week, month, ect)
+		//  and return a MetricScore object
+		MetricScore temp = Controller.getDBEmployeeScore();
 		return temp;
 	}
 	
@@ -151,8 +160,10 @@ abstract class Frame extends Application{
 	 */
 	public MetricScore getAverageScore(Metric metric, String timeUnit){
 		
-		//Temporary Data -- should be changed to db call
-		MetricScore temp = new MetricScore(metric, 50);
+		//Change getDBAverage to whatever you want.
+		//  It needs to get the top score for a given metric, for the given time unit (day, week, month, ect)
+		//  and return a MetricScore object
+		MetricScore temp = Controller.getDBAverage();
 		return temp;
 	}
 	
@@ -170,8 +181,11 @@ abstract class Frame extends Application{
 	 */
 	public MetricScore getTopScore(Metric metric, String timeUnit, int rank){
 		
-		//Temporary Data -- should be changed to db call
-		MetricScore temp = new MetricScore(metric, 50);
+		//Change getTopScoreFromDB to whatever you want.
+		//  It needs to get the top score for a given metric, for the given time unit (day, week, month, ect)
+		//  for the given rank (i.e. top score, 2nd high schore, 3rd high score...)
+		//  Please return a MetricScore Object
+		MetricScore temp = Controller.getTopScoreFromDB();
 		return temp;
 	}
 	

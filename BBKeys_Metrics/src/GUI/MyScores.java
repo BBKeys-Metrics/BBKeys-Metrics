@@ -43,6 +43,7 @@ class MyScores extends Frame{
 	 */
 	@Override 
 	public Scene getScene(){
+		buildPage(); //ADD
 		return this.scene;
 	}
 	
@@ -93,12 +94,12 @@ class MyScores extends Frame{
 		employeeInfoBox.setSpacing(10);
 		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
        
-		//TODO: Add call to getEmployeeName()
+		//TODO: Need to add a NAME variable to the EMPLOYEE object
+		Controller.getEmployee.getName(); //Not sure if controller has an employee or not...
+		
 		Label empName = new Label(employee.getID());
 		
-		//Need to get image view working
-		//Resource:http://docs.oracle.com/javafx/2/api/javafx/scene/image/ImageView.html
-		//ImageView pic = new ImageView(employee.getPicture());
+		ImageView pic = new ImageView(employee.getPicture().getImage());
 	
 		employeeInfoBox.getChildren().add(empName);
 	        
@@ -131,12 +132,11 @@ class MyScores extends Frame{
 		VBox scoreBox = new VBox();
 		
 		MetricScore employeeScore = getEmployeeMetricScore(metric, timeUnit.getValue());
-		//Need a better way to display Doubles  
-		//TextField score = new TextField(employeeScore.getValue());
+		Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		
 		Label name = new Label(metric.getName());
 				
-		scoreBox.getChildren().addAll(name);
+		scoreBox.getChildren().addAll(name,score);
 		
 		return scoreBox;
 	}

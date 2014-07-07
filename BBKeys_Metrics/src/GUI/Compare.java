@@ -119,21 +119,20 @@ class Compare extends Frame{
 			metricName = new Label(metrics.get(i).getName());
 			metricTable.add(metricName, 0, i+1);
 		    
-			//NEED a better way to display Doubles 
-			//Add employee (current user) score
-			MetricScore employeeScore =  getEmployeeMetricScore(metrics.get(i), timeUnit.getValue());
-			//double var = employeeScore.getValue();
-			//metricTable.add(var, 1, i+1);
+			//Add employee's (current users) score
+			MetricScore employeeScore = getEmployeeMetricScore(metrics.get(i), timeUnit.getValue());
+			Label empScore = new Label(((Double)(employeeScore.getValue())).toString());
+			metricTable.add(empScore, 1, i+1);
 			
 			//Add average score
 			MetricScore averageScore = getAverageScore(metrics.get(i), timeUnit.getValue());
-			//double var = employeeScore.getValue();
-			//metricTable.add(var, 2, i+1);
+			Label avgScore = new Label(((Double)(averageScore.getValue())).toString());
+			metricTable.add(avgScore, 2, i+1);
 			
 			//Add top score
 			MetricScore topScore = getTopScore(metrics.get(i), timeUnit.getValue(), 1);
-			//double var = employeeScore.getValue();
-			//metricTable.add(var, 3, i+1);
+			Label tpScore = new Label(((Double)(topScore.getValue())).toString());
+			metricTable.add(tpScore, 3, i+1);
 			
 		}
 	

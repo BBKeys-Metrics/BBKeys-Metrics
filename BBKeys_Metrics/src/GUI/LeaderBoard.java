@@ -33,6 +33,10 @@ import java.util.ArrayList;
  */
 
 
+//TODO: Create a listener
+// resource: see "setting the behavior"
+//http://docs.oracle.com/javafx/2/ui_controls/checkbox.htm
+
 public class LeaderBoard extends Frame{
 	
 	//holds the formatted leader data
@@ -116,14 +120,14 @@ public class LeaderBoard extends Frame{
 	 * Formats the top x leaders, each leader in their own VBox.
 	 * Returns an hbox holding all of the leader sub-boxes.
 	 * 
-	 * @return HBox
+	 * @return GridPane
 	 */
-	private HBox formatLeaders(){
-		HBox leadersBox = new HBox();
+	private GridPane formatLeaders(){
+		GridPane leadersBox = new GridPane();
 		
 		for (int i = 1; i < numTopEmployeesToShow; i++){
-			//PLEASE DO NOT CHANGE, comment out if needed. -Summer
-			//leadersBox.add(this.formatLeaderScores(i));
+			//Add each employee in a stack (horizontally)
+			leadersBox.add(this.formatLeaderScores(i), 0 , i-1);
 		}
 		
 		return leadersBox;
@@ -174,12 +178,11 @@ public class LeaderBoard extends Frame{
 		HBox scoreBox = new HBox();
 		
 		MetricScore topScore = getTopScore(metric, timeUnit.getValue(), leaderRank);
-		//Need a better way to display Doubles  
-		//TextField score = new TextField(employeeScore.getValue());
+		Label score = new Label(((Double)(topScore.getValue())).toString());
 		
 		Label name = new Label(metric.getName());
 				
-		scoreBox.getChildren().addAll(name);
+		scoreBox.getChildren().addAll(name, score);
 		
 		return scoreBox;
 	}
