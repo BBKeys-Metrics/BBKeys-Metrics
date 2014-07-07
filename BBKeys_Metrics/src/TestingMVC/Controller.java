@@ -48,15 +48,28 @@ public class Controller {
 	}
 	
 	public void setUser(String username) {
+		String employeeID = "";
+		String employeeName = "";
 		System.out.println("Setting user");
 		ResultSet rs = Model.getInstance().getEmployeeIDByName(username);
 		try {
 			rs.next();
-			//System.out.println(rs.getString(1));
-			user = new Employee(rs.getString(1));
+			employeeID = rs.getString(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		rs = Model.getInstance().getEmployeeByID(employeeID);
+		try {
+			rs.next();
+			employeeName = rs.getString(1) + " " + rs.getString(2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		user = new Employee(employeeName, employeeID, null);
+		
 	}
 
 }

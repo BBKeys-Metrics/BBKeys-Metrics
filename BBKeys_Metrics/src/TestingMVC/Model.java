@@ -23,12 +23,13 @@ public class Model {
 	}
 	
 	public ResultSet getEmployeeByID(String empID) {
-		if (source == null || !source.hasSource()) {
+		/*if (source == null || !source.hasSource()) {
 			return null;
 		}
 		else {
 			return source.executeQuery("Select * FROM Metrics.dbo.Employee WHERE id = '" + empID + "'");		
-		}
+		}*/
+		return DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
 	}
 	
 	public ResultSet getEmployeeIDByName(String name) {
