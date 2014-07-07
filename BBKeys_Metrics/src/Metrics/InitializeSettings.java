@@ -43,6 +43,7 @@ public class InitializeSettings extends Thread{
 			e.printStackTrace();
 		}
 		
+		//get values
 		String hostString = properties.getProperty("host");
 		String portString = properties.getProperty("port");
 		String databaseString = properties.getProperty("database");
