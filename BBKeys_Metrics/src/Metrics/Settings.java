@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import GUI.LoginGUI;
 import GUI.SettingsGUI;
+import TestingMVC.Controller;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -90,13 +91,7 @@ public class Settings extends Thread{
 		//the connection inputs were valid
 		if (validConnection) {
 			//save the settings to the databaseConnection.properties file
-			Properties properties = new Properties();
-			try {
-				//fill properties with the data from the file
-				properties.load(User.class.getResourceAsStream("../databaseConnection.properties"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			Controller.getInstance().setConnectionStrings(host, port, database, user, password);
 			
 			//redirect the user to the login page
 			Platform.runLater(new Runnable() {

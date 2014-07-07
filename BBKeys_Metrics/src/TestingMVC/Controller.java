@@ -7,10 +7,24 @@ import javafx.stage.Stage;
 public class Controller {
 	private static final Controller instance = new Controller();
 	private Employee user;
+	private String host;
+	private String port;
+	private String database;
+	private String username;
+	private String password;
 	
 	
 	private Controller() {
 	};
+	
+	
+	public void setConnectionStrings(String host, String port, String database, String username, String password) {
+		this.host = host;
+		this.port = port;
+		this.database = database;
+		this.username = username;
+		this.password = password;
+	}
 	
 	public static Controller getInstance() {
 		return instance;
