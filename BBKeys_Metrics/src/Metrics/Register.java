@@ -71,7 +71,7 @@ public class Register extends Thread {
     	if (passwordsMatch) {
     		//check for duplicate id in database 
     		try {
-    			dbCon = new DatabaseConnection();
+    			dbCon = DatabaseConnection.getInstance();
     			r = dbCon.executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where employeeID = '" + userID + "'");
     			r.next();
     			

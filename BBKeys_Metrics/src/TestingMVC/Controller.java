@@ -1,29 +1,19 @@
 package TestingMVC;
 
+import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.Metric;
 import javafx.stage.Stage;
 
 public class Controller {
 	private static final Controller instance = new Controller();
-	private Employee user;
-	private String host;
-	private String port;
-	private String database;
-	private String username;
-	private String password;
-	
+	private Employee user;	
 	
 	private Controller() {
 	};
 	
-	
-	public void setConnectionStrings(String host, String port, String database, String username, String password) {
-		this.host = host;
-		this.port = port;
-		this.database = database;
-		this.username = username;
-		this.password = password;
+	public void setConnectionStrings(String host, String port, String database, String username, String password) {		
+		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
 	}
 	
 	public static Controller getInstance() {

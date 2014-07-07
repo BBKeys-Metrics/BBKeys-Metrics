@@ -51,7 +51,7 @@ public class Login extends Thread{
     	if (!fieldsBlank) {
 			try {
 				//connect to the database
-				dbCon = new DatabaseConnection();
+				dbCon = DatabaseConnection.getInstance();
 				//check that the username exists
 				r = dbCon.executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username + "'");
 				r.next();
