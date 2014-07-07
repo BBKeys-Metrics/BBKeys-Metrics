@@ -1,12 +1,9 @@
 package Metrics;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 import TestingMVC.LoginGUI;
 import TestingMVC.SettingsGUI;
@@ -15,7 +12,6 @@ import TestingMVC.View;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class Settings extends Thread{
 	
@@ -26,18 +22,6 @@ public class Settings extends Thread{
 	private String password;
 	private SettingsGUI settingsGUI;
 	private Text actiontarget;
-	//private Stage primaryStage;
-	
-	public Settings(String host, String port, String database, String user, String password, Stage primaryStage) {
-		this.host = host;
-		this.port = port;
-		this.database = database;
-		this.user = user;
-		this.password = password;
-		settingsGUI = SettingsGUI.getInstance();
-		actiontarget = settingsGUI.getActionTarget();
-		//this.primaryStage = primaryStage;
-	}
 	
 	public Settings(String host, String port, String database, String user, String password) {
 		this.host = host;
@@ -47,7 +31,6 @@ public class Settings extends Thread{
 		this.password = password;
 		settingsGUI = SettingsGUI.getInstance();
 		actiontarget = settingsGUI.getActionTarget();
-		//this.primaryStage = primaryStage;
 	}
 	
 	@Override

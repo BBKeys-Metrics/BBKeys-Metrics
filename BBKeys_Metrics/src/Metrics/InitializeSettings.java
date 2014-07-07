@@ -1,20 +1,11 @@
 package Metrics;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Properties;
 
 import javafx.application.Platform;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import GUI.LoginGUI;
-import GUI.SettingsGUI;
 
 public class InitializeSettings extends Thread{
 	

@@ -9,7 +9,6 @@ import TestingMVC.View;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class Register extends Thread {
 	private String userID;
@@ -18,24 +17,12 @@ public class Register extends Thread {
 	private String confirmPassword;
 	private RegisterGUI register;
 	private Text actiontarget;
-	//private Stage primaryStage;
-	
-	public Register(String userID, String username, String password, String confirmPassword, Stage primaryStage) {
-		this.userID = userID;
-		this.username = username;
-		this.password = password;
-		this.confirmPassword = confirmPassword;
-		//this.primaryStage = primaryStage;
-		register = RegisterGUI.getInstance();
-		actiontarget = register.getActionTarget();
-	}
 	
 	public Register(String userID, String username, String password, String confirmPassword) {
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
-		//this.primaryStage = primaryStage;
 		register = RegisterGUI.getInstance();
 		actiontarget = register.getActionTarget();
 	}
