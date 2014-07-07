@@ -1,7 +1,8 @@
 package GUI;
 
-import Metrics.Login;
+import Metrics.InitializeSettings;
 import Metrics.Metrics;
+import Metrics.Settings;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,16 +16,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-final public class LoginGUI extends Application {
+final public class SettingsGUI extends Application {
     //variables that will be used in the runnable classes 
-	private static LoginGUI instance;
+	private static SettingsGUI instance;
 	private Stage stage;
 	private Scene scene;
 	private String originalStyle;
 	private int originalWidth;
 	private int originalHeight;
 	private Text actiontarget;
-	
+	private TextField host, port, database, user;
+	private PasswordField password;
 	
 	public Text getActionTarget() {
 		return actiontarget;
@@ -33,7 +35,7 @@ final public class LoginGUI extends Application {
 	 * getter method which returns the static instance of this class
 	 * @return
 	 */
-	public static LoginGUI getInstance() {
+	public static SettingsGUI getInstance() {
 		return instance;
 	}
 	
@@ -88,7 +90,7 @@ final public class LoginGUI extends Application {
     	instance = this;
         
         //set the title of the window
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Settings");
         
         //create the grid which will hold all of the elements
         GridPane grid = new GridPane();
@@ -101,80 +103,84 @@ final public class LoginGUI extends Application {
         primaryStage.setMinHeight(500);
         
         //create text view which will prompt the user for a username
-        Text usernameLabel = new Text("Username:");
-        usernameLabel.setId("username"); //used with css
-        grid.add(usernameLabel, 0, 0, 1, 1);   //column, row, num columns spanned, num rows spanned
+        Text hostLabel = new Text("Host:");
+        hostLabel.setId("host"); //used with css
+        grid.add(hostLabel, 0, 0, 1, 1);   //column, row, num columns spanned, num rows spanned
         
         //create the text field where the user will enter the username
-        TextField username = new TextField();
-        username.setPrefWidth(300);
-        grid.add(username, 1, 0, 4, 1);
+        host = new TextField();
+        host.setPrefWidth(300);
+        grid.add(host, 1, 0, 4, 1);
         
         //create the password text view
+        Text portLabel = new Text("Port:");
+        portLabel.setId("port");
+        grid.add(portLabel, 0, 1, 1, 1);
+        
+        //create the port text field
+        port = new TextField();
+        port.setPrefWidth(300);
+        grid.add(port, 1, 1, 4, 1);
+        
+        Text databaseLabel = new Text("Database:");
+        grid.add(databaseLabel, 0, 2, 1, 1);
+        
+        database = new TextField();
+        database.setPrefWidth(300);
+        grid.add(database, 1, 2, 4, 1);
+        
+        Text userLabel = new Text("User:");
+        grid.add(userLabel, 0, 3, 1, 1);
+        
+        user = new TextField();
+        user.setPrefWidth(300);
+        grid.add(user, 1, 3, 4, 1);
+        
         Text passwordLabel = new Text("Password:");
-        passwordLabel.setId("password");
-        grid.add(passwordLabel, 0, 1, 1, 1);
+        grid.add(passwordLabel, 0, 4, 1, 1);
         
-        //create the password text field
-        PasswordField password = new PasswordField();
+        password = new PasswordField();
         password.setPrefWidth(300);
-        grid.add(password, 1, 1, 4, 1);
+        grid.add(password, 1, 4, 4, 1);
         
-        //login button
-        Button btnLogin = new Button("Login");
-        btnLogin.setAlignment(Pos.TOP_CENTER);
-        grid.add(btnLogin, 0, 2, 2, 1);
-        
-        //register as a new user button
-        Button btnRegister = new Button("Register");
-        btnRegister.setAlignment(Pos.TOP_CENTER);
-        grid.add(btnRegister, 1, 2, 2, 1);
-        
-        Button btnSettings = new Button("Settings");
-        btnSettings.setAlignment(Pos.TOP_CENTER);
-        grid.add(btnSettings, 0, 3, 2, 1);
+        //save button
+        Button btnSave = new Button("Save");
+        btnSave.setAlignment(Pos.TOP_CENTER);
+        grid.add(btnSave, 0, 5, 2, 1);
         
         //error message
         actiontarget = new Text(); //no value for text so it won't appear in window until text is specified
-        grid.add(actiontarget, 1, 3);
+        grid.add(actiontarget, 1, 5);
         actiontarget.setId("actiontarget");
         
-        //action to be performed when the user hits the login button
-        btnLogin.setOnAction(new EventHandler<ActionEvent>() {
+        //action to be performed when the user hits the save button
+        btnSave.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent e) {    
-            	Login login = new Login(username.getText(), password.getText(), primaryStage);
-            	login.start();
+            public void handle(ActionEvent e) {
+            	Settings settings = new Settings(host.getText(), port.getText(), database.getText(), user.getText(), password.getText(), primaryStage);
+            	settings.start();
             }
         });
         
-        //when the user is in the username field and hits enter, switch to the password field
-        username.setOnAction((event) -> {       
+        //when the user is in the host field and hits enter, switch to the port field
+        host.setOnAction((event) -> {       
+        	port.requestFocus();
+        });
+        
+        port.setOnAction((event) -> {       
+        	database.requestFocus();
+        });
+        
+        database.setOnAction((event) -> {       
+        	user.requestFocus();
+        });
+        
+        user.setOnAction((event) -> {       
         	password.requestFocus();
         });
         
-        //when the user is in the password field and hits enter, perform login button click
         password.setOnAction((event) -> {       
-        	btnLogin.fire(); //perform login button click
-        });
-        
-        //action to be performed when the user hits the register button
-        btnRegister.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	//create new application and open in new window
-            	RegisterGUI register = new RegisterGUI();
-                register.start(primaryStage);  //open in same window
-            }
-        });
-        
-        btnSettings.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	//create new application and open in new window
-            	SettingsGUI settings = new SettingsGUI();
-                settings.start(primaryStage);  //open in same window
-            }
+        	btnSave.fire(); //perform btnSave action
         });
                         
         //set the size of the window
@@ -191,8 +197,10 @@ final public class LoginGUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        //start out with the text field having the focus
-        username.requestFocus();
+        new InitializeSettings(host, port, database, user, password).start();
+        
+        //start out with the host text field having the focus
+        host.requestFocus();
 	}
     
     /**

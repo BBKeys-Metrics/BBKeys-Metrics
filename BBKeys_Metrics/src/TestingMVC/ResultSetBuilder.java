@@ -28,7 +28,8 @@ public class ResultSetBuilder {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		String name = empData[1];
+		return new Employee();
 	}
 	
 	public static String buildID(ResultSet r) {
