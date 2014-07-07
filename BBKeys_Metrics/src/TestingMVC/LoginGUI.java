@@ -71,7 +71,7 @@ final public class LoginGUI {
         
         Button btnSettings = new Button("Settings");
         btnSettings.setAlignment(Pos.TOP_CENTER);
-        grid.add(btnSettings, 3, 2, 2, 1);
+        grid.add(btnSettings, 4, 2, 2, 1);
         
         //error message
         actiontarget = new Text(); //no value for text so it won't appear in window until text is specified

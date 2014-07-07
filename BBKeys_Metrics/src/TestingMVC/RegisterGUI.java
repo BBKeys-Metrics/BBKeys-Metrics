@@ -96,9 +96,13 @@ final public class RegisterGUI {
         });
         
         //commit to the register button
-        Button btnRegister = new Button("Commit");
+        Button btnRegister = new Button("Register");
         btnRegister.setAlignment(Pos.TOP_CENTER);
         grid.add(btnRegister, 0, 4, 2, 1);
+        
+        Button btnCancel = new Button("Cancel");
+        btnCancel.setAlignment(Pos.TOP_CENTER);
+        grid.add(btnCancel, 0, 5, 2, 1);
         
         //error message
         actiontarget = new Text(); //no value for text so it won't appear in window until text is specified
@@ -111,6 +115,13 @@ final public class RegisterGUI {
             public void handle(ActionEvent e) {
             	Register register = new Register(userID.getText(), username.getText(), password.getText(), confirmPassword.getText());
             	register.start();
+            }
+        });
+        
+        btnCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+            	View.getInstance().setScene(LoginGUI.getInstance().getScene());
             }
         });
         

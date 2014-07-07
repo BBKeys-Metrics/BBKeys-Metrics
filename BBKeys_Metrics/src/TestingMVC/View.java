@@ -19,6 +19,8 @@ public class View extends Application{
 		theStage = primaryStage;
 		theStage.setMinWidth(500);
         theStage.setMinHeight(500);
+        theStage.setWidth(500);
+        theStage.setHeight(500);
 		theStage.setScene(LoginGUI.getInstance().getScene());
 		theStage.show();
 	}

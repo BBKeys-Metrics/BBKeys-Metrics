@@ -86,6 +86,10 @@ final public class SettingsGUI {
         Button btnSave = new Button("Save");
         btnSave.setAlignment(Pos.TOP_CENTER);
         grid.add(btnSave, 0, 5, 2, 1);
+
+        Button btnCancel = new Button("Cancel");
+        btnCancel.setAlignment(Pos.TOP_CENTER);
+        grid.add(btnCancel, 0, 6, 2, 1);
         
         //error message
         actiontarget = new Text(); //no value for text so it won't appear in window until text is specified
@@ -98,6 +102,13 @@ final public class SettingsGUI {
             public void handle(ActionEvent e) {
             	Settings settings = new Settings(host.getText(), port.getText(), database.getText(), user.getText(), password.getText());
             	settings.start();
+            }
+        });
+        
+        btnCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+            	View.getInstance().setScene(LoginGUI.getInstance().getScene());
             }
         });
         
