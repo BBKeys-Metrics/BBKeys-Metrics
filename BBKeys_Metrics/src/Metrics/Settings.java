@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import GUI.LoginGUI;
-import GUI.SettingsGUI;
+import TestingMVC.LoginGUI;
+import TestingMVC.SettingsGUI;
 import TestingMVC.Controller;
+import TestingMVC.View;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -25,7 +26,7 @@ public class Settings extends Thread{
 	private String password;
 	private SettingsGUI settingsGUI;
 	private Text actiontarget;
-	private Stage primaryStage;
+	//private Stage primaryStage;
 	
 	public Settings(String host, String port, String database, String user, String password, Stage primaryStage) {
 		this.host = host;
@@ -35,7 +36,18 @@ public class Settings extends Thread{
 		this.password = password;
 		settingsGUI = SettingsGUI.getInstance();
 		actiontarget = settingsGUI.getActionTarget();
-		this.primaryStage = primaryStage;
+		//this.primaryStage = primaryStage;
+	}
+	
+	public Settings(String host, String port, String database, String user, String password) {
+		this.host = host;
+		this.port = port;
+		this.database = database;
+		this.user = user;
+		this.password = password;
+		settingsGUI = SettingsGUI.getInstance();
+		actiontarget = settingsGUI.getActionTarget();
+		//this.primaryStage = primaryStage;
 	}
 	
 	@Override
@@ -97,8 +109,7 @@ public class Settings extends Thread{
 			Platform.runLater(new Runnable() {
             	@Override
             	public void run() {
-            		LoginGUI login = new LoginGUI();
-                    login.start(primaryStage);  //open in same window
+            		View.getInstance().setScene(LoginGUI.getInstance().getScene());
             	}
             });
 		}

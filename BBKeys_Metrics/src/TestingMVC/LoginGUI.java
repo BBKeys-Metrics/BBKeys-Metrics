@@ -1,6 +1,5 @@
 package TestingMVC;
 
-import GUI.RegisterGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -70,6 +69,10 @@ final public class LoginGUI {
         btnRegister.setAlignment(Pos.TOP_CENTER);
         grid.add(btnRegister, 1, 2, 2, 1);
         
+        Button btnSettings = new Button("Settings");
+        btnSettings.setAlignment(Pos.TOP_CENTER);
+        grid.add(btnSettings, 3, 2, 2, 1);
+        
         //error message
         actiontarget = new Text(); //no value for text so it won't appear in window until text is specified
         grid.add(actiontarget, 1, 3);
@@ -103,7 +106,16 @@ final public class LoginGUI {
                 View.getInstance().setScene(RegisterGUI.getInstance().getScene());
             }
         });
-                        
+        
+      //action to be performed when the user hits the register button
+        btnSettings.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+            	//create new application and open in new window
+                View.getInstance().setScene(SettingsGUI.getInstance().getScene());
+            }
+        });
+        
         //set the size of the window
         Scene scene = new Scene(grid);
         
