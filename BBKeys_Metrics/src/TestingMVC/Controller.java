@@ -1,5 +1,8 @@
 package TestingMVC;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.Metric;
@@ -11,10 +14,6 @@ public class Controller {
 	
 	private Controller() {
 	};
-	
-	public void setConnectionStrings(String host, String port, String database, String username, String password) {		
-		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
-	}
 	
 	public static Controller getInstance() {
 		return instance;
@@ -41,8 +40,23 @@ public class Controller {
 	
 	public Employee getEmployeeByName(String name) {
 		String id = ResultSetBuilder.buildID(Model.getInstance().getEmployeeIDByName(name));
-		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployeeByID(id));
-		
+		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployeeByID(id));	
+	}
+	
+	public void setConnectionStrings(String host, String port, String database, String username, String password) {		
+		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
+	}
+	
+	public void setUser(String username) {
+		System.out.println("Setting user");
+		ResultSet rs = Model.getInstance().getEmployeeIDByName(username);
+		try {
+			rs.next();
+			//System.out.println(rs.getString(1));
+			user = new Employee(rs.getString(1));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

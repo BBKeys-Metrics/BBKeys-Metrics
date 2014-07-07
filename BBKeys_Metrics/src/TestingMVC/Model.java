@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.Metric;
 import Metrics.MetricScore;
@@ -31,12 +32,13 @@ public class Model {
 	}
 	
 	public ResultSet getEmployeeIDByName(String name) {
-		if (source == null || !source.hasSource()) {
+		/*if (source == null || !source.hasSource()) {
 			return null;
 		}
 		else {
 			return source.executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + name + "'");
-		}
+		}*/
+		return DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + name + "'");
 	}
 	
 	public Metric getMetric(int metricID) {

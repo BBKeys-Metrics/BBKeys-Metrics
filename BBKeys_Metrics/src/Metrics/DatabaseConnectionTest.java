@@ -7,19 +7,14 @@ import org.testng.annotations.Test;
 public class DatabaseConnectionTest {
 
   @Test
-  public void DatabaseConnection() {
-	  new DatabaseConnection();
-  }
-
-  @Test
   public void executeQuery() {
-		new DatabaseConnection().executeQuery("Select * From Users");
+		DatabaseConnection.getInstance().executeQuery("Select * From Users");
   }
 
   @Test
   public void executeQueryAndDisplayResults() {
 	  try {
-		new DatabaseConnection().executeQueryAndDisplayResults("Select * From Users");;
+		DatabaseConnection.getInstance().executeQueryAndDisplayResults("Select * From Users");;
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

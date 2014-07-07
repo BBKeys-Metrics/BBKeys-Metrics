@@ -22,9 +22,9 @@ public class Employee extends GradableItem{
 		picture = new EmployeePic(id);
 	}
 	
-	public Employee(String name, String id, Set<MetricScore> scores, EmployeePic pic) {
+	public Employee(String name, String id, Set<MetricScore> scores) {
 		super(name, scores);
-		picture = pic;
+		picture = new EmployeePic(id);
 		this.id = id;
 	}
 	

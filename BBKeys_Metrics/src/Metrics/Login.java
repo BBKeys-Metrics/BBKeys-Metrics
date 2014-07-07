@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import TestingMVC.Controller;
 import TestingMVC.LoginGUI;
 import TestingMVC.ScoresGUI;
 import TestingMVC.View;
@@ -105,6 +106,9 @@ public class Login extends Thread{
 				Platform.runLater(new Runnable() {
 	            	@Override
 	            	public void run() {
+	            		//Store the username
+	            		Controller.getInstance().setUser(username);
+	            		
 	            		//redirect to scores
 	            		View.getInstance().setScene(ScoresGUI.getInstance().getScene());
 	            	}
