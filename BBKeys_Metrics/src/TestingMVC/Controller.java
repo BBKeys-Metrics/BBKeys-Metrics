@@ -1,13 +1,16 @@
 package TestingMVC;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.Metric;
 import javafx.stage.Stage;
 
 public class Controller {
 	private static final Controller instance = new Controller();
-	private Employee user;
-	
+	private Employee user;	
 	
 	private Controller() {
 	};
@@ -37,7 +40,35 @@ public class Controller {
 	
 	public Employee getEmployeeByName(String name) {
 		String id = ResultSetBuilder.buildID(Model.getInstance().getEmployeeIDByName(name));
-		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployeeByID(id));
+		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployeeByID(id));	
+	}
+	
+	public void setConnectionStrings(String host, String port, String database, String username, String password) {		
+		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
+	}
+	
+	public void setUser(String username) {
+		String employeeID = "";
+		String employeeName = "";
+		System.out.println("Setting user");
+		ResultSet rs = Model.getInstance().getEmployeeIDByName(username);
+		try {
+			rs.next();
+			employeeID = rs.getString(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		rs = Model.getInstance().getEmployeeByID(employeeID);
+		try {
+			rs.next();
+			employeeName = rs.getString(1) + " " + rs.getString(2);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		user = new Employee(employeeName, employeeID, null);
 		
 	}
 

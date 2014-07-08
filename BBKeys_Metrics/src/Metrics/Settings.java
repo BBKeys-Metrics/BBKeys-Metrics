@@ -1,19 +1,17 @@
 package Metrics;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
-import GUI.LoginGUI;
-import GUI.SettingsGUI;
+import TestingMVC.LoginGUI;
+import TestingMVC.SettingsGUI;
+import TestingMVC.Controller;
+import TestingMVC.View;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class Settings extends Thread{
 	
@@ -24,9 +22,8 @@ public class Settings extends Thread{
 	private String password;
 	private SettingsGUI settingsGUI;
 	private Text actiontarget;
-	private Stage primaryStage;
 	
-	public Settings(String host, String port, String database, String user, String password, Stage primaryStage) {
+	public Settings(String host, String port, String database, String user, String password) {
 		this.host = host;
 		this.port = port;
 		this.database = database;
@@ -34,7 +31,6 @@ public class Settings extends Thread{
 		this.password = password;
 		settingsGUI = SettingsGUI.getInstance();
 		actiontarget = settingsGUI.getActionTarget();
-		this.primaryStage = primaryStage;
 	}
 	
 	@Override
@@ -90,20 +86,13 @@ public class Settings extends Thread{
 		//the connection inputs were valid
 		if (validConnection) {
 			//save the settings to the databaseConnection.properties file
-			Properties properties = new Properties();
-			try {
-				//fill properties with the data from the file
-				properties.load(User.class.getResourceAsStream("../databaseConnection.properties"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			Controller.getInstance().setConnectionStrings(host, port, database, user, password);
 			
 			//redirect the user to the login page
 			Platform.runLater(new Runnable() {
             	@Override
             	public void run() {
-            		LoginGUI login = new LoginGUI();
-                    login.start(primaryStage);  //open in same window
+            		View.getInstance().setScene(LoginGUI.getInstance().getScene());
             	}
             });
 		}

@@ -3,11 +3,12 @@ package Metrics;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import GUI.RegisterGUI;
+import TestingMVC.LoginGUI;
+import TestingMVC.RegisterGUI;
+import TestingMVC.View;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class Register extends Thread {
 	private String userID;
@@ -16,14 +17,12 @@ public class Register extends Thread {
 	private String confirmPassword;
 	private RegisterGUI register;
 	private Text actiontarget;
-	private Stage primaryStage;
 	
-	public Register(String userID, String username, String password, String confirmPassword, Stage primaryStage) {
+	public Register(String userID, String username, String password, String confirmPassword) {
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
-		this.primaryStage = primaryStage;
 		register = RegisterGUI.getInstance();
 		actiontarget = register.getActionTarget();
 	}
@@ -72,7 +71,7 @@ public class Register extends Thread {
     	if (passwordsMatch) {
     		//check for duplicate id in database 
     		try {
-    			dbCon = new DatabaseConnection();
+    			dbCon = DatabaseConnection.getInstance();
     			r = dbCon.executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where employeeID = '" + userID + "'");
     			r.next();
     			
@@ -152,12 +151,14 @@ public class Register extends Thread {
 				e1.printStackTrace();
 			}
 			
+			
+			
+			
 			Platform.runLater(new Runnable() {
             	@Override
             	public void run() {
             		//redirect to user home page
-        			Metrics metric = new Metrics();
-                    metric.start(primaryStage);  //open in same window
+            		View.getInstance().setScene(LoginGUI.getInstance().getScene());
             	}
             });
     	}        	

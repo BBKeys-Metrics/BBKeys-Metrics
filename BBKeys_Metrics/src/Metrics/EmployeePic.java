@@ -22,7 +22,7 @@ public class EmployeePic {
 	}
 
 	public EmployeePic(String employeeID) {
-		dbCon = new DatabaseConnection();
+		dbCon = DatabaseConnection.getInstance();
 		image = setImage(employeeID);
 	}
 

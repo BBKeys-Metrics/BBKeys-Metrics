@@ -1,13 +1,18 @@
 package Metrics;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import GUI.LoginGUI;
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import TestingMVC.Controller;
+import TestingMVC.LoginGUI;
+import TestingMVC.ScoresGUI;
+import TestingMVC.View;
+import Metrics.BCrypt;
+import Metrics.DatabaseConnection;
 
 public class Login extends Thread{
 	
@@ -15,14 +20,12 @@ public class Login extends Thread{
 	private String password;
 	private LoginGUI loginGUI;
 	private Text actiontarget;
-	private Stage primaryStage;
 	
-	public Login(String username, String password, Stage primaryStage) {
+	public Login(String username, String password) {
 		this.username = username;
 		this.password = password;
 		loginGUI = LoginGUI.getInstance();
 		actiontarget = loginGUI.getActionTarget();
-		this.primaryStage = primaryStage;
 	}
 	
 	@Override
@@ -51,7 +54,7 @@ public class Login extends Thread{
     	if (!fieldsBlank) {
 			try {
 				//connect to the database
-				dbCon = new DatabaseConnection();
+				dbCon = DatabaseConnection.getInstance();
 				//check that the username exists
 				r = dbCon.executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username + "'");
 				r.next();
@@ -103,8 +106,11 @@ public class Login extends Thread{
 				Platform.runLater(new Runnable() {
 	            	@Override
 	            	public void run() {
-	            		Metrics metric = new Metrics();
-	                    metric.start(primaryStage);  //open in same window
+	            		//Store the username
+	            		Controller.getInstance().setUser(username);
+	            		
+	            		//redirect to scores
+	            		View.getInstance().setScene(ScoresGUI.getInstance().getScene());
 	            	}
 	            });
 			}

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.Metric;
 import Metrics.MetricScore;
@@ -22,23 +23,29 @@ public class Model {
 	}
 	
 	public ResultSet getEmployeeByID(String empID) {
-		if (source == null || !source.hasSource()) return null;
-		else {
-			return source.executeQuery("Select * FROM Metrics.dbo.Employee WHERE id = '" + empID + "'");
-				
+		/*if (source == null || !source.hasSource()) {
+			return null;
 		}
+		else {
+			return source.executeQuery("Select * FROM Metrics.dbo.Employee WHERE id = '" + empID + "'");		
+		}*/
+		return DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
 	}
 	
 	public ResultSet getEmployeeIDByName(String name) {
-		if (source == null || !source.hasSource()) return null;
+		/*if (source == null || !source.hasSource()) {
+			return null;
+		}
 		else {
 			return source.executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + name + "'");
-				
-		}
+		}*/
+		return DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + name + "'");
 	}
 	
 	public Metric getMetric(int metricID) {
-		if (source == null || !source.hasSource()) return null;
+		if (source == null || !source.hasSource()) {
+			return null;
+		}
 		else {
 			ResultSet r = null;
 			try {
@@ -67,7 +74,9 @@ public class Model {
 	}
 	
 	public Set<Preference> getPreferences(Employee employee) {
-		if (source == null || !source.hasSource()) return null;
+		if (source == null || !source.hasSource()) {
+			return null;
+		}
 		else {
 			ResultSet r = null;
 			try {

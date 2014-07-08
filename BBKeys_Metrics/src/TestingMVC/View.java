@@ -17,10 +17,12 @@ public class View extends Application{
 	
 	public void start(Stage primaryStage) {
 		theStage = primaryStage;
+		theStage.setMinWidth(500);
+        theStage.setMinHeight(500);
+        theStage.setWidth(500);
+        theStage.setHeight(500);
 		theStage.setScene(LoginGUI.getInstance().getScene());
 		theStage.show();
-		//Login loginView = new Login();
-		//loginView.start(theStage);
 	}
 	
 	public void setScene(Scene newScene) {

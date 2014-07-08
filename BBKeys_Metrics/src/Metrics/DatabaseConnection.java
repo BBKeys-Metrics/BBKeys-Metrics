@@ -15,7 +15,7 @@ import java.util.Properties;
  *
  */
 public class DatabaseConnection {
-	private static DatabaseConnection instance;
+	private static DatabaseConnection instance = new DatabaseConnection();
 	private String host;
 	private String port;
 	private String database;
@@ -35,7 +35,7 @@ public class DatabaseConnection {
 		return con;
 	}
 	
-	public DatabaseConnection() {
+	private DatabaseConnection() {
 		instance = this;
 		Properties properties = new Properties();
 		try {
@@ -60,6 +60,26 @@ public class DatabaseConnection {
 	 * @return void
 	 */
 	private void setUpConnection() {
+		try {
+			//check to see if the required driver is installed
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			
+			//set up connection String
+			connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + username + ";password=" + password;
+			
+			//create the connection
+			try {
+				con = DriverManager.getConnection(connectionURL);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("Driver not installed");
+		} 
+	}
+	
+	public void setUpConnection(String host, String port, String database, String username, String password) {
 		try {
 			//check to see if the required driver is installed
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
