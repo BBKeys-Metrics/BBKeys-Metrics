@@ -95,13 +95,13 @@ class MyScores extends Frame{
 		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
        
 		//TODO: Need to add a NAME variable to the EMPLOYEE object
-		Controller.getEmployee.getName(); //Not sure if controller has an employee or not...
+		String empName = Controller.getEmployee.getName(); //Not sure if controller has an employee or not...
 		
-		Label empName = new Label(employee.getID());
+		Label empID = new Label(employee.getID());
 		
 		ImageView pic = new ImageView(employee.getPicture().getImage());
 	
-		employeeInfoBox.getChildren().add(empName);
+		employeeInfoBox.getChildren().add(empName, empID);
 	        
 		return employeeInfoBox;
 	}
