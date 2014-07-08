@@ -78,21 +78,24 @@ abstract class Frame extends Application{
 		myScores.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	//load My Scores page
+            	MyScores myScores = new MyScores();
+            	View.getInstance().setScene(myScores.getScene());
             }
 		});
 		
 		compare.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	View.getInstance().setScene(Compare.getInstance().getScene());
+            	Compare compare = new Compare();
+            	View.getInstance().setScene(compare.getScene());
             }
 		});
 		
 		leaderBoard.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	//load Leader Board page
+            	LeaderBoard leaderBoard = new LeaderBoard();
+            	View.getInstance().setScene(leaderBoard.getScene());
             }
 		});
 		
