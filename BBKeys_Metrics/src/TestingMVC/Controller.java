@@ -5,7 +5,9 @@ import java.sql.SQLException;
 
 import Metrics.DatabaseConnection;
 import Metrics.Employee;
+import Metrics.GradableItem;
 import Metrics.Metric;
+import Metrics.MetricScore;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -81,6 +83,26 @@ public class Controller {
 		
 		user = new Employee(employeeName, employeeID, null);
 		
+	}
+
+	public void getAllMetrics() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public MetricScore getEmployeeScore() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public MetricScore getAverage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public MetricScore getTopScore() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

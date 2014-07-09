@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Metrics.*;
+import TestingMVC.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class MyScores extends Frame{
 	 */
 	@Override 
 	public Scene getScene(){
-		buildPage(); //ADD
+		//buildPage(); //ADD
 		return this.scene;
 	}
 	
@@ -61,12 +62,13 @@ public class MyScores extends Frame{
 	 * @param primaryStage
 	 * @throws Exception
 	 */
+	/*
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("My Scores");
 		buildPage();
 		primaryStage.setScene(scene);
-	}
+	}*/
 		
 	/**
 	 * Loads elements into the scene
@@ -80,7 +82,7 @@ public class MyScores extends Frame{
 		root.setTop(this.employeeInfo());
 		root.setLeft(timeUnit);
 		root.setCenter(this.formatScores());
-		root.setBottom(this.navigationBox());
+		root.setBottom(this.navigationBox()); 
 		
 		scene = new Scene (root, 600, 600);
 	}
@@ -96,13 +98,13 @@ public class MyScores extends Frame{
 		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
        
 		//TODO: Need to add a NAME variable to the EMPLOYEE object
-		String empName = Controller.getEmployee.getName(); //Not sure if controller has an employee or not...
+		String empName = Controller.getInstance().getEmployee().getName(); //Not sure if controller has an employee or not...
 		
 		Label empID = new Label(employee.getID());
 		
 		ImageView pic = new ImageView(employee.getPicture().getImage());
 	
-		employeeInfoBox.getChildren().add(empName, empID);
+		//employeeInfoBox.getChildren().add(empName, empID);
 	        
 		return employeeInfoBox;
 	}

@@ -16,6 +16,7 @@ import Metrics.*;
 
 import java.util.ArrayList;
 
+import TestingMVC.Controller;
 import TestingMVC.View;
 
 
@@ -37,7 +38,7 @@ import TestingMVC.View;
  */
 
 
-abstract class Frame extends Application{
+abstract class Frame{
 	//Public variables for use in sub-classes
 	public Scene scene;
 	public ArrayList<Metric> metrics; //TODO: Change to type Metric OR GradeableItem???
@@ -120,14 +121,14 @@ abstract class Frame extends Application{
 		// that exists in another object (if another object has a 
 		// list of display metrics) or add each individual metric
 		// individually.
-		Controller.getAllMetrics();
+		Controller.getInstance().getAllMetrics();
 		
 		//Temporary static data --DELETE WHEN ABOVE IS COMPLETED.  Thanks!
 		Metric speed = new Metric("Speed", 0, 0, "Low");
 		Metric accuracy = new Metric("Accuracy", 0, 0, "High");
 		Metric helpfulness = new Metric("Helpfulness", 0, 0, "High");
 		
-		metrics.add();
+		metrics.add(speed);
 		metrics.add(accuracy);
 		metrics.add(helpfulness);		
 	}
@@ -148,7 +149,7 @@ abstract class Frame extends Application{
 		//  It needs to get score for a given metric, for the current user (employee) that is logged in to the app.
 		//  Needs to return the correct average for the given time unit (day, week, month, ect)
 		//  and return a MetricScore object
-		MetricScore temp = Controller.getDBEmployeeScore();
+		MetricScore temp = Controller.getInstance().getEmployeeScore();
 		return temp;
 	}
 	
@@ -166,7 +167,7 @@ abstract class Frame extends Application{
 		//Change getDBAverage to whatever you want.
 		//  It needs to get the top score for a given metric, for the given time unit (day, week, month, ect)
 		//  and return a MetricScore object
-		MetricScore temp = Controller.getDBAverage();
+		MetricScore temp = Controller.getInstance().getAverage();
 		return temp;
 	}
 	
@@ -188,7 +189,7 @@ abstract class Frame extends Application{
 		//  It needs to get the top score for a given metric, for the given time unit (day, week, month, ect)
 		//  for the given rank (i.e. top score, 2nd high schore, 3rd high score...)
 		//  Please return a MetricScore Object
-		MetricScore temp = Controller.getTopScoreFromDB();
+		MetricScore temp = Controller.getInstance().getTopScore();
 		return temp;
 	}
 	
