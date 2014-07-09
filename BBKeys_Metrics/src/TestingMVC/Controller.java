@@ -85,11 +85,6 @@ public class Controller {
 		
 	}
 
-	public GradableItem getEmployee() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void getAllMetrics() {
 		// TODO Auto-generated method stub
 		
