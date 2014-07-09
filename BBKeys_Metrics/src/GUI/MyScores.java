@@ -34,7 +34,8 @@ import java.util.List;
  *   Summer Smith
  */
 
-class MyScores extends Frame{
+public class MyScores extends Frame{
+	private static MyScores instance = new MyScores();
 
 	/**
 	 * Getter for my scores, the primary scene for the 
@@ -51,8 +52,8 @@ class MyScores extends Frame{
 	 * Singleton 
 	 * @return MyScores Object Instance
 	 */
-	public MyScores getInstance(){
-		return this;
+	public static MyScores getInstance(){
+		return instance;
 	}
 	
 	/**
