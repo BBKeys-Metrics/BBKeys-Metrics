@@ -52,6 +52,7 @@ public class LeaderBoard extends Frame{
 	 */
 	@Override 
 	public Scene getScene(){
+		buildPage();
 		return this.scene;
 	}
 
@@ -63,6 +64,9 @@ public class LeaderBoard extends Frame{
 		return instance;
 	}
 	
+	/**
+     * Constructor
+     */
 	private LeaderBoard() {
 		
 	}

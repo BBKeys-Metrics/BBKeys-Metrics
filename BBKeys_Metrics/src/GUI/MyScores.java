@@ -45,7 +45,7 @@ public class MyScores extends Frame{
 	 */
 	@Override 
 	public Scene getScene(){
-		//buildPage(); //ADD
+		buildPage();
 		return this.scene;
 	}
 	
@@ -57,6 +57,9 @@ public class MyScores extends Frame{
 		return instance;
 	}
 	
+	/**
+     * Constructor
+     */
 	private MyScores() {
 		
 	}

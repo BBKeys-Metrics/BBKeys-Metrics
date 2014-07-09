@@ -43,6 +43,7 @@ class Compare extends Frame{
 	 */
 	@Override 
 	public Scene getScene(){
+		buildPage();
 		return this.scene;
 	}
 	
@@ -54,6 +55,9 @@ class Compare extends Frame{
 		return instance;
 	}
 	
+	/**
+     * Constructor
+     */
 	private Compare() {
 		
 	}
