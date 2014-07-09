@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import TestingMVC.LoginGUI;
+import TestingMVC.Model;
 import TestingMVC.RegisterGUI;
 import TestingMVC.View;
 import javafx.application.Platform;
@@ -70,71 +71,43 @@ public class Register extends Thread {
         	
     	if (passwordsMatch) {
     		//check for duplicate id in database 
-    		try {
-    			dbCon = DatabaseConnection.getInstance();
-    			r = dbCon.executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where employeeID = '" + userID + "'");
-    			r.next();
-    			
-    			if (!r.getString(1).equals("0")) { //duplicate id found
-    				Platform.runLater(new Runnable() {
-    	            	@Override
-    	            	public void run() {
-    	            		actiontarget.setFill(Color.FIREBRICK);
-    	                    actiontarget.setText("Duplicate ID Found");
-    	            	}
-    	            });
-    			}
-    			else {
-    				duplicateID = false;
-    			}
-    		} catch (SQLException e1) {
-    			e1.printStackTrace();
+    		duplicateID = Model.getInstance().duplicateIDFound(userID);
+    		if (duplicateID) {
+    			Platform.runLater(new Runnable() {
+	            	@Override
+	            	public void run() {
+	            		actiontarget.setFill(Color.FIREBRICK);
+	                    actiontarget.setText("Duplicate ID Found");
+	            	}
+	            });
     		}
     	}
 
     	//check for valid id (i.e. id exists in people)
     	if (!duplicateID) {
-    		try {
-				r = dbCon.executeQuery("SELECT COUNT(Peep_ID) FROM Metrics.dbo.People where Peep_ID = '" + userID + "'");
-    			r.next();
-        		if (!r.getString(1).equals("1")) {
-        			//display error message "Invalid ID"
-        			Platform.runLater(new Runnable() {
-                    	@Override
-                    	public void run() {
-                    		actiontarget.setFill(Color.FIREBRICK);
-                            actiontarget.setText("Invalid ID");
-                    	}
-                    });
-        		}
-        		else {
-        			validID = true;
-        		}
-    		} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+    		validID = Model.getInstance().validID(userID);
+    		if (!validID) {
+    			Platform.runLater(new Runnable() {
+                	@Override
+                	public void run() {
+                		actiontarget.setFill(Color.FIREBRICK);
+                        actiontarget.setText("Invalid ID");
+                	}
+                });
+    		}
     	}
     	
     	if (validID) {
-    		//check database for duplicate username	
-			try {
-				r = dbCon.executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where username = '" + username + "'");
-    			r.next();
-    			if (!r.getString(1).equals("0")) {
-    				Platform.runLater(new Runnable() {
-    	            	@Override
-    	            	public void run() {
-    	            		actiontarget.setFill(Color.FIREBRICK);
-    	                    actiontarget.setText("Duplicate Username Found");
-    	            	}
-    	            });
-    			}
-    			else {
-    				duplicateUsername = false;
-    			}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+    		duplicateUsername = Model.getInstance().duplicateUsername(username);
+    		if (duplicateUsername) {
+    			Platform.runLater(new Runnable() {
+	            	@Override
+	            	public void run() {
+	            		actiontarget.setFill(Color.FIREBRICK);
+	                    actiontarget.setText("Duplicate Username Found");
+	            	}
+	            });
+    		}
     	}
     	
     	if (!duplicateUsername){
@@ -145,14 +118,7 @@ public class Register extends Thread {
 			encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 			
 			//add userID, username, password to the users table in the database
-			try {
-				dbCon.executeUpdate("INSERT INTO Metrics.dbo.Users (employeeID, username, password) VALUES (" + userID + ", '" + username + "', '" + encryptedPassword + "')");
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			
-			
-			
+			Model.getInstance().addNewUser(userID, username, encryptedPassword);
 			
 			Platform.runLater(new Runnable() {
             	@Override

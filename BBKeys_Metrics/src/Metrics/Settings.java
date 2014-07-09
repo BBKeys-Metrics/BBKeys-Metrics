@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import TestingMVC.Model;
 import TestingMVC.LoginGUI;
 import TestingMVC.SettingsGUI;
 import TestingMVC.Controller;
@@ -53,33 +54,16 @@ public class Settings extends Thread{
 		
 		if (!fieldsBlank) {
 			//check to see if the specified connection is valid
-			try {
-				//check to see if the required driver is installed
-				Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-				
-				//set up connection String
-				String connectionURL = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";user=" + user + ";password=" + password;
-				
-				//create the connection
-				try {
-					Connection con = DriverManager.getConnection(connectionURL);
-					Statement s = con.createStatement();
-					s.executeQuery("Select * From Metrics"); //execute a statement to see if it works
-					validConnection = true;
-				} catch (SQLException e) { //the executed statement didn't work
-					e.printStackTrace();
-					Platform.runLater(new Runnable() {
-		            	@Override
-		            	public void run() {
-		            		//display error message "Invalid Connection"
-		            		actiontarget.setFill(Color.FIREBRICK);
-		                    actiontarget.setText("Invalid Connection");
-		            	}
-		            });	
-				}
-			} catch (ClassNotFoundException e) { //necessary driver's are not installed
-				e.printStackTrace();
-				System.out.println("Driver not installed");
+			validConnection = Model.getInstance().isValidConnection(host, port, database, user, password);
+			if (!validConnection) {
+				Platform.runLater(new Runnable() {
+	            	@Override
+	            	public void run() {
+	            		//display error message "Invalid Connection"
+	            		actiontarget.setFill(Color.FIREBRICK);
+	                    actiontarget.setText("Invalid Connection");
+	            	}
+	            });
 			}
 		}
 		
