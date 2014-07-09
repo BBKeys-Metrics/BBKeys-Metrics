@@ -111,4 +111,8 @@ public class Model {
 		else 
 			return false;
 	}
+	
+	public ResultSet getSettings() {
+		return DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+	}
 }

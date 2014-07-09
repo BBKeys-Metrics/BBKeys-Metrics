@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class Controller {
 	private static final Controller instance = new Controller();
 	private Employee user;	
+	private String numToDisplay;
 	
 	private Controller() {
 	};
@@ -31,7 +32,17 @@ public class Controller {
 	private void getSettings() {
 		//TODO: load settings from somewhere.
 		//Location of database, first view, etc.
-		System.out.println("Controller.getSettings() not implemented.");
+		
+		
+		ResultSet rs = Model.getInstance().getSettings();
+		try {
+			rs.next();
+			numToDisplay = rs.getString(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(numToDisplay);
 	}
 	
 	public Metric getMetricByID(Integer ID) {
