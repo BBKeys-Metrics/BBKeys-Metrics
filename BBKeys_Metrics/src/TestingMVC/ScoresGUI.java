@@ -25,7 +25,7 @@ public class ScoresGUI {
 		GridPane grid = new GridPane();
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
-				Employee employee = Controller.getInstance().getUser();
+				Employee employee = Controller.getInstance().getEmployee();
 				Set<Preference> prefs = Model.getInstance().getPreferences(employee);
 				if (prefs != null) {
 					Platform.runLater(new Runnable() {
@@ -45,7 +45,7 @@ public class ScoresGUI {
 		Scene scene = new Scene(grid);
 		
 		//get the image of the current user
-        ImageView imView = new ImageView(Controller.getInstance().getUser().getPicture().getImage());
+        ImageView imView = new ImageView(Controller.getInstance().getEmployee().getPicture().getImage());
         //set width of image
         imView.setFitWidth(100);
         //keep scaling of image
