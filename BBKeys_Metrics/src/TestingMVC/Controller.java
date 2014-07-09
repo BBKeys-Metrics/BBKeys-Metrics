@@ -20,7 +20,7 @@ public class Controller {
 		return instance;
 	}
 	
-	public Employee getUser(){
+	public Employee getEmployee(){
 		return user;
 	}
 	
