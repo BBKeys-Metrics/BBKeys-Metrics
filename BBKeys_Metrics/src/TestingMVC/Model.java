@@ -14,6 +14,7 @@ import Metrics.MetricScore;
 public class Model {
 	private static final Model instance = new Model();
 	private DataSource source;
+	private boolean fakeDatabase = true;
 	
 	private Model() {
 	};
@@ -23,7 +24,10 @@ public class Model {
 	}
 	
 	public ResultSet getEmployeeByID(String empID) {
-		return DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
+		if (!fakeDatabase)
+			return DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
+		else
+			return null;
 	}
 	
 	public ResultSet getEmployeeIDByName(String name) {

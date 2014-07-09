@@ -22,9 +22,9 @@ public class View extends Application{
         theStage.setMinHeight(500);
         theStage.setWidth(500);
         theStage.setHeight(500);
-		//theStage.setScene(LoginGUI.getInstance().getScene());
+		theStage.setScene(LoginGUI.getInstance().getScene());
 		
-		theStage.setScene(MyScores.getInstance().getScene());
+		//theStage.setScene(MyScores.getInstance().getScene());
 		theStage.show();
 	}
 	
