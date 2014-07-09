@@ -79,10 +79,7 @@ public class Controller {
 			e.printStackTrace();
 		}
 		
-		
-		
 		user = new Employee(employeeName, employeeID, null);
-		
 	}
 
 	public void getAllMetrics() {

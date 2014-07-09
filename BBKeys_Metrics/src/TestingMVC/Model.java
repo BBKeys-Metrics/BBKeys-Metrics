@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.application.Platform;
+import javafx.scene.paint.Color;
+import Metrics.BCrypt;
 import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.Metric;
@@ -14,7 +17,7 @@ import Metrics.MetricScore;
 public class Model {
 	private static final Model instance = new Model();
 	private DataSource source;
-	private boolean fakeDatabase = true;
+	private boolean fakeDatabase = false;
 	
 	private Model() {
 	};
@@ -96,5 +99,56 @@ public class Model {
 	
 	public ResultSet getSettings() {
 		return DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+	}
+	
+	public boolean usernameExists(String username) {
+		if (!fakeDatabase) {
+			try {
+				//connect to the database
+				//check that the username exists
+				ResultSet r = DatabaseConnection.getInstance().executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username + "'");
+				r.next();
+				
+				if (!r.getString(1).equals("1")) { //if there were no users with the specified username
+					return false;
+				}
+				else { //there is a user with the specified username
+					return true;
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				return false;
+			}
+		}
+		else {
+			return true;
+		}
+	}
+	
+	public boolean correctLogin(String username, String password) {
+		if (!fakeDatabase) {
+			try {
+				//get the password for the specifiec user
+				ResultSet r = DatabaseConnection.getInstance().executeQuery("Select password from Metrics.dbo.Users where username = '" + username + "'");
+				r.next();
+				String passwordFromDB = r.getString(1);
+				
+				//Check that an unencrypted password matches one that has previously been hashed
+				if (!BCrypt.checkpw(password, passwordFromDB)) { //if the username and password combination were invalid
+					//display error message "Invalid Password"
+					return false;
+				}
+				else { //Username and Password combination were valid
+					return true;
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				return false;
+			}
+		}
+		
+		else {
+			return true;
+		}
 	}
 }
