@@ -1,5 +1,5 @@
 package TestingMVC;
 
 public enum TimeSpan {
-	DAY, WEEK, MONTH, YEAR, EVER
+	DAY, WEEK, MONTH, SIXMONTH, YEAR, EVER
 }
