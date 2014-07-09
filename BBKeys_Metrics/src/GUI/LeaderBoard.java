@@ -38,6 +38,7 @@ import java.util.ArrayList;
 //http://docs.oracle.com/javafx/2/ui_controls/checkbox.htm
 
 public class LeaderBoard extends Frame{
+	private static LeaderBoard instance = new LeaderBoard();
 	
 	//holds the formatted leader data
 	//private ArrayList<VBox> leaders; Not used.
@@ -58,29 +59,18 @@ public class LeaderBoard extends Frame{
 	 * Singleton 
 	 * @return LeaderBoard object instance
 	 */
-	public LeaderBoard getInstance(){
-		return this;
+	public static LeaderBoard getInstance(){
+		return instance;
 	}
 	
-	/**
-	 * Start
-	 * @param primaryStage
-	 * @throws Exception
-	 */
-	@Override
-	public void start(Stage primaryStage) {
-		fillMetrics();
+	private LeaderBoard() {
 		
-		buildPage();
-        primaryStage.setTitle("LeaderBoard");
-        primaryStage.setScene(scene);
-        primaryStage.show();
 	}
+	
 	
 	/**
 	 * Loads elements into the scene
 	 */
-	@Override
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
 		

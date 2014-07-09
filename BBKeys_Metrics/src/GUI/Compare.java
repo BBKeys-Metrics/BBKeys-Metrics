@@ -34,7 +34,8 @@ import TestingMVC.Controller;
 
 
 class Compare extends Frame{
-	
+		
+	private static Compare instance = new Compare();
 	/**
 	 * Getter for compare, the primary scene for the 
 	 * "Compare" page.
@@ -49,23 +50,13 @@ class Compare extends Frame{
 	 * Singleton 
 	 * @return Compare object instance
 	 */
-	public Compare getInstance(){
-		return this;
+	public static Compare getInstance(){
+		return instance;
 	}
 	
-	/**
-	 * Start
-	 * @param primaryStage
-	 * @throws Exception
-	 */
-	@Override
-	public void start(Stage primaryStage) throws Exception {		
-		primaryStage.setTitle("Compare");
-		primaryStage.setScene(scene);
+	private Compare() {
 		
-		buildPage();
 	}
-	
 	
 	/**
 	 * Loads elements into the scene

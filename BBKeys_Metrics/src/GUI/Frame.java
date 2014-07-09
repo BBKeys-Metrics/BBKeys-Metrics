@@ -79,24 +79,21 @@ abstract class Frame{
 		myScores.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	MyScores myScores = new MyScores();
-            	View.getInstance().setScene(myScores.getScene());
+            	View.getInstance().setScene(MyScores.getInstance().getScene());
             }
 		});
 		
 		compare.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	Compare compare = new Compare();
-            	View.getInstance().setScene(compare.getScene());
+            	View.getInstance().setScene(Compare.getInstance().getScene());
             }
 		});
 		
 		leaderBoard.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	LeaderBoard leaderBoard = new LeaderBoard();
-            	View.getInstance().setScene(leaderBoard.getScene());
+            	View.getInstance().setScene(LeaderBoard.getInstance().getScene());
             }
 		});
 		

@@ -57,6 +57,10 @@ public class MyScores extends Frame{
 		return instance;
 	}
 	
+	private MyScores() {
+		
+	}
+	
 	/**
 	 * Start
 	 * @param primaryStage
