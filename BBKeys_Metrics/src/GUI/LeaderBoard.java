@@ -38,7 +38,7 @@ import java.util.ArrayList;
 //http://docs.oracle.com/javafx/2/ui_controls/checkbox.htm
 
 public class LeaderBoard extends Frame{
-	private static LeaderBoard instance = new LeaderBoard(); 
+	private static LeaderBoard instance = new LeaderBoard();
 	
 	//holds the formatted leader data
 	//private ArrayList<VBox> leaders; Not used.
