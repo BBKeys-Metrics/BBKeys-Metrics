@@ -82,7 +82,7 @@ public class MyScores extends Frame{
 		root.setTop(this.employeeInfo());
 		root.setLeft(timeUnit);
 		root.setCenter(this.formatScores());
-		root.setBottom(this.navigationBox());
+		root.setBottom(this.navigationBox()); 
 		
 		scene = new Scene (root, 600, 600);
 	}
