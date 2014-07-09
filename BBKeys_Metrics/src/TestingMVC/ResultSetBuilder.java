@@ -4,9 +4,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Set;
-
 import Metrics.Employee;
-import Metrics.EmployeePic;
 import Metrics.MetricScore;
 
 public class ResultSetBuilder {
@@ -23,13 +21,11 @@ public class ResultSetBuilder {
 			String name = empData[2];
 			String id = empData[1];
 			Set<MetricScore> scores = Model.getInstance().getMetricScores(id);
-			EmployeePic pic = new EmployeePic(id);
-			return new Employee(name, id, scores, pic);
+			return new Employee(name, id, scores);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		String name = empData[1];
-		return new Employee();
+		return null;
 	}
 	
 	public static String buildID(ResultSet r) {
