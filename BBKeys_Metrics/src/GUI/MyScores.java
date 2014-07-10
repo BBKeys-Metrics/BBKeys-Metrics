@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Metrics.*;
 import TestingMVC.Controller;
-
+import javafx.geometry.Insets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,18 +64,6 @@ public class MyScores extends Frame{
 		
 	}
 	
-	/**
-	 * Start
-	 * @param primaryStage
-	 * @throws Exception
-	 */
-	/*
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		primaryStage.setTitle("My Scores");
-		buildPage();
-		primaryStage.setScene(scene);
-	}*/
 		
 	/**
 	 * Loads elements into the scene
@@ -83,15 +71,16 @@ public class MyScores extends Frame{
 	@Override
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
-		fillMetrics();
-		GridPane grid = new GridPane();
+		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
 		
+		fillMetrics();
+				
 		root.setTop(this.employeeInfo());
 		root.setLeft(timeUnit);
 		root.setCenter(this.formatScores());
 		root.setBottom(this.navigationBox()); 
 		
-		scene = new Scene (root, 600, 600);
+		scene = new Scene (root, 500, 500);
 	}
 	
 	/**
@@ -101,17 +90,22 @@ public class MyScores extends Frame{
 	private VBox employeeInfo(){
 		VBox employeeInfoBox = new VBox();
 		
+		//Formatting
 		employeeInfoBox.setSpacing(10);
 		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
-       
-		//TODO: Need to add a NAME variable to the EMPLOYEE object
-		String empName = Controller.getInstance().getEmployee().getName(); //Not sure if controller has an employee or not...
-		
+		employeeInfoBox.setPadding(new Insets(10, 20, 10, 20));
+		 
+		//Get employee name and ID
+		Label empName = new Label(employee.getName()); //??Controller.getInstance().getEmployee().getName(); //Not sure if controller has an employee or not...
 		Label empID = new Label(employee.getID());
 		
-		ImageView pic = new ImageView(employee.getPicture().getImage());
+		
+		VBox namesBox = new VBox(5);
+        namesBox.getChildren().addAll(empName, empID);
+		
+		ImageView empPhoto = new ImageView(employee.getPicture().getImage());
 	
-		//employeeInfoBox.getChildren().add(empName, empID);
+		employeeInfoBox.getChildren().addAll(empPhoto, namesBox);
 	        
 		return employeeInfoBox;
 	}
@@ -123,8 +117,21 @@ public class MyScores extends Frame{
 	 * @return HBox
 	 */
 	private HBox formatScores(){
-		HBox formattedScoresBox = new HBox();
+		HBox formattedScoresBox = new HBox(20);
 		
+		//Format
+		formattedScoresBox.setAlignment(Pos.CENTER);
+		formattedScoresBox.setPadding(new Insets(0, 20, 10, 20));
+		
+		//Add data labels into their own vbox
+		Label metricName = new Label("Metric Name:");
+        Label metricScore = new Label("Metric Score:");
+        
+        VBox elementLables = new VBox();
+        elementLables.getChildren().addAll(metricName, metricScore);
+        
+        formattedScoresBox.getChildren().add(elementLables);
+        
 		for (int i = 0; i < metrics.size(); i++){			
 			formattedScoresBox.getChildren().add(this.formatMetric(metrics.get(i)));
 		}			

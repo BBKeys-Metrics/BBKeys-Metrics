@@ -78,13 +78,13 @@ public class LeaderBoard extends Frame{
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
 		
+		fillMetrics();
 		
 		root.setTop(this.makeCheckBoxes());
-		root.setLeft(timeUnit);
-		root.setCenter(this.formatLeaders());
+		root.setLeft(this.formatLeaders());
 		root.setBottom(this.navigationBox());
 		
-		scene = new Scene (root, 600, 600);
+		scene = new Scene (root, 500, 500);
 	}
 	
 	/**
@@ -93,8 +93,12 @@ public class LeaderBoard extends Frame{
 	 * for display purposes.
 	 * @return VBox
 	 */
-	private VBox makeCheckBoxes(){
-		VBox box = new VBox();
+	private HBox makeCheckBoxes(){
+		HBox box = new HBox(10);
+		
+		//Formatting
+		box.setAlignment(Pos.CENTER_RIGHT);
+        box.setPadding(new Insets(10, 20, 10, 20));
 		
 		CheckBox newBox = new CheckBox();
 		
@@ -104,8 +108,19 @@ public class LeaderBoard extends Frame{
 			
 			//Default is ALL check boxes are checked
 			newBox.setSelected(true);
+			
+			//Add to list
 			metricCheckBoxes.add(newBox);
 		}
+		
+		//Add each checkbox from list to the vbox
+        for (CheckBox i : metricCheckBoxes) {
+            box.getChildren().add(i);
+        }
+        
+        //Add time unit dropdown
+        box.getChildren().add(timeUnit);
+        
 		return box;
 	}
 	
