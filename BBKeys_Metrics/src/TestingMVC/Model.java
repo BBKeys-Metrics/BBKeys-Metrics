@@ -23,25 +23,33 @@ public class Model {
 		return instance;
 	}
 	
-	public ResultSet getEmployeeByID(String empID) {
+	public Employee getEmployeeByID(String empID) {
 		if (!fakeDatabase)
-			return DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
+			return ResultSetBuilder.buildEmployee(DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'"));
+		else
+			//TODO
+			return null;
+	}
+	
+	public String getEmployeeIDByUsername(String username) {
+		if (!fakeDatabase) {
+			//TODO fill this in...
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'");
+			return ResultSetBuilder.buildID(r);
+		}
 		else
 			return null;
 	}
 	
-	public ResultSet getEmployeeIDByName(String name) {
-		return DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + name + "'");
-	}
-	
 	public Metric getMetric(int metricID) {
-		if (source == null || !source.hasSource()) {
-			return null;
+		if (!fakeDatabase) {
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
+			return ResultSetBuilder.buildMetric(r);
 		}
-		else {
-			ResultSet r = null;
-			try {
-				r = source.executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
+		else
+			return null;
+	}
+			
 				ResultSetMetaData rsmd = r.getMetaData();
 				int columns = rsmd.getColumnCount();
 				String[] metricData = new String[columns];
