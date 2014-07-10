@@ -301,4 +301,10 @@ public class Model {
 			return metrics;
 		}
 	}
+
+	public void setUpConnection(String host, String port, String database,
+			String username, String password) {
+		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
+		
+	}
 }

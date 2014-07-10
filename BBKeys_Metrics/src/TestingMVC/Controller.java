@@ -2,7 +2,6 @@ package TestingMVC;
 
 
 import java.util.Set;
-import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.Metric;
 import Metrics.MetricScore;
@@ -33,12 +32,7 @@ public class Controller {
 	private void getSettings() {
 		//TODO: load settings from somewhere.
 		//Location of database, first view, etc.
-		
-		
 		numToDisplay = Model.getInstance().getSettings();
-
-		
-		System.out.println(numToDisplay);
 	}
 	
 	public Metric getMetricByID(int ID) {
@@ -63,7 +57,7 @@ public class Controller {
 	}
 	
 	public void setConnectionStrings(String host, String port, String database, String username, String password) {		
-		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
+		Model.getInstance().setUpConnection(host, port, database, username, password);
 	}
 	
 	public void setUser(String username) {
@@ -72,8 +66,10 @@ public class Controller {
 	}
 
 	public Set<Metric> getMetrics() {
+		if (allMetrics.isEmpty()) {
+			allMetrics = Model.getInstance().getMetrics();
+		}
 		return allMetrics;
-		
 	}
 
 	public MetricScore getEmployeeScore() {

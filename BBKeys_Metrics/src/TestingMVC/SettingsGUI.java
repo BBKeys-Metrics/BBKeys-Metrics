@@ -18,6 +18,9 @@ final public class SettingsGUI {
 	private static SettingsGUI instance = new SettingsGUI();
 	private static Text actiontarget;
 	
+	private SettingsGUI() {
+		
+	}
 	
 	public Text getActionTarget() {
 		return actiontarget;
