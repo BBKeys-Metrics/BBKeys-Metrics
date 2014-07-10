@@ -3,12 +3,10 @@ package TestingMVC;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import Metrics.BCrypt;
 import Metrics.DatabaseConnection;
@@ -18,7 +16,6 @@ import Metrics.MetricScore;
 
 public class Model {
 	private static final Model instance = new Model();
-	private DataSource source;
 	private boolean fakeDatabase = false;
 	
 	private Model() {

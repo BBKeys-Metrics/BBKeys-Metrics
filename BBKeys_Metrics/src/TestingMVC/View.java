@@ -3,7 +3,6 @@ package TestingMVC;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import GUI.MyScores;
 
 public class View extends Application{
 	private static final View instance = new View();

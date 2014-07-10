@@ -1,8 +1,5 @@
 package Metrics;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -34,8 +31,6 @@ public class Login extends Thread{
     	boolean correctLogin = false;
     	boolean validUsername = false;
     	
-    	DatabaseConnection dbCon = null;
-    	ResultSet r = null;
     	
     	//check for empty fields
     	if (username.equals("") || password.equals("")) { //one or more fields were blank

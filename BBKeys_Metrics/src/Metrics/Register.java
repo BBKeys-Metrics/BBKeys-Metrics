@@ -1,8 +1,5 @@
 package Metrics;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import TestingMVC.LoginGUI;
 import TestingMVC.Model;
 import TestingMVC.RegisterGUI;
@@ -35,8 +32,6 @@ public class Register extends Thread {
     	boolean duplicateID = true;
     	boolean validID = false;
     	boolean duplicateUsername = true;
-    	ResultSet r = null;
-    	DatabaseConnection dbCon = null;
     	
     	//check for empty fields
     	if (userID.equals("") || username.equals("") || password.equals("") || confirmPassword.equals("")) {

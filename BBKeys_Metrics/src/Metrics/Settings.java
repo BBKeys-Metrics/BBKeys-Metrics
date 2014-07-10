@@ -1,10 +1,5 @@
 package Metrics;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import TestingMVC.Model;
 import TestingMVC.LoginGUI;
 import TestingMVC.SettingsGUI;

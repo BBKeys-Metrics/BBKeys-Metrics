@@ -11,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.geometry.Insets;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 import TestingMVC.Controller;
