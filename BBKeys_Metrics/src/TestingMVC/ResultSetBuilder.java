@@ -67,4 +67,8 @@ public class ResultSetBuilder {
 		}
 		return null;
 	}
+	
+	public static Set<Preference> buildPreferences(ResultSet r) {
+		return null;
+	}
 }

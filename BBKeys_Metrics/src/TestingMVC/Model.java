@@ -47,29 +47,12 @@ public class Model {
 			return ResultSetBuilder.buildMetric(r);
 		}
 		else
+			//TODO
 			return null;
-	}
-			
-				ResultSetMetaData rsmd = r.getMetaData();
-				int columns = rsmd.getColumnCount();
-				String[] metricData = new String[columns];
-				for (int i = 1; i < columns; i++) {
-					metricData[i-1] = r.getString(i);
-				}
-				String name = metricData[2];
-				float weight = Float.parseFloat(metricData[3]);
-				int precision = Integer.parseInt(metricData[4]);
-				String sortType = metricData[5];
-				Metric m = new Metric(name, weight, precision, sortType);
-				return m;
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return null;
 	}
 	
 	public Set<MetricScore> getMetricScores(String id) {
+		//TODO
 		return null;
 	}
 	

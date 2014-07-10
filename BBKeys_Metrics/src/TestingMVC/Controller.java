@@ -64,14 +64,14 @@ public class Controller {
 		String employeeID = "";
 		String employeeName = "";
 		System.out.println("Setting user");
-		String empID = Model.getInstance().getEmployeeIDByName(username);
+		ResultSet rs = Model.getInstance().getEmployeeIDByName(username);
 		try {
 			rs.next();
 			employeeID = rs.getString(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		rs = Model.getInstance().getEmployeeByID(empID);
+		rs = Model.getInstance().getEmployeeByID(employeeID);
 		try {
 			rs.next();
 			employeeName = rs.getString(1) + " " + rs.getString(2);
@@ -81,7 +81,7 @@ public class Controller {
 		
 		
 		
-		user = emp;
+		user = new Employee(employeeName, employeeID, null);
 		
 	}
 
