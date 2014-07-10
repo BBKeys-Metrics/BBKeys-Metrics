@@ -9,8 +9,6 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import javafx.application.Platform;
-import javafx.scene.paint.Color;
 import Metrics.BCrypt;
 import Metrics.DatabaseConnection;
 import Metrics.Employee;
@@ -29,7 +27,6 @@ public class Model {
 		return instance;
 	}
 	
-<<<<<<< HEAD
 	public Employee getEmployeeByID(String empID) {
 		if (!fakeDatabase)
 			return ResultSetBuilder.buildEmployee(DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'"));
@@ -43,41 +40,11 @@ public class Model {
 			//TODO fill this in...
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'");
 			return ResultSetBuilder.buildID(r);
-		}
-		else
-=======
-	/**
-	 * Gets  the employee first and last name based on the employeeID
-	 * @param empID
-	 * @return ResultSet
-	 */
-	public ResultSet getEmployeeByID(String empID) {
-		if (!fakeDatabase) {
-			return DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
-		}
-		else {
->>>>>>> branch 'master' of https://github.com/BBKeys-Metrics/BBKeys-Metrics.git
+		} else {
 			return null;
 		}
 	}
 	
-<<<<<<< HEAD
-=======
-	/**
-	 * Gets the employeeID based on the username
-	 * @param name
-	 * @return ResultSet
-	 */
-	public ResultSet getEmployeeIDByName(String username) {
-		if (!fakeDatabase) {
-			return DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'");
-		}
-		else {
-			return null;
-		}
-	}
-	
->>>>>>> branch 'master' of https://github.com/BBKeys-Metrics/BBKeys-Metrics.git
 	public Metric getMetric(int metricID) {
 		if (!fakeDatabase) {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");

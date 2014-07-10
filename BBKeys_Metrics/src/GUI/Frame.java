@@ -123,7 +123,7 @@ abstract class Frame{
 		// that exists in another object (if another object has a 
 		// list of display metrics) or add each individual metric
 		// individually.
-		Controller.getInstance().getAllMetrics();
+		Controller.getInstance().getMetrics();
 		
 		//Temporary static data --DELETE WHEN ABOVE IS COMPLETED.  Thanks!
 		Metric speed = new Metric("Speed", 0, 0, "Low");

@@ -52,8 +52,8 @@ public class Controller {
 	}
 	
 	public Employee getEmployeeByName(String name) {
-		String id = ResultSetBuilder.buildID(Model.getInstance().getEmployeeIDByName(name));
-		return ResultSetBuilder.buildEmployee(Model.getInstance().getEmployeeByID(id));	
+		String id = Model.getInstance().getEmployeeIDByUsername(name);
+		return Model.getInstance().getEmployeeByID(id);	
 	}
 	
 	public void setConnectionStrings(String host, String port, String database, String username, String password) {		
@@ -61,28 +61,11 @@ public class Controller {
 	}
 	
 	public void setUser(String username) {
-		String employeeID = "";
-		String employeeName = "";
-		System.out.println("Setting user");
-		ResultSet rs = Model.getInstance().getEmployeeIDByName(username);
-		try {
-			rs.next();
-			employeeID = rs.getString(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		rs = Model.getInstance().getEmployeeByID(employeeID);
-		try {
-			rs.next();
-			employeeName = rs.getString(1) + " " + rs.getString(2);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		user = new Employee(employeeName, employeeID, null);
+		String empID = Model.getInstance().getEmployeeIDByUsername(username);
+		user = Model.getInstance().getEmployeeByID(empID);
 	}
 
-	public void getAllMetrics() {
+	public void getMetrics() {
 		// TODO Auto-generated method stub
 		
 	}
