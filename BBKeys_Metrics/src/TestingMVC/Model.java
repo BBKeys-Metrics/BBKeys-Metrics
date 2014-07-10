@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import Metrics.BCrypt;
 import Metrics.DatabaseConnection;
@@ -45,7 +46,7 @@ public class Model {
 		}
 	}
 	
-	public Metric getMetric(int metricID) {
+	/*public Metric getMetric(int metricID) {
 		if (!fakeDatabase) {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
 			return ResultSetBuilder.buildMetric(r);
@@ -53,7 +54,7 @@ public class Model {
 		else
 			//TODO
 			return null;
-	}
+	}*/
 	
 	public Set<MetricScore> getMetricScores(String id) {
 		//TODO
@@ -61,40 +62,29 @@ public class Model {
 	}
 	
 	public Set<Preference> getPreferences(Employee employee) {
-		if (source == null || !source.hasSource()) {
-			return null;
+		if (!fakeDatabase) {
+			//TODO fill this in...
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+			return ResultSetBuilder.buildPreferences(r);
+		} else {
+			//TODO
+			return new HashSet<Preference>();
 		}
-		else {
-			ResultSet r = null;
-			try {
-				r = source.executeQuery("Select * FROM Metrics.dbo.Preferences WHERE employeeID = '" + employee.getID() + "'");
-				Set<Preference> prefs = new HashSet<Preference>();
-				while (r.next()) {
-					ResultSetMetaData rsmd = r.getMetaData();
-					int columns = rsmd.getColumnCount();
-					String[] prefData = new String[columns];
-					for (int i = 1; i <= columns; i++) {
-						prefData[i-1] = r.getString(i);
-					}
-					Preference pref = new Preference(getMetric(Integer.parseInt(prefData[1])),Boolean.getBoolean(prefData[2]));
-					prefs.add(pref);
-				}
-				return prefs;
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return null;
 	}
 	
 	/**
 	 * Gets the number of results to display in the leaderboard
 	 * @return ResultSet
 	 */
-	public ResultSet getSettings() {
-		return DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+	public int getSettings() {
+		if (!fakeDatabase) {
+			//TODO fill this in...
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+			return ResultSetBuilder.buildShowLeaderCount(r);
+		} else {
+			//TODO
+			return 0;
+		}
 	}
 	
 	/**
@@ -291,5 +281,10 @@ public class Model {
 		else {
 			
 		}
+	}
+
+	public Metric getMetricByID(int iD) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

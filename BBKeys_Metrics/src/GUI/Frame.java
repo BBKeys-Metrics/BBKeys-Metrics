@@ -126,9 +126,9 @@ abstract class Frame{
 		Controller.getInstance().getMetrics();
 		
 		//Temporary static data --DELETE WHEN ABOVE IS COMPLETED.  Thanks!
-		Metric speed = new Metric("Speed", 0, 0, "Low");
-		Metric accuracy = new Metric("Accuracy", 0, 0, "High");
-		Metric helpfulness = new Metric("Helpfulness", 0, 0, "High");
+		Metric speed = new Metric("Speed", 0, 0, "Low", 0);
+		Metric accuracy = new Metric("Accuracy", 0, 0, "High", 1);
+		Metric helpfulness = new Metric("Helpfulness", 0, 0, "High", 2);
 		
 		metrics.add(speed);
 		metrics.add(accuracy);

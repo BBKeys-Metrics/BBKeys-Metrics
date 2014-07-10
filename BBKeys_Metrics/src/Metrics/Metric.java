@@ -9,6 +9,7 @@ public class Metric {
 	private double weight;
 	private int precision;
 	private String sortType;
+	private int id;
 
 	/**
 	 * Constructor (initializes private variables)
@@ -18,13 +19,15 @@ public class Metric {
 		weight = 0.0;
 		precision = 0;
 		sortType = "";
+		id = 0;
 	}
 
-	public Metric(String mName, double mWeight, int mPrecision, String mSortType){
+	public Metric(String mName, double mWeight, int mPrecision, String mSortType, int id){
 		name = mName;
 		weight = mWeight;
 		precision = mPrecision;
 		sortType = mSortType;
+		this.id = id;
 	}
 	
 	public Metric(String truth) {
@@ -100,5 +103,9 @@ public class Metric {
 	 */
 	public String getSortType() {
 		return sortType;
+	}
+	
+	public int getID() {
+		return id;
 	}
 }

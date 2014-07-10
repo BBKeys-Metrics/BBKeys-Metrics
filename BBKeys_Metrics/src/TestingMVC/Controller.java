@@ -1,11 +1,9 @@
 package TestingMVC;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
+import java.util.Set;
 import Metrics.DatabaseConnection;
 import Metrics.Employee;
-import Metrics.GradableItem;
 import Metrics.Metric;
 import Metrics.MetricScore;
 import javafx.stage.Stage;
@@ -13,7 +11,8 @@ import javafx.stage.Stage;
 public class Controller {
 	private static final Controller instance = new Controller();
 	private Employee user;	
-	private String numToDisplay;
+	private int numToDisplay;
+	private Set<Metric> allMetrics;
 	
 	private Controller() {
 	};
@@ -36,19 +35,23 @@ public class Controller {
 		//Location of database, first view, etc.
 		
 		
-		ResultSet rs = Model.getInstance().getSettings();
-		try {
-			rs.next();
-			numToDisplay = rs.getString(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		numToDisplay = Model.getInstance().getSettings();
+
 		
 		System.out.println(numToDisplay);
 	}
 	
-	public Metric getMetricByID(Integer ID) {
-		return null;
+	public Metric getMetricByID(int ID) {
+		for(Metric m : allMetrics) {
+			if (m.getID() == ID) {
+				return m;
+			}
+		}
+		Metric toAdd = Model.getInstance().getMetricByID(ID);
+		if (toAdd != null) {
+			allMetrics.add(toAdd);
+		}
+		return toAdd;
 	}
 	
 	public Employee getEmployeeByName(String name) {
