@@ -1,18 +1,12 @@
 package GUI;
 
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.layout.ColumnConstraints;
 import Metrics.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import TestingMVC.Controller;
 
 /**
@@ -36,6 +30,7 @@ import TestingMVC.Controller;
 class Compare extends Frame{
 		
 	private static Compare instance = new Compare();
+	
 	/**
 	 * Getter for compare, the primary scene for the 
 	 * "Compare" page.
@@ -43,6 +38,7 @@ class Compare extends Frame{
 	 */
 	@Override 
 	public Scene getScene(){
+		buildPage();
 		return this.scene;
 	}
 	
@@ -54,6 +50,9 @@ class Compare extends Frame{
 		return instance;
 	}
 	
+	/**
+     * Constructor
+     */
 	private Compare() {
 		
 	}
@@ -64,17 +63,22 @@ class Compare extends Frame{
 	@Override
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
+		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
+		
 		fillMetrics();
+		
+		//Label for page title
+		Label title = new Label("Compare");
 		
 		//Call getView to find out if the view is table or scatterplot
 		//if(view.equals("plot"))
 			//root.setCenter(this.plotCompare());
 		//else
-		root.setCenter(this.tableCompare());
-		root.setLeft(timeUnit);
+		root.setTop(title);
+		root.setLeft(this.tableCompare());
 		root.setBottom(this.navigationBox());
 		
-		scene = new Scene (root, 600, 600);
+		//scene = new Scene (root, 500, 500);
 	}
 	
 	
@@ -85,11 +89,17 @@ class Compare extends Frame{
 	 * @return GridPane
 	 */
 	private GridPane tableCompare(){
-		//gridPane.add(item, column, row);
+		//gridPane.add(item, column, row, colspan, rowspan);
 		
-		//Format data according to view
 		GridPane metricTable = new GridPane();
 		
+		//Make columns uniform width
+        for (int i = 0; i < 5; i++){
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPercentWidth(20);
+            metricTable.getColumnConstraints().add(column);
+        }
+        
 		//Make labels
 		Label metricLabel = new Label("Metric");
 		Label myScoreLabel = new Label("My Score");
@@ -126,6 +136,9 @@ class Compare extends Frame{
 			metricTable.add(tpScore, 3, i+1);
 			
 		}
+		
+		//Add timeUnit drop down
+		metricTable.add(timeUnit, 4, 0);
 	
 		return metricTable;	
 	}

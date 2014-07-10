@@ -1,24 +1,19 @@
 package GUI;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import Metrics.*;
-
+import javafx.geometry.Insets;
 import java.util.ArrayList;
-
 import TestingMVC.Controller;
 import TestingMVC.View;
-
+import Metrics.*;
 
 
 /*
@@ -43,6 +38,7 @@ abstract class Frame{
 	public Scene scene;
 	public ArrayList<Metric> metrics; //TODO: Change to type Metric OR GradeableItem???
 	public Employee employee;
+	public int numTopEmployeesToShow = 5;
 	public ObservableList<String> timeUnits = 
 		    FXCollections.observableArrayList(
 		            "Day",
@@ -67,15 +63,23 @@ abstract class Frame{
 	 * Defines the behaviors for the three navigation
 	 * buttons.
 	 * 
-	 * @return VBox
+	 * @return HBox
 	 */
-	public VBox navigationBox(){
-		VBox buttonBox = new VBox();
+	public HBox navigationBox(){
+		HBox buttonBox = new HBox();
 		
+		//Set button text
 		myScores.setText("My Scores");
 		compare.setText("Compare");
 		leaderBoard.setText("Leader Board");
 		
+		//Format buttons to same width for uniformity
+        myScores.setMinWidth(100);
+        leaderBoard.setMinWidth(100);
+        compare.setMinWidth(100);
+		
+        
+        //Set actions
 		myScores.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -97,9 +101,10 @@ abstract class Frame{
             }
 		});
 		
-		
+		//Formatting 
 		buttonBox.setSpacing(10);
 		buttonBox.setAlignment(Pos.CENTER_RIGHT);
+		buttonBox.setPadding(new Insets(0, 20, 10, 20));
 		buttonBox.getChildren().addAll(myScores, compare, leaderBoard);
 		
 		return buttonBox;

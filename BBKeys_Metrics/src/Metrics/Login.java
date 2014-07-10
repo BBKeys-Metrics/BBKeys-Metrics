@@ -1,18 +1,18 @@
 package Metrics;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.application.Platform;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import TestingMVC.Controller;
 import TestingMVC.LoginGUI;
 import TestingMVC.ScoresGUI;
 import TestingMVC.View;
-import Metrics.BCrypt;
-import Metrics.DatabaseConnection;
+import TestingMVC.Model;
 
 public class Login extends Thread{
 	
@@ -52,56 +52,29 @@ public class Login extends Thread{
     	}
     	
     	if (!fieldsBlank) {
-			try {
-				//connect to the database
-				dbCon = DatabaseConnection.getInstance();
-				//check that the username exists
-				r = dbCon.executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username + "'");
-				r.next();
-				
-				if (!r.getString(1).equals("1")) { //if there were no users with the specified username
-					//display error message "Invalid Username"
-					Platform.runLater(new Runnable() {
-		            	@Override
-		            	public void run() {
-		            		actiontarget.setFill(Color.FIREBRICK);
-		                    actiontarget.setText("Invalid Username");
-		            	}
-		            });
-				}
-				else { //there is a user with the specified username
-					validUsername = true;
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			validUsername = Model.getInstance().usernameExists(username);
+			if (!validUsername) {
+				Platform.runLater(new Runnable() {
+	            	@Override
+	            	public void run() {
+	            		actiontarget.setFill(Color.FIREBRICK);
+	                    actiontarget.setText("Invalid Username");
+	            	}
+	            });
 			}
     	}
     	
     	if (validUsername) {
-			try {
-				//get the password for the specifiec user
-    			r = dbCon.executeQuery("Select password from Metrics.dbo.Users where username = '" + username + "'");
-    			r.next();
-    			String passwordFromDB = r.getString(1);
-    			
-    			//Check that an unencrypted password matches one that has previously been hashed
-    			if (!BCrypt.checkpw(password, passwordFromDB)) { //if the username and password combination were invalid
-    				//display error message "Invalid Password"
-    				Platform.runLater(new Runnable() {
-    	            	@Override
-    	            	public void run() {
-    	            		actiontarget.setFill(Color.FIREBRICK);
-    	                    actiontarget.setText("Invalid Password");
-    	            	}
-    	            });
-    			}
-				else { //Username and Password combination were valid
-    				correctLogin = true;
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+			correctLogin = Model.getInstance().correctLogin(username, password);
+			if (!correctLogin) {
+				Platform.runLater(new Runnable() {
+	            	@Override
+	            	public void run() {
+	            		actiontarget.setFill(Color.FIREBRICK);
+	                    actiontarget.setText("Invalid Password");
+	            	}
+	            });
 			}
-			
 			if (correctLogin) {
 				Platform.runLater(new Runnable() {
 	            	@Override
