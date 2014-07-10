@@ -42,6 +42,9 @@ public class Controller {
 	}
 	
 	public Metric getMetricByID(int ID) {
+		if (allMetrics.isEmpty()) {
+			allMetrics = Model.getInstance().getMetrics();
+		}
 		for(Metric m : allMetrics) {
 			if (m.getID() == ID) {
 				return m;
@@ -68,8 +71,8 @@ public class Controller {
 		user = Model.getInstance().getEmployeeByID(empID);
 	}
 
-	public void getMetrics() {
-		// TODO Auto-generated method stub
+	public Set<Metric> getMetrics() {
+		return allMetrics;
 		
 	}
 

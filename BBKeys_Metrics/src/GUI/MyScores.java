@@ -70,7 +70,7 @@ public class MyScores extends Frame{
 		BorderPane root = new BorderPane();		
 		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
 		
-		fillMetrics();
+		metrics = Controller.getInstance().getMetrics();
 				
 		root.setTop(this.employeeInfo());
 		root.setLeft(timeUnit);
@@ -129,8 +129,8 @@ public class MyScores extends Frame{
         
         formattedScoresBox.getChildren().add(elementLables);
         
-		for (int i = 0; i < metrics.size(); i++){			
-			formattedScoresBox.getChildren().add(this.formatMetric(metrics.get(i)));
+		for (Metric m : metrics){			
+			formattedScoresBox.getChildren().add(this.formatMetric(m));
 		}			
 		
 		return formattedScoresBox;

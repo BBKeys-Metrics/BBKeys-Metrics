@@ -287,4 +287,21 @@ public class Model {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public Set<Metric> getMetrics() {
+		if (!fakeDatabase) {
+			//TODO fill this in...
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * from Metrics.DBO.Metrics");
+			return ResultSetBuilder.buildMetrics(r);
+		} else {
+			Metric speed = new Metric("Speed", 0, 0, "Low", 0);
+			Metric accuracy = new Metric("Accuracy", 0, 0, "High", 1);
+			Metric helpfulness = new Metric("Helpfulness", 0, 0, "High", 2);
+			Set<Metric> metrics = new HashSet<Metric>();
+			metrics.add(speed);
+			metrics.add(accuracy);
+			metrics.add(helpfulness);
+			return metrics;
+		}
+	}
 }

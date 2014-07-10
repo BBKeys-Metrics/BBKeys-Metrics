@@ -65,7 +65,7 @@ class Compare extends Frame{
 		BorderPane root = new BorderPane();		
 		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
 		
-		fillMetrics();
+		metrics = Controller.getInstance().getMetrics();
 		
 		//Label for page title
 		Label title = new Label("Compare");
@@ -115,26 +115,27 @@ class Compare extends Frame{
 		Label metricName;
 		
 		//Add metric and comparative data
-		for(int i = 0; i < metrics.size(); i++){
+		int i = 0;
+		for(Metric m : metrics){
 			//Add the metric name
-			metricName = new Label(metrics.get(i).getName());
+			metricName = new Label(m.getName());
 			metricTable.add(metricName, 0, i+1);
 		    
 			//Add employee's (current users) score
-			MetricScore employeeScore = getEmployeeMetricScore(metrics.get(i), timeUnit.getValue());
+			MetricScore employeeScore = getEmployeeMetricScore(m, timeUnit.getValue());
 			Label empScore = new Label(((Double)(employeeScore.getValue())).toString());
 			metricTable.add(empScore, 1, i+1);
 			
 			//Add average score
-			MetricScore averageScore = getAverageScore(metrics.get(i), timeUnit.getValue());
+			MetricScore averageScore = getAverageScore(m, timeUnit.getValue());
 			Label avgScore = new Label(((Double)(averageScore.getValue())).toString());
 			metricTable.add(avgScore, 2, i+1);
 			
 			//Add top score
-			MetricScore topScore = getTopScore(metrics.get(i), timeUnit.getValue(), 1);
+			MetricScore topScore = getTopScore(m, timeUnit.getValue(), 1);
 			Label tpScore = new Label(((Double)(topScore.getValue())).toString());
 			metricTable.add(tpScore, 3, i+1);
-			
+			i++;
 		}
 		
 		//Add timeUnit drop down

@@ -10,7 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.geometry.Insets;
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import TestingMVC.Controller;
 import TestingMVC.View;
 import Metrics.*;
@@ -36,7 +40,7 @@ import Metrics.*;
 abstract class Frame{
 	//Public variables for use in sub-classes
 	public Scene scene;
-	public ArrayList<Metric> metrics; //TODO: Change to type Metric OR GradeableItem???
+	public Set<Metric> metrics; //TODO: Change to type Metric OR GradeableItem???
 	public Employee employee;
 	public int numTopEmployeesToShow = 5;
 	public ObservableList<String> timeUnits = 
@@ -110,30 +114,6 @@ abstract class Frame{
 		return buttonBox;
 	}
 	
-	/**
-	 * accesses the database to find out what metrics are available, places
-	 * those items into a list for easy access.
-	 */
-	public void fillMetrics(){
-		metrics = new ArrayList<Metric>();
-		
-		//Instead of filling manually, I need access to a DB with all of the
-		//metrics that should be displayed (as defined in preferences).  
-		//As you determine, we can either parse through a list 
-		// that exists in another object (if another object has a 
-		// list of display metrics) or add each individual metric
-		// individually.
-		Controller.getInstance().getMetrics();
-		
-		//Temporary static data --DELETE WHEN ABOVE IS COMPLETED.  Thanks!
-		Metric speed = new Metric("Speed", 0, 0, "Low", 0);
-		Metric accuracy = new Metric("Accuracy", 0, 0, "High", 1);
-		Metric helpfulness = new Metric("Helpfulness", 0, 0, "High", 2);
-		
-		metrics.add(speed);
-		metrics.add(accuracy);
-		metrics.add(helpfulness);		
-	}
 	
 
 	

@@ -79,7 +79,7 @@ public class LeaderBoard extends Frame{
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
 		
-		fillMetrics();
+		metrics = Controller.getInstance().getMetrics();
 		
 		root.setTop(this.makeCheckBoxes());
 		root.setLeft(this.formatLeaders());
@@ -103,9 +103,9 @@ public class LeaderBoard extends Frame{
 		
 		CheckBox newBox = new CheckBox();
 		
-		for (int i = 0; i < metrics.size(); i++){
+		for (Metric m : metrics){
 			//Generate a check kbox for each metric type
-			newBox.setText(metrics.get(i).getName());
+			newBox.setText(m.getName());
 			
 			//Default is ALL check boxes are checked
 			newBox.setSelected(true);

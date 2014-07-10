@@ -94,4 +94,9 @@ public class ResultSetBuilder {
 		//TODO
 		return 0;
 	}
+
+	public static Set<Metric> buildMetrics(ResultSet r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
