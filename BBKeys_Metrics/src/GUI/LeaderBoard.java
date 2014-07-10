@@ -8,12 +8,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Metrics.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ArrayList;
-
+import Metrics.*;
+import TestingMVC.Controller;
 
 /*
  * Project: BBKeys-Metrics

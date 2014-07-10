@@ -6,15 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.geometry.Insets;
 import Metrics.*;
 import TestingMVC.Controller;
-import javafx.geometry.Insets;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /*
  * Project: BBKeys-Metrics
