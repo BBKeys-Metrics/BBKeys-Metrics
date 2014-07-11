@@ -14,10 +14,10 @@ public class GradableItem {
 	/**
 	 * Constructor (initializes private variables)
 	 */
-	public GradableItem() {
+	/*public GradableItem() {
 		name = "";
 		scores = null;
-	}
+	}*/
 	
 	public GradableItem(String name, Set<MetricScore> scores) {
 		this.name = name;

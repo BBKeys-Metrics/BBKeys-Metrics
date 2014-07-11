@@ -10,11 +10,6 @@ public class Preference {
 		this.metric = metric;
 		this.display = display;
 	}
-	
-	public Preference(String[] args) {
-		metric = Controller.getInstance().getMetricByID(Integer.decode(args[1]));
-		display = Boolean.valueOf(args[2]);
-	}
 
 	public Metric getMetric() {
 		return metric;

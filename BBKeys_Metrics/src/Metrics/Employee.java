@@ -14,13 +14,13 @@ public class Employee extends GradableItem{
 	 * @param id
 	 * @throws SQLException 
 	 */
-	public Employee(String id) throws SQLException {		
+	/*public Employee(String id) throws SQLException {		
 		//initialize the employee id
 		this.id = id;
 		
 		//initialize the employee picture
 		picture = new EmployeePic(id);
-	}
+	}*/
 	
 	public Employee(String name, String id, Set<MetricScore> scores) {
 		super(name, scores);
