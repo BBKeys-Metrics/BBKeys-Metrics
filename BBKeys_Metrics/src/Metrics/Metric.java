@@ -11,17 +11,6 @@ public class Metric {
 	private String sortType;
 	private int id;
 
-	/**
-	 * Constructor (initializes private variables)
-	 */
-	public Metric() {
-		name = "";
-		weight = 0.0;
-		precision = 0;
-		sortType = "";
-		id = 0;
-	}
-
 	public Metric(String mName, double mWeight, int mPrecision, String mSortType, int id){
 		name = mName;
 		weight = mWeight;
@@ -29,13 +18,7 @@ public class Metric {
 		sortType = mSortType;
 		this.id = id;
 	}
-	
-	public Metric(String truth) {
-		name = truth;
-		weight = 0.0;
-		precision = 0;
-		sortType = "";
-	}
+
 
 	/**
 	 * Set the name of the Metric

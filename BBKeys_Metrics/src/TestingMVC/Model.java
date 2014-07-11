@@ -43,16 +43,6 @@ public class Model {
 		}
 	}
 	
-	/*public Metric getMetric(int metricID) {
-		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
-			return ResultSetBuilder.buildMetric(r);
-		}
-		else
-			//TODO
-			return null;
-	}*/
-	
 	public Set<MetricScore> getMetricScores(String id) {
 		//TODO
 		return null;
@@ -280,9 +270,14 @@ public class Model {
 		}
 	}
 
-	public Metric getMetricByID(int iD) {
-		// TODO Auto-generated method stub
-		return null;
+	public Metric getMetricByID(int metricID) {
+		if (!fakeDatabase) {
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
+			return ResultSetBuilder.buildMetric(r);
+		}
+		else
+			//TODO
+			return new Metric("NoDatabaseMetric", .5, 2, "ShouldHaveEnum", metricID);
 	}
 
 	public Set<Metric> getMetrics() {
