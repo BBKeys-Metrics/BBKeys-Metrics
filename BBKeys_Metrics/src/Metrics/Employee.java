@@ -8,6 +8,7 @@ public class Employee extends GradableItem{
 	//initialize private variables
 	private EmployeePic picture;
 	private String id;
+	private String name;
 	
 	/**
 	 * Constructor - Creates the new employee object and initializes the picture of the employee
@@ -26,6 +27,14 @@ public class Employee extends GradableItem{
 		super(name, scores);
 		picture = new EmployeePic(id);
 		this.id = id;
+	}
+	
+	public void setName(String name){
+		this.name= name;
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 	
 	/**
