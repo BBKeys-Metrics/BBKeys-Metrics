@@ -125,11 +125,7 @@ abstract class Frame{
 	 * @return MetricScore
 	 */
 	public MetricScore getEmployeeMetricScore(Metric metric, String timeUnit){
-		//Change geDBEmployeeSccore to whatever you want.
-		//  It needs to get score for a given metric, for the current user (employee) that is logged in to the app.
-		//  Needs to return the correct average for the given time unit (day, week, month, ect)
-		//  and return a MetricScore object
-		MetricScore temp = Controller.getInstance().getEmployeeScore();
+		MetricScore temp = Controller.getInstance().getEmployeeScore(metric, timeUnit);
 		return temp;
 	}
 	
@@ -143,11 +139,7 @@ abstract class Frame{
 	 * @return MetricScore
 	 */
 	public MetricScore getAverageScore(Metric metric, String timeUnit){
-		
-		//Change getDBAverage to whatever you want.
-		//  It needs to get the top score for a given metric, for the given time unit (day, week, month, ect)
-		//  and return a MetricScore object
-		MetricScore temp = Controller.getInstance().getAverage();
+		MetricScore temp = Controller.getInstance().getAverage(metric, timeUnit);
 		return temp;
 	}
 	
@@ -163,13 +155,8 @@ abstract class Frame{
 	 * preferences)
 	 * @return MetricScore
 	 */
-	public MetricScore getTopScore(Metric metric, String timeUnit, int rank){
-		
-		//Change getTopScoreFromDB to whatever you want.
-		//  It needs to get the top score for a given metric, for the given time unit (day, week, month, ect)
-		//  for the given rank (i.e. top score, 2nd high schore, 3rd high score...)
-		//  Please return a MetricScore Object
-		MetricScore temp = Controller.getInstance().getTopScore();
+	public MetricScore getTopScore(Metric metric, String timeUnit){
+		MetricScore temp = Controller.getInstance().getTopScore(metric, timeUnit);
 		return temp;
 	}
 	

@@ -2,6 +2,7 @@ package TestingMVC;
 
 
 import java.util.Set;
+
 import Metrics.Employee;
 import Metrics.Metric;
 import Metrics.MetricScore;
@@ -72,17 +73,37 @@ public class Controller {
 		return allMetrics;
 	}
 
-	public MetricScore getEmployeeScore() {
+	/**
+	 * Gets the score for a given metric, for the currently logged in user (employee).
+	 * Returns the correct average score for the given time unit (day, week, month, ect)
+	 * @param metric
+	 * @param timeUnit
+	 */
+	public MetricScore getEmployeeScore(Metric metric, String timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public MetricScore getAverage() {
+	/**
+	 * Gets the top score  for a given metric, for the given time unit (day, week, month, ect).
+	 * Returns a MetricScore object with the retrieved score.
+	 * @param metric
+	 * @param timeUnit
+	 * @return MetricScore
+	 */
+	public MetricScore getAverage(Metric metric, String timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public MetricScore getTopScore() {
+	/**
+	 * Gets the top score for a given metric, given the time unit (day, week, month, ect).
+	 * @param metric
+	 * @param timeUnit
+	 * @param rank
+	 * @return MetricScore
+	 */
+	public MetricScore getTopScore(Metric metric, String timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
