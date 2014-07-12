@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.geometry.Insets;
 
+import java.util.List;
 import java.util.Set;
 
 import TestingMVC.Controller;
@@ -160,16 +161,11 @@ abstract class Frame{
 		return temp;
 	}
 	
-	/*public Employee getTopEmployee(String timeUnit, int rank){
-		
-		//Temporary Data -- should be changed to db call
-		try{
-		Employee myEmp = new Employee("12345");
-		}catch (Exception E){
-			
-		}
-		return myEmp;
-	}*/
+	public List<Employee> getTopEmployees(String timeUnit, Metric metric){
+		List<Employee> topEmployees = Controller.getInstance().getTopEmployees(timeUnit, metric);
+
+		return topEmployees;
+	}
 	
 	
 	

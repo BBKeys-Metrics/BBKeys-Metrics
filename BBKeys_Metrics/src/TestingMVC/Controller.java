@@ -1,6 +1,7 @@
 package TestingMVC;
 
 
+import java.util.List;
 import java.util.Set;
 
 import Metrics.Employee;
@@ -105,6 +106,16 @@ public class Controller {
 	 */
 	public MetricScore getTopScore(Metric metric, String timeUnit) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/**
+	 * Gets the top x employees for the given unit.  Returns a list of employee objects.
+	 * @param timeUnit
+	 * @param metric
+	 * @return Employee List
+	 */
+	public List<Employee> getTopEmployees(String timeUnit, Metric metric){
 		return null;
 	}
 
