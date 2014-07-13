@@ -1,14 +1,18 @@
 package GUI;
 
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Metrics.*;
 import TestingMVC.Controller;
@@ -38,9 +42,12 @@ import TestingMVC.Controller;
 public class LeaderBoard extends Frame{
 	private static LeaderBoard instance = new LeaderBoard();
 	
+	//Indicates the current metric selected by the radio boxes
+	Metric metric;
+	
 	//holds the formatted leader data
 	//private ArrayList<VBox> leaders; Not used.
-	private ArrayList<CheckBox> metricCheckBoxes;
+	private ArrayList<RadioButton> metricRadioButtons;
 	private int numTopEmployeesToShow = 5;
 	
 	/**
@@ -78,7 +85,7 @@ public class LeaderBoard extends Frame{
 		
 		metrics = Controller.getInstance().getMetrics();
 		
-		root.setTop(this.makeCheckBoxes());
+		root.setTop(this.makeRadioButtons());
 		root.setLeft(this.formatLeaders());
 		root.setBottom(this.navigationBox());
 		
@@ -91,33 +98,50 @@ public class LeaderBoard extends Frame{
 	 * for display purposes.
 	 * @return VBox
 	 */
-	private HBox makeCheckBoxes(){
+	private HBox makeRadioButtons(){
 		HBox box = new HBox(10);
 		
 		//Formatting
 		box.setAlignment(Pos.CENTER_RIGHT);
         box.setPadding(new Insets(10, 20, 10, 20));
 		
-		CheckBox newBox = new CheckBox();
+		RadioButton newRadio = new RadioButton();
 		
 		for (Metric m : metrics){
 			//Generate a check kbox for each metric type
-			newBox.setText(m.getName());
+			newRadio.setText(m.getName());
 			
 			//Default is ALL check boxes are checked
-			newBox.setSelected(true);
+			newRadio.setSelected(true);
 			
 			//Add to list
-			metricCheckBoxes.add(newBox);
+			metricRadioButtons.add(newRadio);
 		}
 		
 		//Add each checkbox from list to the vbox
-        for (CheckBox i : metricCheckBoxes) {
+        for (RadioButton i : metricRadioButtons) {
             box.getChildren().add(i);
         }
         
         //Add time unit dropdown
         box.getChildren().add(timeUnit);
+        
+        //Add listener for radio buttons
+        //When a radio button is selected, change the name value of member variable metric to the selected string
+        /*
+        final ToggleGroup group = new ToggleGroup();
+        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+            public void changed(ObservableValue<? extends Toggle> ov,
+                Toggle old_toggle, Toggle new_toggle) {
+                    if (group.getSelectedToggle() != null) {
+                    	metric.setName(
+                    					group.getSelectedToggle().getUserData().toString());
+                    
+                    }
+                    
+            }
+            );*/
+        
         
 		return box;
 	}
@@ -133,7 +157,7 @@ public class LeaderBoard extends Frame{
 		GridPane leadersBox = new GridPane();
 		
 		for (int i = 1; i < numTopEmployeesToShow; i++){
-			//Add each employee in a stack (horizontally)
+			//Add each employee in a stack (horizontally)	
 			leadersBox.add(this.formatLeaderScores(i), 0 , i-1);
 		}
 		
@@ -151,25 +175,24 @@ public class LeaderBoard extends Frame{
 	 * 4 indicates the fourth higheste employee, ect.
 	 * @return VBox
 	 */
-	private GridPane formatLeaderScores(int rank){
-		GridPane leaderBox = new GridPane();
+	private VBox formatLeaderScores(int rank){
+		VBox leaderBox = new VBox();
 		
-		//Retrieve employee name
-		//Retrieve employee picture
-		//??getTopEmployee (see Frame)
+		Label empName;
+		Label empScore;
+		ImageView empPic;
 		
-		//Retrieve overall score
-		//Add overall score
+		//Get the list of top employees
+		List<Employee> topEmployees = getTopEmployees( timeUnit.getValue(), metric);
 		
-		for (int i = 0; i < metricCheckBoxes.size(); i++)
-		{
-			if (metricCheckBoxes.get(i).isSelected()){
-				//Use name of checkbox to get metric
-		
-				//leaderBox.add(this.formatMetric(metric, rank));
-			}
-
+		for (int i = 0; i < topEmployees.size(); i++){
+			empName = new Label(topEmployees.get(i).getName());
+			empScore = new Label("1234");
+			empPic = new ImageView(topEmployees.get(i).getPicture().getImage());
+			
+			leaderBox.getChildren().addAll(empPic, empName, empScore);
 		}
+
 	
 		return leaderBox;		
 	}
