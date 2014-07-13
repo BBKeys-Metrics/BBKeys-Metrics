@@ -45,9 +45,6 @@ public class LeaderBoard extends Frame{
 	//Indicates the current metric selected by the radio boxes
 	Metric metric;
 	
-	//holds the formatted leader data
-	//private ArrayList<VBox> leaders; Not used.
-	private ArrayList<RadioButton> metricRadioButtons;
 	private int numTopEmployeesToShow = 5;
 	
 	/**
@@ -106,30 +103,36 @@ public class LeaderBoard extends Frame{
         box.setPadding(new Insets(10, 20, 10, 20));
 		
 		RadioButton newRadio = new RadioButton();
+		int j = 0;
+		
+		//Group of radio buttons
+        final ToggleGroup group = new ToggleGroup();
 		
 		for (Metric m : metrics){
 			//Generate a check kbox for each metric type
 			newRadio.setText(m.getName());
 			
-			//Default is ALL check boxes are checked
-			newRadio.setSelected(true);
+			//Default is the first radio is selected
+			if (j == 0){
+				newRadio.setSelected(true);
+				j++;
+			}
 			
-			//Add to list
-			metricRadioButtons.add(newRadio);
+			//Add to group
+			newRadio.setToggleGroup(group);
+			
+			//Add to the vbox
+			box.getChildren().add(newRadio);
 		}
-		
-		//Add each checkbox from list to the vbox
-        for (RadioButton i : metricRadioButtons) {
-            box.getChildren().add(i);
-        }
-        
+		        
         //Add time unit dropdown
         box.getChildren().add(timeUnit);
         
+               
         //Add listener for radio buttons
         //When a radio button is selected, change the name value of member variable metric to the selected string
         /*
-        final ToggleGroup group = new ToggleGroup();
+        final ToggleGroup group = new ToggleGroup(); 
         group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
             public void changed(ObservableValue<? extends Toggle> ov,
                 Toggle old_toggle, Toggle new_toggle) {
