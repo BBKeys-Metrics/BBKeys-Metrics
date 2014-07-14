@@ -114,60 +114,6 @@ abstract class Frame{
 		return buttonBox;
 	}
 	
-	
-
-	
-	/**
-	 * Given a metric, the employees score for that metric will
-	 * be retrieved and returned.
-	 * 
-	 * @param metric -- the name of the metric score to be retrieved
-	 * @param unit-what unit of data (current user, high score, avg) that
-	 * needs to be retrieved 
-	 * @return MetricScore
-	 */
-	public MetricScore getEmployeeMetricScore(Metric metric, TimeSpan timeUnit){
-		MetricScore temp = Controller.getInstance().getEmployeeScore(metric, timeUnit);
-		return temp;
-	}
-	
-	/**
-	 * Given a metric, the average score for that metric will
-	 * be retrieved and returned.
-	 * 
-	 * @param metric -- the name of the metric score to be retrieved
-	 * @param unit-what unit of data (current user, high score, avg) that
-	 * needs to be retrieved 
-	 * @return MetricScore
-	 */
-	public MetricScore getAverageScore(Metric metric, TimeSpan timeUnit){
-		MetricScore temp = Controller.getInstance().getAverage(metric, timeUnit);
-		return temp;
-	}
-	
-	/**
-	 * Given a metric, the average score for that metric will
-	 * be retrieved and returned.
-	 * 
-	 * @param metric -- the name of the metric score to be retrieved
-	 * @param unit -- what unit of data (current user, high score, avg) that
-	 * needs to be retrieved 
-	 * @param rank -- the rank of the top score desired to retrieve, allows
-	 * this function to retrieve data for top x employees (as limited by
-	 * preferences)
-	 * @return MetricScore
-	 */
-	public MetricScore getLeaderScore(Metric metric, TimeSpan timeUnit){
-		MetricScore temp = Controller.getInstance().getLeaderScore(metric, timeUnit);
-		return temp;
-	}
-	
-	public List<Leader> getTopEmployees(TimeSpan timeUnit, Metric metric){
-		List<Leader> topEmployees = Controller.getInstance().getTopEmployees(metric, timeUnit);
-
-		return topEmployees;
-	}
-	
 	public TimeSpan convertStringToTimeSpan(String time) {
 		return TimeSpan.valueOf(time); 
 	}

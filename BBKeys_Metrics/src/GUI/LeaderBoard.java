@@ -11,10 +11,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.util.List;
-
-import Metrics.*;
+import Metrics.Leader;
+import Metrics.Metric;
 import TestingMVC.Controller;
 import TestingMVC.TimeSpan;
 
@@ -162,7 +161,7 @@ public class LeaderBoard extends Frame{
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		
 		//Get list of top employees
-		List<Leader> topEmployees = getTopEmployees(time, metric);
+		List<Leader> topEmployees = Controller.getInstance().getTopLeaders(metric,time);
 		
 		for (int i = 0; i < topEmployees.size(); i++){
 			//Add each employee in a stack (horizontally)	

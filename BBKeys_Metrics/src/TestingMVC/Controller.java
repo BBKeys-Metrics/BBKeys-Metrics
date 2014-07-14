@@ -94,7 +94,7 @@ public class Controller {
 	 * @param timeUnit
 	 * @return MetricScore
 	 */
-	public MetricScore getAverage(Metric metric, TimeSpan timeUnit) {
+	public MetricScore getAverageScore(Metric metric, TimeSpan timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -115,12 +115,10 @@ public class Controller {
 	 * Gets the top x employees for the given unit.  Returns a list of employee objects.
 	 * @param timeUnit
 	 * @param metric
-	 * @return Employee List
+	 * @return Leader List
 	 */
-	public List<Leader> getTopEmployees(Metric metric, TimeSpan timeUnit){
-		// TODO Auto-generated method stub
-		
-		return null;
+	public List<Leader> getTopLeaders(Metric metric, TimeSpan timeUnit){
+		return Model.getInstance().getTopLeaders(metric, timeUnit);
 	}
 
 }

@@ -1,5 +1,7 @@
 package GUI;
 
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -119,22 +121,24 @@ class Compare extends Frame{
 		int i = 0;
 		for(Metric m : metrics){
 			//Add the metric name
+			Controller cont = Controller.getInstance();
 			metricName = new Label(m.getName());
 			metricTable.add(metricName, 0, i+1);
 			TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		    
 			//Add employee's (current users) score
-			MetricScore employeeScore = getEmployeeMetricScore(m, time);
+			MetricScore employeeScore = cont.getEmployeeScore(m, time);
 			Label empScore = new Label(((Double)(employeeScore.getValue())).toString());
 			metricTable.add(empScore, 1, i+1);
 			
 			//Add average score
-			MetricScore averageScore = getAverageScore(m, time);
+			MetricScore averageScore = cont.getAverageScore(m, time);
 			Label avgScore = new Label(((Double)(averageScore.getValue())).toString());
 			metricTable.add(avgScore, 2, i+1);
 			
 			//Add top score
-			MetricScore topScore = getLeaderScore(m, time);//TODO Should this have the '1' in it?
+			List<Leader> top = cont.getTopLeaders(m, time);
+			MetricScore topScore = top.get(0).getScore();
 			Label tpScore = new Label(((Double)(topScore.getValue())).toString());
 			metricTable.add(tpScore, 3, i+1);
 			i++;

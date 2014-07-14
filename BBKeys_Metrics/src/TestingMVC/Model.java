@@ -6,11 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import Metrics.BCrypt;
 import Metrics.DatabaseConnection;
 import Metrics.Employee;
+import Metrics.Leader;
 import Metrics.Metric;
 import Metrics.MetricScore;
 
@@ -300,5 +302,10 @@ public class Model {
 			String username, String password) {
 		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
 		
+	}
+
+	public List<Leader> getTopLeaders(Metric metric, TimeSpan timeUnit) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
