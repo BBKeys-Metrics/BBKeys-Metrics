@@ -169,19 +169,7 @@ abstract class Frame{
 	}
 	
 	public TimeSpan convertStringToTimeSpan(String time) {
-		TimeSpan timespan;
-		if (time.equals("Day")) {
-			timespan = TimeSpan.DAY;
-		} else if (time.equals("Week")) {
-			timespan = TimeSpan.WEEK;
-		} else if (time.equals("Month")) {
-			timespan = TimeSpan.MONTH;
-		} else if (time.equals("Year")) {
-			timespan = TimeSpan.YEAR;
-		} else {
-			timespan = TimeSpan.EVER;
-		}
-		return timespan;
+		return TimeSpan.valueOf(time);
 	}
 	
 	
