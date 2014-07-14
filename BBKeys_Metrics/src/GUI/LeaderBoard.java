@@ -157,9 +157,14 @@ public class LeaderBoard extends Frame{
 	private GridPane formatLeaders(){
 		GridPane leadersBox = new GridPane();
 		
-		for (int i = 1; i < numTopEmployeesToShow; i++){
+		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
+		
+		//Get list of top employees
+		List<Employee> topEmployees = getTopEmployees(time, metric);
+		
+		for (int i = 0; i < topEmployees.size(); i++){
 			//Add each employee in a stack (horizontally)	
-			leadersBox.add(this.formatLeaderScores(i), 0 , i-1);
+			leadersBox.add(this.formatLeaderScores(topEmployees.get(i)), 0 , i);
 		}
 		
 		return leadersBox;
@@ -176,52 +181,27 @@ public class LeaderBoard extends Frame{
 	 * 4 indicates the fourth higheste employee, ect.
 	 * @return VBox
 	 */
-	private VBox formatLeaderScores(int rank){
+	private VBox formatLeaderScores(Employee employee){
 		VBox leaderBox = new VBox();
 		
 		Label empName;
 		Label empScore;
 		ImageView empPic;
 		
-		//Get the list of top employees
-		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
+		//Get data
+		empName = new Label(employee.getName());
+		//Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		
-		List<Employee> topEmployees = getTopEmployees( time, metric);
-		
-		for (int i = 0; i < topEmployees.size(); i++){
-			empName = new Label(topEmployees.get(i).getName());
-			empScore = new Label("1234");
-			empPic = new ImageView(topEmployees.get(i).getPicture().getImage());
-			
-			leaderBox.getChildren().addAll(empPic, empName, empScore);
-		}
+		empScore = new Label(((Double)(employee.getScore(metric).getValue())).toString());
 
+		empPic = new ImageView(employee.getPicture().getImage());
+			
+		leaderBox.getChildren().addAll(empPic, empName, empScore);
+		
 	
 		return leaderBox;		
 	}
 	
-	/**
-	 * Returns am hbox holding the metric name and the score the
-	 * employee recieved on that metric.
-	 * 
-	 * @param metricName
-	 * @return HBox
-	 */
-	private HBox formatMetric(Metric metric, int leaderRank){
-
-		HBox scoreBox = new HBox();
-		
-		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
-		MetricScore topScore = getLeaderScore(metric, time);
-
-		
-		Label score = new Label(((Double)(topScore.getValue())).toString());
-		
-		Label name = new Label(metric.getName());
-				
-		scoreBox.getChildren().addAll(name, score);
-		
-		return scoreBox;
-	}
+	
 	
 }
