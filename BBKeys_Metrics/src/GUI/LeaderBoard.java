@@ -131,7 +131,6 @@ public class LeaderBoard extends Frame{
         //Add listener for radio buttons
         //When a radio button is selected, change the name value of member variable metric to the selected string
         /*
-        final ToggleGroup group = new ToggleGroup(); 
         group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
             public void changed(ObservableValue<? extends Toggle> ov,
                 Toggle old_toggle, Toggle new_toggle) {
@@ -209,10 +208,12 @@ public class LeaderBoard extends Frame{
 	 * @return HBox
 	 */
 	private HBox formatMetric(Metric metric, int leaderRank){
+
 		HBox scoreBox = new HBox();
 		
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		MetricScore topScore = getLeaderScore(metric, time);
+
 		
 		Label score = new Label(((Double)(topScore.getValue())).toString());
 		

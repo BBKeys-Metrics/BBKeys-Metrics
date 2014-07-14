@@ -50,7 +50,6 @@ public class Model {
 	
 	public Set<Preference> getPreferences(Employee employee) {
 		if (!fakeDatabase) {
-			//TODO fill this in...
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
 			return ResultSetBuilder.buildPreferences(r);
 		} else {
