@@ -75,41 +75,6 @@ public class Controller {
 		}
 		return allMetrics;
 	}
-
-	/**
-	 * Gets the score for a given metric, for the currently logged in user (employee).
-	 * Returns the correct average score for the given time unit (day, week, month, ect)
-	 * @param metric
-	 * @param timeUnit
-	 */
-	public MetricScore getEmployeeScore(Metric metric, TimeSpan timeUnit) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * Gets the top score  for a given metric, for the given time unit (day, week, month, ect).
-	 * Returns a MetricScore object with the retrieved score.
-	 * @param metric
-	 * @param timeUnit
-	 * @return MetricScore
-	 */
-	public MetricScore getAverageScore(Metric metric, TimeSpan timeUnit) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * Gets the top score for a given metric, given the time unit (day, week, month, ect).
-	 * @param metric
-	 * @param timeUnit
-	 * @param rank
-	 * @return MetricScore
-	 */
-	public MetricScore getLeaderScore(Metric metric, TimeSpan timeUnit) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	/**
 	 * Gets the top x employees for the given unit.  Returns a list of employee objects.

@@ -3,6 +3,8 @@ package Metrics;
 import java.sql.SQLException;
 import java.util.Set;
 
+import TestingMVC.TimeSpan;
+
 
 public class Employee extends GradableItem{
 	//initialize private variables

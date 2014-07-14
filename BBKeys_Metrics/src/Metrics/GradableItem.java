@@ -87,11 +87,29 @@ public class GradableItem {
 	 * @param name - name of the MetricScore to be found
 	 * @return MetricScore
 	 */
+	//TODO Return first match, average, and over what timespan
 	public MetricScore getScore(Metric type) {
 		for (MetricScore m : scores) {
 			if (m.getMetric() == type) return m;
 		}
 		//if the metric score doesn't exist, return null
 		return null;
+	}
+	
+	public MetricScore getAverageScore(Metric metric, TimeSpan time) {
+		double sum = 0;
+		int count = 0;
+		Set<MetricScore> scores = getScores(time);
+		for (MetricScore m : scores) {
+			if (m.equals(metric)) {
+				sum += m.getValue();
+				count++;
+			}
+		}
+		return new MetricScore(metric, sum / count, Calendar.getInstance());
+	}
+	
+	public MetricScore getEmployeeScore(Metric m, TimeSpan time) {
+		return getAverageScore(m, time);
 	}
 }

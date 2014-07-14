@@ -92,6 +92,7 @@ class Compare extends Frame{
 	 * @return GridPane
 	 */
 	private GridPane tableCompare(){
+		Employee user = Controller.getInstance().getEmployee();
 		//gridPane.add(item, column, row, colspan, rowspan);
 		
 		GridPane metricTable = new GridPane();
@@ -127,12 +128,12 @@ class Compare extends Frame{
 			TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		    
 			//Add employee's (current users) score
-			MetricScore employeeScore = cont.getEmployeeScore(m, time);
+			MetricScore employeeScore = user.getEmployeeScore(m, time);
 			Label empScore = new Label(((Double)(employeeScore.getValue())).toString());
 			metricTable.add(empScore, 1, i+1);
 			
 			//Add average score
-			MetricScore averageScore = cont.getAverageScore(m, time);
+			MetricScore averageScore = user.getAverageScore(m, time);
 			Label avgScore = new Label(((Double)(averageScore.getValue())).toString());
 			metricTable.add(avgScore, 2, i+1);
 			
