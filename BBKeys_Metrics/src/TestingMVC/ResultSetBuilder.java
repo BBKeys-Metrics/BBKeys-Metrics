@@ -75,7 +75,7 @@ public class ResultSetBuilder {
 		try {
 			while (r.next()) {
 				ResultSetMetaData rsmd = r.getMetaData();
-				int columns = rsmd.getColumnCount();
+				int columns = rsmd.getColumnCount(); 
 				String[] prefData = new String[columns];
 				for (int i = 1; i <= columns; i++) {
 					prefData[i-1] = r.getString(i);
