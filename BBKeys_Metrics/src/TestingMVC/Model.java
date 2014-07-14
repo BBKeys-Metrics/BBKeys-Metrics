@@ -27,7 +27,7 @@ public class Model {
 	
 	public Employee getEmployeeByID(String empID) {
 		if (!fakeDatabase)
-			return ResultSetBuilder.buildEmployee(DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'"));
+			return ResultSetBuilder.buildEmployee(DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'"), empID);
 		else
 			//TODO
 			return null;
