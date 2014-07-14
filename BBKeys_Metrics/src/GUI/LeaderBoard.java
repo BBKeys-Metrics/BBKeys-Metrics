@@ -1,5 +1,7 @@
 package GUI;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -44,7 +46,6 @@ public class LeaderBoard extends Frame{
 	//Indicates the current metric selected by the radio boxes
 	Metric metric;
 	
-	private int numTopEmployeesToShow = 5;
 	
 	/**
 	 * Getter for leader board, the primary scene for the 
@@ -130,18 +131,19 @@ public class LeaderBoard extends Frame{
                
         //Add listener for radio buttons
         //When a radio button is selected, change the name value of member variable metric to the selected string
-        /*
+        
         group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
             public void changed(ObservableValue<? extends Toggle> ov,
                 Toggle old_toggle, Toggle new_toggle) {
                     if (group.getSelectedToggle() != null) {
                     	metric.setName(
-                    					group.getSelectedToggle().getUserData().toString());
+                    					group.getSelectedToggle().getUserData().toString()
+                    					);
                     
                     }
-                    
             }
-            );*/
+            });
+                    
         
         
 		return box;
