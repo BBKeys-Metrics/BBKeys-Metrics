@@ -12,7 +12,8 @@ import Metrics.MetricScore;
 
 public class ResultSetBuilder {
 	
-	public static Employee buildEmployee(ResultSet r) {
+	
+	public static Employee buildEmployee(ResultSet r, String id) {
 		try {
 			r.next();
 			ResultSetMetaData rsmd = r.getMetaData();
@@ -21,8 +22,7 @@ public class ResultSetBuilder {
 			for (int i = 1; i <= columns; i++) {
 				empData[i-1] = r.getString(i);
 			}
-			String name = empData[2];
-			String id = empData[1];
+			String name = empData[0] + " " + empData[1];
 			Set<MetricScore> scores = Model.getInstance().getMetricScores(id);
 			return new Employee(name, id, scores);
 		} catch (SQLException e) {
@@ -80,7 +80,7 @@ public class ResultSetBuilder {
 				for (int i = 1; i <= columns; i++) {
 					prefData[i-1] = r.getString(i);
 				}
-				Preference pref = new Preference(Controller.getInstance().getMetricByID(Integer.parseInt(prefData[1])),Boolean.getBoolean(prefData[2]));
+				Preference pref = new Preference(Controller.getInstance().getMetricByID(Integer.parseInt(prefData[0])),Boolean.getBoolean(prefData[1]));
 				prefs.add(pref);
 			}
 			return prefs;
