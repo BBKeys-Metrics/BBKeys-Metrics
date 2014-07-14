@@ -169,7 +169,7 @@ abstract class Frame{
 	}
 	
 	public TimeSpan convertStringToTimeSpan(String time) {
-		return TimeSpan.valueOf(time);
+		return TimeSpan.valueOf(time); 
 	}
 	
 	
