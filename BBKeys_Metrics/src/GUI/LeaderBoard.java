@@ -212,7 +212,7 @@ public class LeaderBoard extends Frame{
 		HBox scoreBox = new HBox();
 		
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
-		MetricScore topScore = getLeaderScore(metric, time, leaderRank);
+		MetricScore topScore = getLeaderScore(metric, time);
 		
 		Label score = new Label(((Double)(topScore.getValue())).toString());
 		

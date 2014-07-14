@@ -134,7 +134,7 @@ class Compare extends Frame{
 			metricTable.add(avgScore, 2, i+1);
 			
 			//Add top score
-			MetricScore topScore = getLeaderScore(m, time, 1);//TODO Should this have the '1' in it?
+			MetricScore topScore = getLeaderScore(m, time);//TODO Should this have the '1' in it?
 			Label tpScore = new Label(((Double)(topScore.getValue())).toString());
 			metricTable.add(tpScore, 3, i+1);
 			i++;

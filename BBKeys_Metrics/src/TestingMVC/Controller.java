@@ -105,7 +105,7 @@ public class Controller {
 	 * @param rank
 	 * @return MetricScore
 	 */
-	public MetricScore getTopScore(Metric metric, TimeSpan timeUnit) {
+	public MetricScore getLeaderScore(Metric metric, TimeSpan timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}

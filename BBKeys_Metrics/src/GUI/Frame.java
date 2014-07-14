@@ -157,8 +157,8 @@ abstract class Frame{
 	 * preferences)
 	 * @return MetricScore
 	 */
-	public MetricScore getLeaderScore(Metric metric, TimeSpan timeUnit, int rank){
-		MetricScore temp = Controller.getInstance().getTopScore(metric, timeUnit);
+	public MetricScore getLeaderScore(Metric metric, TimeSpan timeUnit){
+		MetricScore temp = Controller.getInstance().getLeaderScore(metric, timeUnit);
 		return temp;
 	}
 	
