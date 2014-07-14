@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import Metrics.Employee;
+import Metrics.Leader;
 import Metrics.Metric;
 import Metrics.MetricScore;
 import javafx.stage.Stage;
@@ -116,7 +117,7 @@ public class Controller {
 	 * @param metric
 	 * @return Employee List
 	 */
-	public List<Employee> getTopEmployees(Metric metric, TimeSpan timeUnit){
+	public List<Leader> getTopEmployees(Metric metric, TimeSpan timeUnit){
 		// TODO Auto-generated method stub
 		
 		return null;

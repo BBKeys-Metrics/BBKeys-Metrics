@@ -162,7 +162,7 @@ public class LeaderBoard extends Frame{
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		
 		//Get list of top employees
-		List<Employee> topEmployees = getTopEmployees(time, metric);
+		List<Leader> topEmployees = getTopEmployees(time, metric);
 		
 		for (int i = 0; i < topEmployees.size(); i++){
 			//Add each employee in a stack (horizontally)	
@@ -183,7 +183,7 @@ public class LeaderBoard extends Frame{
 	 * 4 indicates the fourth higheste employee, ect.
 	 * @return VBox
 	 */
-	private VBox formatLeaderScores(Employee employee){
+	private VBox formatLeaderScores(Leader employee){
 		VBox leaderBox = new VBox();
 		
 		Label empName;
@@ -194,7 +194,7 @@ public class LeaderBoard extends Frame{
 		empName = new Label(employee.getName());
 		//Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		
-		empScore = new Label(((Double)(employee.getScore(metric).getValue())).toString());
+		empScore = new Label(((Double)(employee.getScore().getValue())).toString());
 
 		empPic = new ImageView(employee.getPicture().getImage());
 			

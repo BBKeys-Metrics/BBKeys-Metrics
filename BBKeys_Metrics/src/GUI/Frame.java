@@ -162,8 +162,8 @@ abstract class Frame{
 		return temp;
 	}
 	
-	public List<Employee> getTopEmployees(TimeSpan timeUnit, Metric metric){
-		List<Employee> topEmployees = Controller.getInstance().getTopEmployees(metric, timeUnit);
+	public List<Leader> getTopEmployees(TimeSpan timeUnit, Metric metric){
+		List<Leader> topEmployees = Controller.getInstance().getTopEmployees(metric, timeUnit);
 
 		return topEmployees;
 	}
