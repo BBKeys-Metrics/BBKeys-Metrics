@@ -210,7 +210,7 @@ public class LeaderBoard extends Frame{
 	private HBox formatMetric(Metric metric, int leaderRank){
 		HBox scoreBox = new HBox();
 		
-		MetricScore topScore = getTopScore(metric, timeUnit.getValue(), leaderRank);
+		MetricScore topScore = getTopScore(metric, timeUnit.getValue());
 		Label score = new Label(((Double)(topScore.getValue())).toString());
 		
 		Label name = new Label(metric.getName());
