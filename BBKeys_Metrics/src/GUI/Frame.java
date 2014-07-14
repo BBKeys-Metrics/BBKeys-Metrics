@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 import TestingMVC.Controller;
+import TestingMVC.TimeSpan;
 import TestingMVC.View;
 import Metrics.*;
 
@@ -39,7 +40,7 @@ import Metrics.*;
 abstract class Frame{
 	//Public variables for use in sub-classes
 	public Scene scene;
-	public Set<Metric> metrics; //TODO: Change to type Metric OR GradeableItem???
+	public Set<Metric> metrics;
 	public Employee employee;
 	public int numTopEmployeesToShow = 5;
 	public ObservableList<String> timeUnits = 
@@ -47,8 +48,8 @@ abstract class Frame{
 		            "Day",
 		            "Week",
 		            "Month",
-		            "Six Months",
-		            "Year"
+		            "Year",
+		            "Ever"
 		        );
 	final ComboBox<String> timeUnit = new ComboBox<String>(timeUnits);
 	
@@ -125,7 +126,7 @@ abstract class Frame{
 	 * needs to be retrieved 
 	 * @return MetricScore
 	 */
-	public MetricScore getEmployeeMetricScore(Metric metric, String timeUnit){
+	public MetricScore getEmployeeMetricScore(Metric metric, TimeSpan timeUnit){
 		MetricScore temp = Controller.getInstance().getEmployeeScore(metric, timeUnit);
 		return temp;
 	}
@@ -139,7 +140,7 @@ abstract class Frame{
 	 * needs to be retrieved 
 	 * @return MetricScore
 	 */
-	public MetricScore getAverageScore(Metric metric, String timeUnit){
+	public MetricScore getAverageScore(Metric metric, TimeSpan timeUnit){
 		MetricScore temp = Controller.getInstance().getAverage(metric, timeUnit);
 		return temp;
 	}
@@ -156,15 +157,31 @@ abstract class Frame{
 	 * preferences)
 	 * @return MetricScore
 	 */
-	public MetricScore getTopScore(Metric metric, String timeUnit){
+	public MetricScore getLeaderScore(Metric metric, TimeSpan timeUnit, int rank){
 		MetricScore temp = Controller.getInstance().getTopScore(metric, timeUnit);
 		return temp;
 	}
 	
-	public List<Employee> getTopEmployees(String timeUnit, Metric metric){
-		List<Employee> topEmployees = Controller.getInstance().getTopEmployees(timeUnit, metric);
+	public List<Employee> getTopEmployees(TimeSpan timeUnit, Metric metric){
+		List<Employee> topEmployees = Controller.getInstance().getTopEmployees(metric, timeUnit);
 
 		return topEmployees;
+	}
+	
+	public TimeSpan convertStringToTimeSpan(String time) {
+		TimeSpan timespan;
+		if (time.equals("Day")) {
+			timespan = TimeSpan.DAY;
+		} else if (time.equals("Week")) {
+			timespan = TimeSpan.WEEK;
+		} else if (time.equals("Month")) {
+			timespan = TimeSpan.MONTH;
+		} else if (time.equals("Year")) {
+			timespan = TimeSpan.YEAR;
+		} else {
+			timespan = TimeSpan.EVER;
+		}
+		return timespan;
 	}
 	
 	

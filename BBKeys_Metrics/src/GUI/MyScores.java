@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 import Metrics.*;
 import TestingMVC.Controller;
+import TestingMVC.TimeSpan;
 
 
 /*
@@ -144,8 +145,8 @@ public class MyScores extends Frame{
 	 */
 	private VBox formatMetric(Metric metric){
 		VBox scoreBox = new VBox();
-		
-		MetricScore employeeScore = getEmployeeMetricScore(metric, timeUnit.getValue());
+		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
+		MetricScore employeeScore = getEmployeeMetricScore(metric, time);
 		Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		
 		Label name = new Label(metric.getName());
