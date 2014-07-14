@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
 import Metrics.*;
 import TestingMVC.Controller;
+import TestingMVC.TimeSpan;
 
 /**
  * Project: BBKeys-Metrics
@@ -120,19 +121,20 @@ class Compare extends Frame{
 			//Add the metric name
 			metricName = new Label(m.getName());
 			metricTable.add(metricName, 0, i+1);
+			TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		    
 			//Add employee's (current users) score
-			MetricScore employeeScore = getEmployeeMetricScore(m, timeUnit.getValue());
+			MetricScore employeeScore = getEmployeeMetricScore(m, time);
 			Label empScore = new Label(((Double)(employeeScore.getValue())).toString());
 			metricTable.add(empScore, 1, i+1);
 			
 			//Add average score
-			MetricScore averageScore = getAverageScore(m, timeUnit.getValue());
+			MetricScore averageScore = getAverageScore(m, time);
 			Label avgScore = new Label(((Double)(averageScore.getValue())).toString());
 			metricTable.add(avgScore, 2, i+1);
 			
 			//Add top score
-			MetricScore topScore = getTopScore(m, timeUnit.getValue(), 1);
+			MetricScore topScore = getLeaderScore(m, time, 1);//TODO Should this have the '1' in it?
 			Label tpScore = new Label(((Double)(topScore.getValue())).toString());
 			metricTable.add(tpScore, 3, i+1);
 			i++;

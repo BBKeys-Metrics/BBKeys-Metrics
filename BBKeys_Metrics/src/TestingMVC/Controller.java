@@ -80,7 +80,7 @@ public class Controller {
 	 * @param metric
 	 * @param timeUnit
 	 */
-	public MetricScore getEmployeeScore(Metric metric, String timeUnit) {
+	public MetricScore getEmployeeScore(Metric metric, TimeSpan timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -92,7 +92,7 @@ public class Controller {
 	 * @param timeUnit
 	 * @return MetricScore
 	 */
-	public MetricScore getAverage(Metric metric, String timeUnit) {
+	public MetricScore getAverage(Metric metric, TimeSpan timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -104,7 +104,7 @@ public class Controller {
 	 * @param rank
 	 * @return MetricScore
 	 */
-	public MetricScore getTopScore(Metric metric, String timeUnit) {
+	public MetricScore getTopScore(Metric metric, TimeSpan timeUnit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -115,7 +115,7 @@ public class Controller {
 	 * @param metric
 	 * @return Employee List
 	 */
-	public List<Employee> getTopEmployees(String timeUnit, Metric metric){
+	public List<Employee> getTopEmployees(Metric metric, TimeSpan timeUnit){
 		return null;
 	}
 

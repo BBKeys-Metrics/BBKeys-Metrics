@@ -1,6 +1,5 @@
 package GUI;
 
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,11 +10,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import Metrics.*;
 import TestingMVC.Controller;
+import TestingMVC.TimeSpan;
 
 /*
  * Project: BBKeys-Metrics
@@ -186,7 +185,9 @@ public class LeaderBoard extends Frame{
 		ImageView empPic;
 		
 		//Get the list of top employees
-		List<Employee> topEmployees = getTopEmployees( timeUnit.getValue(), metric);
+		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
+		
+		List<Employee> topEmployees = getTopEmployees( time, metric);
 		
 		for (int i = 0; i < topEmployees.size(); i++){
 			empName = new Label(topEmployees.get(i).getName());
@@ -210,7 +211,9 @@ public class LeaderBoard extends Frame{
 	private HBox formatMetric(Metric metric, int leaderRank){
 		HBox scoreBox = new HBox();
 		
-		MetricScore topScore = getTopScore(metric, timeUnit.getValue());
+		MetricScore topScore = getTopScore(timeUnit.getValue(), metric);
+		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
+		
 		Label score = new Label(((Double)(topScore.getValue())).toString());
 		
 		Label name = new Label(metric.getName());
