@@ -1,6 +1,7 @@
 package TestingMVC;
 
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ public class Controller {
 	private static final Controller instance = new Controller();
 	private Employee user;	
 	private int numToDisplay;
-	private Set<Metric> allMetrics;
+	private Set<Metric> allMetrics = new HashSet<Metric>();
 	
 	private Controller() {
 	};
@@ -116,6 +117,8 @@ public class Controller {
 	 * @return Employee List
 	 */
 	public List<Employee> getTopEmployees(Metric metric, TimeSpan timeUnit){
+		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
