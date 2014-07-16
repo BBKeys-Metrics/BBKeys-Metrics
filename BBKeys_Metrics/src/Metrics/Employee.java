@@ -31,14 +31,6 @@ public class Employee extends GradableItem{
 		this.id = id;
 	}
 	
-	public void setName(String name){
-		this.name= name;
-	}
-	
-	public String getName(){
-		return this.name;
-	}
-	
 	/**
 	 * Set the value of the picture for the Employee 
 	 * @param picture - the new value of the picture

@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="6" total="9" passed="3">
+<testng-results skipped="0" failed="6" total="7" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="619" started-at="2014-07-01T19:48:44Z" finished-at="2014-07-01T19:48:45Z">
+  <suite name="Default suite" duration-ms="1070" started-at="2014-07-16T18:03:09Z" finished-at="2014-07-16T18:03:10Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="619" started-at="2014-07-01T19:48:44Z" finished-at="2014-07-01T19:48:45Z">
-      <class name="Metrics.DatabaseConnectionTest">
-        <test-method status="PASS" signature="DatabaseConnection()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="DatabaseConnection" duration-ms="466" started-at="2014-07-01T13:48:44Z" finished-at="2014-07-01T13:48:45Z">
+    <test name="Default test" duration-ms="1070" started-at="2014-07-16T18:03:09Z" finished-at="2014-07-16T18:03:10Z">
+      <class name="TestingMVC.ResultSetBuilderTest">
+        <test-method status="PASS" signature="buildEmployee()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildEmployee" duration-ms="1043" started-at="2014-07-16T12:03:09Z" finished-at="2014-07-16T12:03:10Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- DatabaseConnection -->
-        <test-method status="PASS" signature="executeQuery()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="executeQuery" duration-ms="74" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- executeQuery -->
-        <test-method status="PASS" signature="executeQueryAndDisplayResults()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="executeQueryAndDisplayResults" duration-ms="45" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- executeQueryAndDisplayResults -->
-        <test-method status="FAIL" signature="executeQueryWithoutResult()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="executeQueryWithoutResult" duration-ms="1" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
+        </test-method> <!-- buildEmployee -->
+        <test-method status="FAIL" signature="buildID()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildID" duration-ms="1" started-at="2014-07-16T12:03:10Z" finished-at="2014-07-16T12:03:10Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at Metrics.DatabaseConnectionTest.executeQueryWithoutResult(DatabaseConnectionTest.java:41)
+	at TestingMVC.ResultSetBuilderTest.buildID(ResultSetBuilderTest.java:30)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -56,15 +48,15 @@
           </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- executeQueryWithoutResult -->
-        <test-method status="FAIL" signature="executeUpdate()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="executeUpdate" duration-ms="0" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
+        </test-method> <!-- buildID -->
+        <test-method status="FAIL" signature="buildMetric()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetric" duration-ms="1" started-at="2014-07-16T12:03:10Z" finished-at="2014-07-16T12:03:10Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at Metrics.DatabaseConnectionTest.executeUpdate(DatabaseConnectionTest.java:46)
+	at TestingMVC.ResultSetBuilderTest.buildMetric(ResultSetBuilderTest.java:35)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -94,15 +86,15 @@
           </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- executeUpdate -->
-        <test-method status="FAIL" signature="getConnection()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="getConnection" duration-ms="0" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
+        </test-method> <!-- buildMetric -->
+        <test-method status="FAIL" signature="buildMetricScores()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetricScores" duration-ms="1" started-at="2014-07-16T12:03:10Z" finished-at="2014-07-16T12:03:10Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at Metrics.DatabaseConnectionTest.getConnection(DatabaseConnectionTest.java:51)
+	at TestingMVC.ResultSetBuilderTest.buildMetricScores(ResultSetBuilderTest.java:40)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -132,15 +124,15 @@
           </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getConnection -->
-        <test-method status="FAIL" signature="getInstance()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="getInstance" duration-ms="1" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
+        </test-method> <!-- buildMetricScores -->
+        <test-method status="FAIL" signature="buildMetrics()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetrics" duration-ms="1" started-at="2014-07-16T12:03:10Z" finished-at="2014-07-16T12:03:10Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at Metrics.DatabaseConnectionTest.getInstance(DatabaseConnectionTest.java:56)
+	at TestingMVC.ResultSetBuilderTest.buildMetrics(ResultSetBuilderTest.java:45)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -170,15 +162,15 @@
           </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getInstance -->
-        <test-method status="FAIL" signature="getResultSet()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="getResultSet" duration-ms="0" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
+        </test-method> <!-- buildMetrics -->
+        <test-method status="FAIL" signature="buildPreferences()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildPreferences" duration-ms="0" started-at="2014-07-16T12:03:10Z" finished-at="2014-07-16T12:03:10Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at Metrics.DatabaseConnectionTest.getResultSet(DatabaseConnectionTest.java:61)
+	at TestingMVC.ResultSetBuilderTest.buildPreferences(ResultSetBuilderTest.java:50)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -208,15 +200,15 @@
           </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getResultSet -->
-        <test-method status="FAIL" signature="setUpConnection()[pri:0, instance:Metrics.DatabaseConnectionTest@5a42bbf4]" name="setUpConnection" duration-ms="5" started-at="2014-07-01T13:48:45Z" finished-at="2014-07-01T13:48:45Z">
+        </test-method> <!-- buildPreferences -->
+        <test-method status="FAIL" signature="buildShowLeaderCount()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildShowLeaderCount" duration-ms="1" started-at="2014-07-16T12:03:10Z" finished-at="2014-07-16T12:03:10Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at Metrics.DatabaseConnectionTest.setUpConnection(DatabaseConnectionTest.java:66)
+	at TestingMVC.ResultSetBuilderTest.buildShowLeaderCount(ResultSetBuilderTest.java:55)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -246,8 +238,8 @@
           </exception> <!-- java.lang.RuntimeException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUpConnection -->
-      </class> <!-- Metrics.DatabaseConnectionTest -->
+        </test-method> <!-- buildShowLeaderCount -->
+      </class> <!-- TestingMVC.ResultSetBuilderTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

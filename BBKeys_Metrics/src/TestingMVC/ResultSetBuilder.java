@@ -24,8 +24,9 @@ public class ResultSetBuilder {
 				empData[i-1] = r.getString(i);
 			}
 			String name = empData[0] + " " + empData[1];
-			Set<MetricScore> scores = Model.getInstance().getMetricScores(id);
-			return new Employee(name, id, scores);
+			System.out.println(name);
+			//Set<MetricScore> scores = Model.getInstance().getMetricScores(id);
+			return new Employee(name, id, null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

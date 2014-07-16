@@ -3,16 +3,16 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Metrics.DatabaseConnectionTest">
+      <class name="TestingMVC.ResultSetBuilderTest">
         <methods>
-          <include name="executeQueryWithoutResult"/>
-          <include name="executeUpdate"/>
-          <include name="getInstance"/>
-          <include name="setUpConnection"/>
-          <include name="getResultSet"/>
-          <include name="getConnection"/>
+          <include name="buildPreferences"/>
+          <include name="buildMetricScores"/>
+          <include name="buildID"/>
+          <include name="buildMetric"/>
+          <include name="buildMetrics"/>
+          <include name="buildShowLeaderCount"/>
         </methods>
-      </class> <!-- Metrics.DatabaseConnectionTest -->
+      </class> <!-- TestingMVC.ResultSetBuilderTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
