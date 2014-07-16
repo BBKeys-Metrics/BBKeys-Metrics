@@ -75,11 +75,6 @@ public class ResultSetBuilder {
 		//"Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'"
 		try {
 			r.next();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
 			Metric m = new Metric(r.getString(2), r.getDouble(3), r.getInt(4), r.getString(5), r.getInt(1));
 			return m;
 		} catch (SQLException e) {
@@ -166,6 +161,12 @@ public class ResultSetBuilder {
 		return null;
 	}
 
+	/**
+	 * Builds the list of leaders for a specific metric
+	 * @param r
+	 * @param metricID
+	 * @return Lisst<Leader>
+	 */
 	public static List<Leader> buildTopLeaders(ResultSet r, int metricID) {
 		// Select TOP(" + String.valueOf(Controller.getInstance().getNumToDisplay()) + ") Peep_First_Name, Peep_Last_Name, employeeID, score_avg from Metrics.dbo.people_scores_" + view + "values WHERE metricID = " + String.valueOf(metric.getID()) + " order by score_avg " + sortType
 		List<Leader> leaders = new ArrayList<Leader>();
