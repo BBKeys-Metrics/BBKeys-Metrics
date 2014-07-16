@@ -16,6 +16,13 @@ public class Register extends Thread {
 	private RegisterGUI register;
 	private Text actiontarget;
 	
+	/**
+	 * Constructor
+	 * @param userID
+	 * @param username
+	 * @param password
+	 * @param confirmPassword
+	 */
 	public Register(String userID, String username, String password, String confirmPassword) {
 		this.userID = userID;
 		this.username = username;
@@ -25,6 +32,10 @@ public class Register extends Thread {
 		actiontarget = register.getActionTarget();
 	}
 
+	/**
+	 * Checks to make sure that all fields are valid.
+	 * Adds the new user to the database if all fields are valid.
+	 */
     @Override
     public void run() {
     	boolean fieldsBlank = true;
