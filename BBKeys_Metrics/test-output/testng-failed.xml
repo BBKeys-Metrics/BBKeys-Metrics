@@ -7,7 +7,6 @@
         <methods>
           <include name="buildPreferences"/>
           <include name="buildMetricScores"/>
-          <include name="buildID"/>
           <include name="buildMetric"/>
           <include name="buildMetrics"/>
           <include name="buildShowLeaderCount"/>
