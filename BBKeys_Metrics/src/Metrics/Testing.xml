@@ -5,6 +5,7 @@
 <class name="Metrics.GradableItemTest"/>
 <class name="Metrics.MetricTest"/>
 <class name="Metrics.UserTest"/>
+<class name="TestingMVC.ResultSetBuilderTest"/>
 </classes>
 </test> <!-- Test -->
 </suite> <!-- Suite -->
