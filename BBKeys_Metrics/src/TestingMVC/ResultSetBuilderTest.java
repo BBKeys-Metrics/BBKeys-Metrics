@@ -17,7 +17,7 @@ public class ResultSetBuilderTest {
 	Employee testEmployee = ResultSetBuilder.buildEmployee(r, "1");
 	String name = testEmployee.getName();
 	String id = testEmployee.getID();
-	EmployeePic pic = testEmployee.getPicture();
+	EmployeePic pic = testEmployee.getPicture(); 
 	
 	Assert.assertEquals(name, "Shane Herd");
 	Assert.assertEquals(id, "1");
