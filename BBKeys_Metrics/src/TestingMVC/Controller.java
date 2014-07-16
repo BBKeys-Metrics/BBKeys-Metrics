@@ -17,28 +17,49 @@ public class Controller {
 	private int numToDisplay;
 	private Set<Metric> allMetrics = new HashSet<Metric>();
 	
+	/**
+	 * default constructor
+	 */
 	private Controller() {
 	};
 	
+	/**
+	 * Gets the instance of the class
+	 * @return Controller
+	 */
 	public static Controller getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * Gets the Employee object of the current user
+	 * @return Employee
+	 */
 	public Employee getEmployee(){
 		return user;
 	}
 	
+	/**
+	 * Gets everything set up and then sets the stage
+	 * @param primaryStage
+	 */
 	public void initialize(Stage primaryStage) {
 		getSettings();
 		View.getInstance().start(primaryStage);
 	}
 	
+	/**
+	 * Get the number of people to display in the leaderboard
+	 */
 	private void getSettings() {
-		//TODO: load settings from somewhere.
-		//Location of database, first view, etc.
 		numToDisplay = Model.getInstance().getSettings();
 	}
 	
+	/**
+	 * 
+	 * @param ID
+	 * @return
+	 */
 	public Metric getMetricByID(int ID) {
 		if (allMetrics.isEmpty()) {
 			allMetrics = Model.getInstance().getMetrics();
