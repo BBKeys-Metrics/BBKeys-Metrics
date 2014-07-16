@@ -1,8 +1,10 @@
 package TestingMVC;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -96,7 +98,33 @@ public class ResultSetBuilder {
 	}
 
 	public static Set<Metric> buildMetrics(ResultSet r) {
+		//"Select * from Metrics.DBO.Metrics"
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public static Set<MetricScore> buildMetricScores(ResultSet r) {
+		//"Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '" + id + "'"
+		// TODO Auto-generated method stub
+		Set<MetricScore> scores = new HashSet<MetricScore>();
+		try {
+			while (r.next()) {
+				ResultSetMetaData rsmd = r.getMetaData();
+				int columns = rsmd.getColumnCount(); 
+				String[] scoreData = new String[columns];
+				for (int i = 1; i <= columns; i++) {
+					scoreData[i-1] = r.getString(i);
+				}
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(r.getDate(3));
+				MetricScore data = new MetricScore(Model.getInstance().getMetricByID(Integer.parseInt(scoreData[0])),Double.parseDouble(scoreData[1]), cal);
+				scores.add(data);
+			}
+			return scores;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

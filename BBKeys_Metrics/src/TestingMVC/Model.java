@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,26 +29,36 @@ public class Model {
 	}
 	
 	public Employee getEmployeeByID(String empID) {
-		if (!fakeDatabase)
-			return ResultSetBuilder.buildEmployee(DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'"), empID);
-		else
-			//TODO
-			return null;
+		if (!fakeDatabase) {
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
+			return ResultSetBuilder.buildEmployee(r, empID);
+		} else {
+			return new Employee("FakeName", empID, getMetricScores(empID));
+		}
 	}
 	
 	public String getEmployeeIDByUsername(String username) {
 		if (!fakeDatabase) {
-			//TODO fill this in...
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'");
 			return ResultSetBuilder.buildID(r);
 		} else {
-			return null;
+			return "FakeID";
 		}
 	}
 	
 	public Set<MetricScore> getMetricScores(String id) {
-		//TODO
-		return null;
+		if (!fakeDatabase) {
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '" + id + "'");
+			return ResultSetBuilder.buildMetricScores(r);
+		} else {
+			Set<MetricScore> set = new HashSet<MetricScore>();
+			Set<Metric> metrics = Controller.getInstance().getMetrics();
+			for (Metric m : metrics) {
+				set.add(new MetricScore(m, Math.random() * 100, Calendar.getInstance()));
+				set.add(new MetricScore(m, Math.random() * 100, Calendar.getInstance()));
+			}
+			return set;
+		}
 	}
 	
 	public Set<Preference> getPreferences(Employee employee) {
@@ -55,8 +66,11 @@ public class Model {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
 			return ResultSetBuilder.buildPreferences(r);
 		} else {
-			//TODO
-			return new HashSet<Preference>();
+			Set<Preference> prefs = new HashSet<Preference>();
+			Set<Metric> metrics = Controller.getInstance().getMetrics();
+			for (Metric m : metrics)
+				prefs.add(new Preference(m, Math.random() > 0.5));
+			return prefs;
 		}
 	}
 	
@@ -66,12 +80,10 @@ public class Model {
 	 */
 	public int getSettings() {
 		if (!fakeDatabase) {
-			//TODO fill this in...
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
 			return ResultSetBuilder.buildShowLeaderCount(r);
 		} else {
-			//TODO
-			return 0;
+			return 3;
 		}
 	}
 	
@@ -278,7 +290,7 @@ public class Model {
 		}
 		else
 			//TODO
-			return new Metric("NoDatabaseMetric", .5, 2, "ShouldHaveEnum", metricID);
+			return new Metric("FakeMetric", .5, 2, "ShouldHaveEnum", metricID);
 	}
 
 	public Set<Metric> getMetrics() {
@@ -287,13 +299,10 @@ public class Model {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * from Metrics.DBO.Metrics");
 			return ResultSetBuilder.buildMetrics(r);
 		} else {
-			Metric speed = new Metric("Speed", 0, 0, "Low", 0);
-			Metric accuracy = new Metric("Accuracy", 0, 0, "High", 1);
-			Metric helpfulness = new Metric("Helpfulness", 0, 0, "High", 2);
 			Set<Metric> metrics = new HashSet<Metric>();
-			metrics.add(speed);
-			metrics.add(accuracy);
-			metrics.add(helpfulness);
+			metrics.add(new Metric("Speed", 0, 0, "Low", 0));
+			metrics.add(new Metric("Accuracy", 0, 0, "High", 1));
+			metrics.add(new Metric("Helpfulness", 0, 0, "High", 2));
 			return metrics;
 		}
 	}
