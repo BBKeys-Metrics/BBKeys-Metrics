@@ -1,6 +1,5 @@
 package TestingMVC;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -47,7 +46,6 @@ public class ResultSetBuilder {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 	
@@ -93,23 +91,36 @@ public class ResultSetBuilder {
 	}
 	
 	public static int buildShowLeaderCount(ResultSet r) {
-		//TODO
+		//"Select numToShowInLeaderboard from Settings"
+		try {
+			r.next();
+			return r.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	public static Set<Metric> buildMetrics(ResultSet r) {
-		//"Select * from Metrics.DBO.Metrics"
-		// TODO Auto-generated method stub
+		//"Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics"
+		Set<Metric> metrics = new HashSet<Metric>();
+		try {
+			while (r.next()) {
+				Metric data = new Metric(r.getString(2), r.getDouble(3), r.getInt(4), r.getString(5), r.getInt(1));
+				metrics.add(data);
+			}
+			return metrics;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	public static Set<MetricScore> buildMetricScores(ResultSet r) {
 		//"Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '" + id + "'"
-		// TODO Auto-generated method stub
 		Set<MetricScore> scores = new HashSet<MetricScore>();
 		try {
 			while (r.next()) {
-				ResultSetMetaData rsmd = r.getMetaData(); 
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(r.getDate(3));
 				MetricScore data = new MetricScore(Model.getInstance().getMetricByID(Integer.parseInt(r.getString(1))),Double.parseDouble(r.getString(2)), cal);

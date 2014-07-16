@@ -296,7 +296,7 @@ public class Model {
 	public Set<Metric> getMetrics() {
 		if (!fakeDatabase) {
 			//TODO fill this in...
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * from Metrics.DBO.Metrics");
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics");
 			return ResultSetBuilder.buildMetrics(r);
 		} else {
 			Set<Metric> metrics = new HashSet<Metric>();
