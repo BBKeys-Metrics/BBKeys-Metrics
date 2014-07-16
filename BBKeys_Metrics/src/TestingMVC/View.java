@@ -8,13 +8,23 @@ public class View extends Application{
 	private static final View instance = new View();
 	private static Stage theStage;
 	
+	/**
+	 * Default Constructor
+	 */
 	private View() {
 	}
 	
+	/**
+	 * Getter method which returns the single instance of the View object
+	 * @return View
+	 */
 	public static View getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * Start method which launches the window
+	 */
 	public void start(Stage primaryStage) {
 		theStage = primaryStage;
 		theStage.setMinWidth(500);
@@ -27,8 +37,11 @@ public class View extends Application{
 		theStage.show();
 	}
 	
+	/**
+	 * Setter method which changes the current scene to the new scene passed in as a parameter
+	 * @param newScene
+	 */
 	public void setScene(Scene newScene) {
 		theStage.setScene(newScene);
 	}
-
 }
