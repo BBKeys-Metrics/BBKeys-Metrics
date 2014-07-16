@@ -18,6 +18,11 @@ public class Login extends Thread{
 	private LoginGUI loginGUI;
 	private Text actiontarget;
 	
+	/**
+	 * Constructor
+	 * @param username
+	 * @param password
+	 */
 	public Login(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -25,6 +30,11 @@ public class Login extends Thread{
 		actiontarget = loginGUI.getActionTarget();
 	}
 	
+	/**
+	 * Checks to see if the login credentials are valid.
+	 * Sets the current user.
+	 * Redirects to the next page.
+	 */
 	@Override
 	public void run() {
 		boolean fieldsBlank = true;
