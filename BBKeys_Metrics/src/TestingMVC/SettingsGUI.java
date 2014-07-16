@@ -18,13 +18,21 @@ final public class SettingsGUI {
 	private static SettingsGUI instance = new SettingsGUI();
 	private static Text actiontarget;
 	
+	/**
+	 * Default Constructor
+	 */
 	private SettingsGUI() {
 		
 	}
 	
+	/**
+	 * Getter method which returns the error message object
+	 * @return Text
+	 */
 	public Text getActionTarget() {
 		return actiontarget;
 	}
+	
 	/**
 	 * getter method which returns the static instance of this class
 	 * @return
