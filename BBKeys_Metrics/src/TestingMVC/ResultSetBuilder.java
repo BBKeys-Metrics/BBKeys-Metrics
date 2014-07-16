@@ -109,15 +109,10 @@ public class ResultSetBuilder {
 		Set<MetricScore> scores = new HashSet<MetricScore>();
 		try {
 			while (r.next()) {
-				ResultSetMetaData rsmd = r.getMetaData();
-				int columns = rsmd.getColumnCount(); 
-				String[] scoreData = new String[columns];
-				for (int i = 1; i <= columns; i++) {
-					scoreData[i-1] = r.getString(i);
-				}
+				ResultSetMetaData rsmd = r.getMetaData(); 
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(r.getDate(3));
-				MetricScore data = new MetricScore(Model.getInstance().getMetricByID(Integer.parseInt(scoreData[0])),Double.parseDouble(scoreData[1]), cal);
+				MetricScore data = new MetricScore(Model.getInstance().getMetricByID(Integer.parseInt(r.getString(1))),Double.parseDouble(r.getString(2)), cal);
 				scores.add(data);
 			}
 			return scores;
