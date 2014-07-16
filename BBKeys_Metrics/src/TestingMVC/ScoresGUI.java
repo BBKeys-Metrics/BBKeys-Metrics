@@ -26,7 +26,7 @@ public class ScoresGUI {
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				Employee employee = Controller.getInstance().getEmployee();
-				Set<Preference> prefs = Model.getInstance().getPreferences(employee);
+				Set<Preference> prefs = Model.getInstance().getPreferences(employee, employee.getID());
 				if (prefs != null) {
 					Platform.runLater(new Runnable() {
 						public void run() {

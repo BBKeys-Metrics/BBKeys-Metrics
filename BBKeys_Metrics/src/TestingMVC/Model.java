@@ -61,9 +61,9 @@ public class Model {
 		}
 	}
 	
-	public Set<Preference> getPreferences(Employee employee) {
+	public Set<Preference> getPreferences(Employee employee, String employeeID) {
 		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Prefernces");
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Preferences  where employeeID = '" + employeeID + "'");
 			return ResultSetBuilder.buildPreferences(r);
 		} else {
 			Set<Preference> prefs = new HashSet<Preference>();

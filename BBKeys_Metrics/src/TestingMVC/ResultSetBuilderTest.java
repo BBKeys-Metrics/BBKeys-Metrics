@@ -95,13 +95,26 @@ public class ResultSetBuilderTest {
 
   @Test
   public void buildPreferences() {
-	//ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Prefernces");
-	//ResultSetBuilder.buildPreferences(r);
-    throw new RuntimeException("Test not implemented");
+	ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Preferences where employeeID = '1'");
+	Set<Preference> prefs = ResultSetBuilder.buildPreferences(r);
+	
+	System.out.println("buildPreferences");
+	
+	for (Preference pref : prefs) {
+		int id = pref.getMetric().getID();
+		boolean display = pref.getDisplay();
+		
+		System.out.println(String.valueOf(id));
+		System.out.println(String.valueOf(display));
+		System.out.println();
+	}
   }
 
   @Test
   public void buildShowLeaderCount() {
-    throw new RuntimeException("Test not implemented");
+	ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+	int count = ResultSetBuilder.buildShowLeaderCount(r);
+	
+	Assert.assertEquals(count, 4);
   }
 }

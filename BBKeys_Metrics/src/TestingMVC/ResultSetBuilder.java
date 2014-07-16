@@ -13,7 +13,12 @@ import Metrics.MetricScore;
 
 public class ResultSetBuilder {
 	
-	
+	/**
+	 * Builds a single employee. Sets up the employee name, id, and metric scores
+	 * @param r
+	 * @param id
+	 * @return Employee
+	 */
 	public static Employee buildEmployee(ResultSet r, String id) {
 		//"Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'"
 		try {
@@ -26,14 +31,19 @@ public class ResultSetBuilder {
 			}
 			String name = empData[0] + " " + empData[1];
 			System.out.println(name);
-			//Set<MetricScore> scores = Model.getInstance().getMetricScores(id);
-			return new Employee(name, id, null);
+			Set<MetricScore> scores = Model.getInstance().getMetricScores(id);
+			return new Employee(name, id, scores);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
+	/**
+	 * Gets the employee id based on employee username
+	 * @param r
+	 * @return String
+	 */
 	public static String buildID(ResultSet r) {
 		//"Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'"
 		try {
@@ -52,6 +62,11 @@ public class ResultSetBuilder {
 		return null;
 	}
 	
+	/**
+	 * Builds a single Metric based on metric id
+	 * @param r
+	 * @return Metric
+	 */
 	public static Metric buildMetric(ResultSet r) {
 		//"Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'"
 		try {
@@ -69,6 +84,11 @@ public class ResultSetBuilder {
 		return null;
 	}
 	
+	/**
+	 * Builds the Set of preferences for the specified user
+	 * @param r
+	 * @return Set<Preference>
+	 */
 	public static Set<Preference> buildPreferences(ResultSet r) {
 		//"Select metricID, display from Metrics.dbo.Prefernces"
 		Set<Preference> prefs = new HashSet<Preference>();
@@ -84,6 +104,11 @@ public class ResultSetBuilder {
 		return null;
 	}
 	
+	/**
+	 * Gets the number to show in the leaderboard
+	 * @param r
+	 * @return int
+	 */
 	public static int buildShowLeaderCount(ResultSet r) {
 		//"Select numToShowInLeaderboard from Settings"
 		try {
@@ -95,6 +120,11 @@ public class ResultSetBuilder {
 		return 0;
 	}
 
+	/**
+	 * Builds all of the Metrics that are available
+	 * @param r
+	 * @return Set<Metric>
+	 */
 	public static Set<Metric> buildMetrics(ResultSet r) {
 		//"Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics"
 		Set<Metric> metrics = new HashSet<Metric>();
@@ -110,6 +140,11 @@ public class ResultSetBuilder {
 		return null;
 	}
 
+	/**
+	 * Builds all of the Metric Scores for the specified employee and returns the Metric Scores as a Set
+	 * @param r
+	 * @return Set<MetricScore>
+	 */
 	public static Set<MetricScore> buildMetricScores(ResultSet r) {
 		//"Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '" + id + "'"
 		Set<MetricScore> scores = new HashSet<MetricScore>();
