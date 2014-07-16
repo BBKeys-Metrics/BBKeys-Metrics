@@ -9,11 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-/**
- * 
- * @author Shane
- *
- */
 public class DatabaseConnection {
 	private static DatabaseConnection instance = new DatabaseConnection();
 	private String host;
@@ -35,6 +30,9 @@ public class DatabaseConnection {
 		return con;
 	}
 	
+	/**
+	 * private Constructor
+	 */
 	private DatabaseConnection() {
 		instance = this;
 		Properties properties = new Properties();
@@ -56,7 +54,7 @@ public class DatabaseConnection {
 	}
 	
 	/**
-	 * Sets up the database connection
+	 * Sets up the database connection based on the database.properties file
 	 * @return void
 	 */
 	private void setUpConnection() {
@@ -79,6 +77,14 @@ public class DatabaseConnection {
 		} 
 	}
 	
+	/**
+	 * Sets up the database connection with the parameters passed
+	 * @param host
+	 * @param port
+	 * @param database
+	 * @param username
+	 * @param password
+	 */
 	public void setUpConnection(String host, String port, String database, String username, String password) {
 		try {
 			//check to see if the required driver is installed
@@ -173,6 +179,10 @@ public class DatabaseConnection {
 		return r;
 	}
 
+	/**
+	 * Getter method which returns the instance of the DatabaseConnection object
+	 * @return DatabaseConnection
+	 */
 	public static DatabaseConnection getInstance() {
 		return instance;
 	}
