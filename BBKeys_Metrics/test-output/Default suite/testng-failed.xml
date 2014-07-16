@@ -6,9 +6,6 @@
       <class name="TestingMVC.ResultSetBuilderTest">
         <methods>
           <include name="buildPreferences"/>
-          <include name="buildMetricScores"/>
-          <include name="buildMetric"/>
-          <include name="buildMetrics"/>
           <include name="buildShowLeaderCount"/>
         </methods>
       </class> <!-- TestingMVC.ResultSetBuilderTest -->

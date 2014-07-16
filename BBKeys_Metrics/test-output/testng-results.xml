@@ -1,139 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="5" total="7" passed="2">
+<testng-results skipped="0" failed="2" total="7" passed="5">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1052" started-at="2014-07-16T18:14:02Z" finished-at="2014-07-16T18:14:03Z">
+  <suite name="Default suite" duration-ms="1170" started-at="2014-07-16T18:52:19Z" finished-at="2014-07-16T18:52:20Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1052" started-at="2014-07-16T18:14:02Z" finished-at="2014-07-16T18:14:03Z">
+    <test name="Default test" duration-ms="1170" started-at="2014-07-16T18:52:19Z" finished-at="2014-07-16T18:52:20Z">
       <class name="TestingMVC.ResultSetBuilderTest">
-        <test-method status="PASS" signature="buildEmployee()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildEmployee" duration-ms="1012" started-at="2014-07-16T12:14:02Z" finished-at="2014-07-16T12:14:03Z">
+        <test-method status="PASS" signature="buildEmployee()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildEmployee" duration-ms="1101" started-at="2014-07-16T12:52:19Z" finished-at="2014-07-16T12:52:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildEmployee -->
-        <test-method status="PASS" signature="buildID()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildID" duration-ms="1" started-at="2014-07-16T12:14:03Z" finished-at="2014-07-16T12:14:03Z">
+        <test-method status="PASS" signature="buildID()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildID" duration-ms="1" started-at="2014-07-16T12:52:20Z" finished-at="2014-07-16T12:52:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildID -->
-        <test-method status="FAIL" signature="buildMetric()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetric" duration-ms="8" started-at="2014-07-16T12:14:03Z" finished-at="2014-07-16T12:14:03Z">
-          <exception class="java.lang.NullPointerException">
-            <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at TestingMVC.ResultSetBuilderTest.buildMetric(ResultSetBuilderTest.java:39)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+        <test-method status="PASS" signature="buildMetric()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetric" duration-ms="2" started-at="2014-07-16T12:52:20Z" finished-at="2014-07-16T12:52:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildMetric -->
-        <test-method status="FAIL" signature="buildMetricScores()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetricScores" duration-ms="8" started-at="2014-07-16T12:14:03Z" finished-at="2014-07-16T12:14:03Z">
-          <exception class="java.lang.RuntimeException">
-            <message>
-              <![CDATA[Test not implemented]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: Test not implemented
-	at TestingMVC.ResultSetBuilderTest.buildMetricScores(ResultSetBuilderTest.java:54)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.RuntimeException -->
+        <test-method status="PASS" signature="buildMetricScores()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetricScores" duration-ms="36" started-at="2014-07-16T12:52:20Z" finished-at="2014-07-16T12:52:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildMetricScores -->
-        <test-method status="FAIL" signature="buildMetrics()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetrics" duration-ms="1" started-at="2014-07-16T12:14:03Z" finished-at="2014-07-16T12:14:03Z">
-          <exception class="java.lang.RuntimeException">
-            <message>
-              <![CDATA[Test not implemented]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: Test not implemented
-	at TestingMVC.ResultSetBuilderTest.buildMetrics(ResultSetBuilderTest.java:59)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.RuntimeException -->
+        <test-method status="PASS" signature="buildMetrics()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetrics" duration-ms="3" started-at="2014-07-16T12:52:20Z" finished-at="2014-07-16T12:52:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildMetrics -->
-        <test-method status="FAIL" signature="buildPreferences()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildPreferences" duration-ms="1" started-at="2014-07-16T12:14:03Z" finished-at="2014-07-16T12:14:03Z">
+        <test-method status="FAIL" signature="buildPreferences()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildPreferences" duration-ms="1" started-at="2014-07-16T12:52:20Z" finished-at="2014-07-16T12:52:20Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at TestingMVC.ResultSetBuilderTest.buildPreferences(ResultSetBuilderTest.java:64)
+	at TestingMVC.ResultSetBuilderTest.buildPreferences(ResultSetBuilderTest.java:100)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -164,14 +65,14 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildPreferences -->
-        <test-method status="FAIL" signature="buildShowLeaderCount()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildShowLeaderCount" duration-ms="0" started-at="2014-07-16T12:14:03Z" finished-at="2014-07-16T12:14:03Z">
+        <test-method status="FAIL" signature="buildShowLeaderCount()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildShowLeaderCount" duration-ms="1" started-at="2014-07-16T12:52:20Z" finished-at="2014-07-16T12:52:20Z">
           <exception class="java.lang.RuntimeException">
             <message>
               <![CDATA[Test not implemented]]>
             </message>
             <full-stacktrace>
               <![CDATA[java.lang.RuntimeException: Test not implemented
-	at TestingMVC.ResultSetBuilderTest.buildShowLeaderCount(ResultSetBuilderTest.java:69)
+	at TestingMVC.ResultSetBuilderTest.buildShowLeaderCount(ResultSetBuilderTest.java:105)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)

@@ -55,6 +55,12 @@ public class ResultSetBuilder {
 	public static Metric buildMetric(ResultSet r) {
 		//"Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'"
 		try {
+			r.next();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 			Metric m = new Metric(r.getString(2), r.getDouble(3), r.getInt(4), r.getString(5), r.getInt(1));
 			return m;
 		} catch (SQLException e) {

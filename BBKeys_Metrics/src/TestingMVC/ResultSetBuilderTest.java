@@ -1,6 +1,8 @@
 package TestingMVC;
 
 import java.sql.ResultSet;
+import java.util.Calendar;
+import java.util.Set;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +11,7 @@ import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.EmployeePic;
 import Metrics.Metric;
+import Metrics.MetricScore;
 
 public class ResultSetBuilderTest {
 
@@ -46,21 +49,54 @@ public class ResultSetBuilderTest {
 	  Assert.assertEquals(name, "CreditsCompleted");
 	  Assert.assertEquals(precision, 0);
 	  Assert.assertEquals(sortType, "4");
-	  Assert.assertEquals(weight, 1);
+	  Assert.assertEquals(weight, 1.0);
   }
 
   @Test
   public void buildMetricScores() {
-    throw new RuntimeException("Test not implemented");
+	ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '1'");
+	Set<MetricScore> scores = ResultSetBuilder.buildMetricScores(r);
+	
+	for (MetricScore score : scores) {
+		String name = score.getMetric().getName();
+		double value = score.getValue();
+		Calendar date = score.getDate();
+		int id = score.getMetric().getID();
+		
+		
+		System.out.println(id);
+		System.out.println(String.valueOf(date.get(Calendar.YEAR)) + "-" + String.valueOf(date.get(Calendar.MONTH) + 1) + "-" + String.valueOf(date.get(Calendar.DAY_OF_MONTH)));
+		System.out.println(String.valueOf(value));
+		System.out.println();
+		
+	}
   }
 
   @Test
   public void buildMetrics() {
-    throw new RuntimeException("Test not implemented");
+	ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics");
+	Set<Metric> metrics = ResultSetBuilder.buildMetrics(r);
+	
+	for (Metric metric : metrics) {
+		int id = metric.getID();
+		String name = metric.getName();
+		int precision = metric.getPrecision();
+		String sortType = metric.getSortType();
+		double weight = metric.getWeight();
+		
+		System.out.println(String.valueOf(id));
+		System.out.println(name);
+		System.out.println(String.valueOf(precision));
+		System.out.println(sortType);
+		System.out.println(String.valueOf(weight));
+		System.out.println();
+	}
   }
 
   @Test
   public void buildPreferences() {
+	//ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Prefernces");
+	//ResultSetBuilder.buildPreferences(r);
     throw new RuntimeException("Test not implemented");
   }
 
