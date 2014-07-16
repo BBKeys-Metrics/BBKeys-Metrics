@@ -14,7 +14,15 @@ public class InitializeSettings extends Thread{
 	private TextField database;
 	private TextField user;
 	private PasswordField password;
-	
+
+	/**
+	 * Constructor
+	 * @param host
+	 * @param port
+	 * @param database
+	 * @param user
+	 * @param password
+	 */
 	public InitializeSettings(TextField host, TextField port, TextField database, TextField user, PasswordField password) {
 		this.host = host;
 		this.port = port;
@@ -23,6 +31,10 @@ public class InitializeSettings extends Thread{
 		this.password = password;
 	}
 	
+	/**
+	 * This method reads in the databaseConnection.properties file and sets the text fields
+	 * equal to these values so that the user can see what settings are already saved
+	 */
 	@Override
 	public void run() {	
 		//read in the properties file
