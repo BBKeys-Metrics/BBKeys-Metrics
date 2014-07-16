@@ -15,6 +15,7 @@ public class ResultSetBuilder {
 	
 	
 	public static Employee buildEmployee(ResultSet r, String id) {
+		//"Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'"
 		try {
 			r.next();
 			ResultSetMetaData rsmd = r.getMetaData();
@@ -34,6 +35,7 @@ public class ResultSetBuilder {
 	}
 	
 	public static String buildID(ResultSet r) {
+		//"Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'"
 		try {
 			r.next();
 			ResultSetMetaData rsmd = r.getMetaData();
@@ -51,19 +53,9 @@ public class ResultSetBuilder {
 	}
 	
 	public static Metric buildMetric(ResultSet r) {
+		//"Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'"
 		try {
-			ResultSetMetaData rsmd = r.getMetaData();
-			int columns = rsmd.getColumnCount();
-			String[] metricData = new String[columns];
-			for (int i = 1; i < columns; i++) {
-				metricData[i-1] = r.getString(i);
-			}
-			int id = Integer.parseInt(metricData[1]);
-			String name = metricData[2];
-			float weight = Float.parseFloat(metricData[3]);
-			int precision = Integer.parseInt(metricData[4]);
-			String sortType = metricData[5];
-			Metric m = new Metric(name, weight, precision, sortType, id);
+			Metric m = new Metric(r.getString(2), r.getDouble(3), r.getInt(4), r.getString(5), r.getInt(1));
 			return m;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,16 +64,11 @@ public class ResultSetBuilder {
 	}
 	
 	public static Set<Preference> buildPreferences(ResultSet r) {
+		//"Select metricID, display from Metrics.dbo.Prefernces"
 		Set<Preference> prefs = new HashSet<Preference>();
 		try {
 			while (r.next()) {
-				ResultSetMetaData rsmd = r.getMetaData();
-				int columns = rsmd.getColumnCount(); 
-				String[] prefData = new String[columns];
-				for (int i = 1; i <= columns; i++) {
-					prefData[i-1] = r.getString(i);
-				}
-				Preference pref = new Preference(Controller.getInstance().getMetricByID(Integer.parseInt(prefData[0])),Boolean.getBoolean(prefData[1]));
+				Preference pref = new Preference(Controller.getInstance().getMetricByID(r.getInt(1)),r.getBoolean(2));
 				prefs.add(pref);
 			}
 			return prefs;

@@ -63,7 +63,7 @@ public class Model {
 	
 	public Set<Preference> getPreferences(Employee employee) {
 		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Prefernces");
 			return ResultSetBuilder.buildPreferences(r);
 		} else {
 			Set<Preference> prefs = new HashSet<Preference>();
@@ -285,7 +285,7 @@ public class Model {
 
 	public Metric getMetricByID(int metricID) {
 		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
 			return ResultSetBuilder.buildMetric(r);
 		}
 		else
