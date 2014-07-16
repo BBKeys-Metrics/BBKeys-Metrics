@@ -18,6 +18,14 @@ public class Controller {
 	private Set<Metric> allMetrics = new HashSet<Metric>();
 	
 	/**
+	 * Gets the number of people to display in the leaderboard
+	 * @return int
+	 */
+	public int getNumToDisplay() {
+		return numToDisplay;
+	}
+	
+	/**
 	 * default constructor
 	 */
 	private Controller() {
@@ -56,9 +64,9 @@ public class Controller {
 	}
 	
 	/**
-	 * 
+	 * Gets a single metric based on id
 	 * @param ID
-	 * @return
+	 * @return Metric
 	 */
 	public Metric getMetricByID(int ID) {
 		if (allMetrics.isEmpty()) {
@@ -76,20 +84,41 @@ public class Controller {
 		return toAdd;
 	}
 	
+	/**
+	 * Gets a single Employee based on username
+	 * @param name
+	 * @return Employee
+	 */
 	public Employee getEmployeeByName(String name) {
 		String id = Model.getInstance().getEmployeeIDByUsername(name);
 		return Model.getInstance().getEmployeeByID(id);	
 	}
 	
+	/**
+	 * Changes the database connection to the new values passed in as parameters
+	 * @param host
+	 * @param port
+	 * @param database
+	 * @param username
+	 * @param password
+	 */
 	public void setConnectionStrings(String host, String port, String database, String username, String password) {		
 		Model.getInstance().setUpConnection(host, port, database, username, password);
 	}
 	
+	/**
+	 * Sets the current user's username
+	 * @param username
+	 */
 	public void setUser(String username) {
 		String empID = Model.getInstance().getEmployeeIDByUsername(username);
 		user = Model.getInstance().getEmployeeByID(empID);
 	}
 
+	/**
+	 * Gets the Set of Metrics
+	 * @return Set<Metric>
+	 */
 	public Set<Metric> getMetrics() {
 		if (allMetrics.isEmpty()) {
 			allMetrics = Model.getInstance().getMetrics();

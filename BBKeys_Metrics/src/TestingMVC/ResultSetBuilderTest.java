@@ -2,6 +2,7 @@ package TestingMVC;
 
 import java.sql.ResultSet;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Set;
 
 import org.testng.Assert;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 import Metrics.DatabaseConnection;
 import Metrics.Employee;
 import Metrics.EmployeePic;
+import Metrics.Leader;
 import Metrics.Metric;
 import Metrics.MetricScore;
 
@@ -116,5 +118,29 @@ public class ResultSetBuilderTest {
 	int count = ResultSetBuilder.buildShowLeaderCount(r);
 	
 	Assert.assertEquals(count, 4);
+  }
+  
+  @Test
+  public void buildTopLeaders() {
+	  Model.getInstance().getMetrics();
+	  
+	  ResultSet r = DatabaseConnection.getInstance().executeQuery("Select TOP(3) Peep_First_Name, Peep_Last_Name, employeeID, score_avg from Metrics.dbo.people_scores_last_year_values WHERE metricID = 2 order by score_avg DESC");
+	  List<Leader> leaders = ResultSetBuilder.buildTopLeaders(r, 2);
+	  
+	  System.out.println("buildTopLeaders");
+	  
+	  for (Leader leader : leaders) {
+		  String name = leader.getName();
+		  EmployeePic pic = leader.getPicture();
+		  int rank = leader.getRank();
+		  MetricScore score = leader.getScore();
+		  
+		  System.out.println(name);
+		  System.out.println("Rank: " + String.valueOf(rank));
+		  System.out.println("metricID: " + String.valueOf(score.getMetric().getID()));
+		  System.out.println(String.valueOf(score.getMetric().getName()));
+		  System.out.println(String.valueOf(score.getValue()));
+		  System.out.println();
+	  }
   }
 }

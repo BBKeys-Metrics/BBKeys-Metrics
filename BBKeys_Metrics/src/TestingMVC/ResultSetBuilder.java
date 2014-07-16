@@ -3,11 +3,15 @@ package TestingMVC;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import Metrics.Employee;
+import Metrics.EmployeePic;
+import Metrics.Leader;
 import Metrics.Metric;
 import Metrics.MetricScore;
 
@@ -156,6 +160,26 @@ public class ResultSetBuilder {
 				scores.add(data);
 			}
 			return scores;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static List<Leader> buildTopLeaders(ResultSet r, int metricID) {
+		// Select TOP(" + String.valueOf(Controller.getInstance().getNumToDisplay()) + ") Peep_First_Name, Peep_Last_Name, employeeID, score_avg from Metrics.dbo.people_scores_" + view + "values WHERE metricID = " + String.valueOf(metric.getID()) + " order by score_avg " + sortType
+		List<Leader> leaders = new ArrayList<Leader>();
+		int rank = 1;
+		try {
+			while (r.next()) {
+				Metric metric = Model.getInstance().getMetricByID(Integer.valueOf(metricID));
+				MetricScore mScore = new MetricScore(metric, Double.valueOf(r.getString(4)), null);
+				EmployeePic pic = new EmployeePic(r.getString(3));
+				Leader leader = new Leader(r.getString(1) + " "  + r.getString(2), pic, rank, mScore);
+				rank++;
+				leaders.add(leader);
+			}
+			return leaders;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

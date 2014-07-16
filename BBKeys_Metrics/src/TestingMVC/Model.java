@@ -288,14 +288,13 @@ public class Model {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
 			return ResultSetBuilder.buildMetric(r);
 		}
-		else
-			//TODO
+		else {
 			return new Metric("FakeMetric", .5, 2, "ShouldHaveEnum", metricID);
+		}
 	}
 
 	public Set<Metric> getMetrics() {
 		if (!fakeDatabase) {
-			//TODO fill this in...
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics");
 			return ResultSetBuilder.buildMetrics(r);
 		} else {
@@ -314,7 +313,32 @@ public class Model {
 	}
 
 	public List<Leader> getTopLeaders(Metric metric, TimeSpan timeUnit) {
-		// TODO Auto-generated method stub
-		return null;
+		String sortType = "";
+		if (metric.getSortType().equals("4")) { //larger is better
+			sortType = "DESC";
+		}
+		else { //smaller is better
+			sortType = "ASC";
+		}
+		
+		String view = "";
+		if (timeUnit == TimeSpan.DAY) {
+			view = "today_";
+		}
+		else if (timeUnit == TimeSpan.WEEK) {
+			view = "last_week_";
+		}
+		else if (timeUnit == TimeSpan.MONTH) {
+			view = "last_month_";
+		}
+		else if (timeUnit == TimeSpan.YEAR) {
+			view = "last_year_";
+		}
+		else if (timeUnit == TimeSpan.EVER) {
+			view = "ever_";
+		}
+		
+		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select TOP(" + String.valueOf(Controller.getInstance().getNumToDisplay()) + ") Peep_First_Name, Peep_Last_Name, employeeID, score_avg from Metrics.dbo.people_scores_" + view + "values WHERE metricID = " + String.valueOf(metric.getID()) + " order by score_avg " + sortType);
+		return ResultSetBuilder.buildTopLeaders(r, metric.getID());
 	}
 }
