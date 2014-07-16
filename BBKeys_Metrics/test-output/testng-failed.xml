@@ -5,8 +5,7 @@
     <classes>
       <class name="TestingMVC.ResultSetBuilderTest">
         <methods>
-          <include name="buildPreferences"/>
-          <include name="buildShowLeaderCount"/>
+          <include name="buildTopLeaders"/>
         </methods>
       </class> <!-- TestingMVC.ResultSetBuilderTest -->
     </classes>
