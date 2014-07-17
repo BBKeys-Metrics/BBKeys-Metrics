@@ -146,7 +146,7 @@ public class MyScores extends Frame{
 	private VBox formatMetric(Metric metric){
 		VBox scoreBox = new VBox();
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
-		MetricScore employeeScore = Controller.getInstance().getEmployee().getEmployeeScore(metric, time);
+		MetricScore employeeScore = Controller.getInstance().getEmployee().getAverageScore(metric, time);
 		Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		
 		Label name = new Label(metric.getName());

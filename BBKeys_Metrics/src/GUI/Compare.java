@@ -128,11 +128,12 @@ class Compare extends Frame{
 			TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		    
 			//Add employee's (current users) score
-			MetricScore employeeScore = user.getEmployeeScore(m, time);
+			MetricScore employeeScore = user.getAverageScore(m, time);
 			Label empScore = new Label(((Double)(employeeScore.getValue())).toString());
 			metricTable.add(empScore, 1, i+1);
 			
 			//Add average score
+			//TODO who's?
 			MetricScore averageScore = user.getAverageScore(m, time);
 			Label avgScore = new Label(((Double)(averageScore.getValue())).toString());
 			metricTable.add(avgScore, 2, i+1);

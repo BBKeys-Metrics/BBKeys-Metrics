@@ -1,6 +1,5 @@
 package Metrics;
 
-import java.sql.SQLException;
 import java.util.Set;
 
 
@@ -22,15 +21,6 @@ public class Employee extends GradableItem{
 	}
 	
 	/**
-	 * Set the value of the picture for the Employee 
-	 * @param picture - the new value of the picture
-	 * @return void
-	 */
-	public void setPicture(EmployeePic picture) {
-		this.picture = picture;
-	}
-	
-	/**
 	 * Get the value of the picture for the Employee
 	 * @return EmployeePic
 	 */
@@ -44,13 +34,5 @@ public class Employee extends GradableItem{
 	 */
 	public String getID() {
 		return id;
-	}
-	
-	/**
-	 * Sets the value of the id
-	 * @param id
-	 */
-	public void setID(String id) {
-		this.id = id;
 	}
 }

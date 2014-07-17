@@ -11,10 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.geometry.Insets;
 
-import java.util.List;
 import java.util.Set;
 
-import TestingMVC.Controller;
 import TestingMVC.TimeSpan;
 import TestingMVC.View;
 import Metrics.*;

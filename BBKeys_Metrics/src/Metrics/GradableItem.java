@@ -80,20 +80,6 @@ public class GradableItem {
 	}
 	
 	/**
-	 * Get the MetricScore from the private ArrayList by identifying it by its name
-	 * @param name - name of the MetricScore to be found
-	 * @return MetricScore
-	 */
-	//TODO Return first match, average, and over what timespan
-	public MetricScore getScore(Metric type) {
-		for (MetricScore m : scores) {
-			if (m.getMetric() == type) return m;
-		}
-		//if the metric score doesn't exist, return null
-		return null;
-	}
-	
-	/**
 	 * Gets the average score based on metric and timespan
 	 * @param metric
 	 * @param time
@@ -110,15 +96,5 @@ public class GradableItem {
 			}
 		}
 		return new MetricScore(metric, sum / count, Calendar.getInstance());
-	}
-	
-	/**
-	 * Getter method which gets the average score over a period of time
-	 * @param m
-	 * @param time
-	 * @return MetricScore
-	 */
-	public MetricScore getEmployeeScore(Metric m, TimeSpan time) {
-		return getAverageScore(m, time);
 	}
 }

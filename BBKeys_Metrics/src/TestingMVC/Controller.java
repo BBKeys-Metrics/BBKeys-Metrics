@@ -8,7 +8,6 @@ import java.util.Set;
 import Metrics.Employee;
 import Metrics.Leader;
 import Metrics.Metric;
-import Metrics.MetricScore;
 import javafx.stage.Stage;
 
 public class Controller {

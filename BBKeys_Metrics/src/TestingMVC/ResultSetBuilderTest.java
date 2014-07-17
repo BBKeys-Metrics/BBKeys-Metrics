@@ -27,6 +27,7 @@ public class ResultSetBuilderTest {
 	
 	Assert.assertEquals(name, "Shane Herd");
 	Assert.assertEquals(id, "1");
+	Assert.assertNotEquals(pic, null);
   }
 
   @Test
@@ -65,7 +66,7 @@ public class ResultSetBuilderTest {
 		Calendar date = score.getDate();
 		int id = score.getMetric().getID();
 		
-		
+		System.out.println(name);
 		System.out.println(id);
 		System.out.println(String.valueOf(date.get(Calendar.YEAR)) + "-" + String.valueOf(date.get(Calendar.MONTH) + 1) + "-" + String.valueOf(date.get(Calendar.DAY_OF_MONTH)));
 		System.out.println(String.valueOf(value));
@@ -140,7 +141,7 @@ public class ResultSetBuilderTest {
 		  System.out.println("metricID: " + String.valueOf(score.getMetric().getID()));
 		  System.out.println(String.valueOf(score.getMetric().getName()));
 		  System.out.println(String.valueOf(score.getValue()));
-		  System.out.println();
+		  System.out.println(pic);
 	  }
   }
 }
