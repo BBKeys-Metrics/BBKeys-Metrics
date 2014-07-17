@@ -289,13 +289,11 @@ public class Model {
 			return ResultSetBuilder.buildMetric(r);
 		}
 		else
-			//TODO
 			return new Metric("FakeMetric", .5, 2, "ShouldHaveEnum", metricID);
 	}
 
 	public Set<Metric> getMetrics() {
 		if (!fakeDatabase) {
-			//TODO fill this in...
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics");
 			return ResultSetBuilder.buildMetrics(r);
 		} else {

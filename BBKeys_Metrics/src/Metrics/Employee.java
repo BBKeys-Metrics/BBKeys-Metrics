@@ -3,14 +3,11 @@ package Metrics;
 import java.sql.SQLException;
 import java.util.Set;
 
-import TestingMVC.TimeSpan;
-
 
 public class Employee extends GradableItem{
 	//initialize private variables
 	private EmployeePic picture;
 	private String id;
-	private String name;
 	
 	/**
 	 * Constructor - Creates the new employee object and initializes the picture of the employee
