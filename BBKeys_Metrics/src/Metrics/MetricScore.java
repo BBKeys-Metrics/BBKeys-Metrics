@@ -51,6 +51,10 @@ public class MetricScore {
 		return value;
 	}
 	
+	/**
+	 * Get the value of the data
+	 * @return Calendar
+	 */
 	public Calendar getDate() {
 		return day;
 	}

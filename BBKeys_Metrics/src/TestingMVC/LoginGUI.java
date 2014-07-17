@@ -17,10 +17,14 @@ final public class LoginGUI {
 	private static LoginGUI instance = new LoginGUI();
 	private static Text actiontarget;
 	
-	
+	/**
+	 * Getter method which returns the error message item
+	 * @return Text
+	 */
 	public Text getActionTarget() {
 		return actiontarget;
 	}
+	
 	/**
 	 * getter method which returns the static instance of this class
 	 * @return
@@ -108,7 +112,7 @@ final public class LoginGUI {
             }
         });
         
-      //action to be performed when the user hits the register button
+        //action to be performed when the user hits the register button
         btnSettings.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {

@@ -17,10 +17,18 @@ public class EmployeePic {
 	private Image image;
 	private DatabaseConnection dbCon;
 
+	/**
+	 * Getter method which returns the image
+	 * @return Image
+	 */
 	public Image getImage() {
 		return image;
 	}
 
+	/**
+	 * Constructor
+	 * @param employeeID
+	 */
 	public EmployeePic(String employeeID) {
 		dbCon = DatabaseConnection.getInstance();
 		image = setImage(employeeID);

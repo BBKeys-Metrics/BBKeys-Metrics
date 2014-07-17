@@ -17,10 +17,14 @@ final public class RegisterGUI {
 	private static RegisterGUI instance = new RegisterGUI();
 	private static Text actiontarget;
 	
-	
+	/**
+	 * Getter method which returns the error message object
+	 * @return Text
+	 */
 	public Text getActionTarget() {
 		return actiontarget;
 	}
+	
 	/**
 	 * getter method which returns the static instance of this class
 	 * @return

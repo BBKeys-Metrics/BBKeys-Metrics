@@ -12,13 +12,10 @@ public class GradableItem {
 	protected Set<MetricScore> scores;
 	
 	/**
-	 * Constructor (initializes private variables)
+	 * Constructor
+	 * @param name
+	 * @param scores
 	 */
-	/*public GradableItem() {
-		name = "";
-		scores = null;
-	}*/
-	
 	public GradableItem(String name, Set<MetricScore> scores) {
 		this.name = name;
 		this.scores = scores;
@@ -96,6 +93,12 @@ public class GradableItem {
 		return null;
 	}
 	
+	/**
+	 * Gets the average score based on metric and timespan
+	 * @param metric
+	 * @param time
+	 * @return MetricScore
+	 */
 	public MetricScore getAverageScore(Metric metric, TimeSpan time) {
 		double sum = 0;
 		int count = 0;
@@ -109,6 +112,12 @@ public class GradableItem {
 		return new MetricScore(metric, sum / count, Calendar.getInstance());
 	}
 	
+	/**
+	 * Getter method which gets the average score over a period of time
+	 * @param m
+	 * @param time
+	 * @return MetricScore
+	 */
 	public MetricScore getEmployeeScore(Metric m, TimeSpan time) {
 		return getAverageScore(m, time);
 	}

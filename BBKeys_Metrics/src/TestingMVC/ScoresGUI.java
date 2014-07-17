@@ -13,20 +13,31 @@ import javafx.scene.layout.GridPane;
 public class ScoresGUI {
 	static private ScoresGUI instance= new ScoresGUI();
 	
+	/**
+	 * Default Constructor
+	 */
 	private ScoresGUI() {
 		
 	}
 	
+	/**
+	 * Getter method which returns the single instance of the ScoresGUI object
+	 * @return ScoresGUI
+	 */
 	public static ScoresGUI getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * Getter method which returns the scene 
+	 * @return Scene
+	 */
 	public Scene getScene() {
 		GridPane grid = new GridPane();
 		Thread t1 = new Thread(new Runnable() {
 			public void run() {
 				Employee employee = Controller.getInstance().getEmployee();
-				Set<Preference> prefs = Model.getInstance().getPreferences(employee);
+				Set<Preference> prefs = Model.getInstance().getPreferences(employee, employee.getID());
 				if (prefs != null) {
 					Platform.runLater(new Runnable() {
 						public void run() {

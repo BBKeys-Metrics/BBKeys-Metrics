@@ -19,6 +19,14 @@ public class Settings extends Thread{
 	private SettingsGUI settingsGUI;
 	private Text actiontarget;
 	
+	/**
+	 * Constructor
+	 * @param host
+	 * @param port
+	 * @param database
+	 * @param user
+	 * @param password
+	 */
 	public Settings(String host, String port, String database, String user, String password) {
 		this.host = host;
 		this.port = port;
@@ -29,6 +37,10 @@ public class Settings extends Thread{
 		actiontarget = settingsGUI.getActionTarget();
 	}
 	
+	/**
+	 * Checks to make sure that the connection is valid. 
+	 * Changes the database connection settings to the new values if valid.
+	 */
 	@Override
 	public void run() {	
 		boolean fieldsBlank = true;

@@ -11,6 +11,14 @@ public class Metric {
 	private String sortType;
 	private int id;
 
+	/**
+	 * Constructor
+	 * @param mName
+	 * @param mWeight
+	 * @param mPrecision
+	 * @param mSortType
+	 * @param id
+	 */
 	public Metric(String mName, double mWeight, int mPrecision, String mSortType, int id){
 		name = mName;
 		weight = mWeight;
@@ -18,7 +26,6 @@ public class Metric {
 		sortType = mSortType;
 		this.id = id;
 	}
-
 
 	/**
 	 * Set the name of the Metric
@@ -87,7 +94,11 @@ public class Metric {
 	public String getSortType() {
 		return sortType;
 	}
-	
+
+	/**
+	 * Gets the value of the id
+	 * @return
+	 */
 	public int getID() {
 		return id;
 	}

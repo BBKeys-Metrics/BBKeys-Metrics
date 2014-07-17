@@ -20,14 +20,26 @@ import Metrics.MetricScore;
 public class Model {
 	private static final Model instance = new Model();
 	private boolean fakeDatabase = false;
-	
+
+	/**
+	 * private Default Constructor
+	 */
 	private Model() {
 	};
 	
+	/**
+	 * Getter method which returns the single instance of the Model object
+	 * @return Model
+	 */
 	public static Model getInstance() {
 		return instance;
 	}
 	
+	/**
+	 * Getter method which gets the Employee object based on employee id
+	 * @param empID
+	 * @return Employee
+	 */
 	public Employee getEmployeeByID(String empID) {
 		if (!fakeDatabase) {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
@@ -37,6 +49,11 @@ public class Model {
 		}
 	}
 	
+	/**
+	 * Getter method which gets the employee id base on the username
+	 * @param username
+	 * @return String
+	 */
 	public String getEmployeeIDByUsername(String username) {
 		if (!fakeDatabase) {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'");
@@ -46,6 +63,11 @@ public class Model {
 		}
 	}
 	
+	/**
+	 * Getter method which gets a set of MetricScores based on employeeID
+	 * @param id
+	 * @return Set<MetricScore>
+	 */
 	public Set<MetricScore> getMetricScores(String id) {
 		if (!fakeDatabase) {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '" + id + "'");
@@ -61,9 +83,15 @@ public class Model {
 		}
 	}
 	
-	public Set<Preference> getPreferences(Employee employee) {
+	/**
+	 * Getter method that gets the preferences for a single employee based on employeeID
+	 * @param employee
+	 * @param employeeID
+	 * @return Set<Preference>
+	 */
+	public Set<Preference> getPreferences(Employee employee, String employeeID) {
 		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Prefernces");
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Preferences  where employeeID = '" + employeeID + "'");
 			return ResultSetBuilder.buildPreferences(r);
 		} else {
 			Set<Preference> prefs = new HashSet<Preference>();
@@ -76,7 +104,7 @@ public class Model {
 	
 	/**
 	 * Gets the number of results to display in the leaderboard
-	 * @return ResultSet
+	 * @return int
 	 */
 	public int getSettings() {
 		if (!fakeDatabase) {
@@ -283,15 +311,25 @@ public class Model {
 		}
 	}
 
+	/**
+	 * Getter method which returns a single metric based on metricID
+	 * @param metricID
+	 * @return Metric
+	 */
 	public Metric getMetricByID(int metricID) {
 		if (!fakeDatabase) {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
 			return ResultSetBuilder.buildMetric(r);
 		}
-		else
+		else {
 			return new Metric("FakeMetric", .5, 2, "ShouldHaveEnum", metricID);
+		}
 	}
 
+	/**
+	 * Gets all of the Metrics in the database
+	 * @return Set<Metric>
+	 */
 	public Set<Metric> getMetrics() {
 		if (!fakeDatabase) {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics");
@@ -305,14 +343,53 @@ public class Model {
 		}
 	}
 
+	/**
+	 * Overwrites the old database connection settings with the parameters passed in
+	 * @param host
+	 * @param port
+	 * @param database
+	 * @param username
+	 * @param password
+	 */
 	public void setUpConnection(String host, String port, String database,
 			String username, String password) {
 		DatabaseConnection.getInstance().setUpConnection(host, port, database, username, password);
 		
 	}
 
+	/**
+	 * Gets the top leaders for a specific metric for a specific time period
+	 * @param metric
+	 * @param timeUnit
+	 * @return List<Leader>
+	 */
 	public List<Leader> getTopLeaders(Metric metric, TimeSpan timeUnit) {
-		// TODO Auto-generated method stub
-		return null;
+		String sortType = "";
+		if (metric.getSortType().equals("4")) { //larger is better
+			sortType = "DESC";
+		}
+		else { //smaller is better
+			sortType = "ASC";
+		}
+		
+		String view = "";
+		if (timeUnit == TimeSpan.DAY) {
+			view = "today_";
+		}
+		else if (timeUnit == TimeSpan.WEEK) {
+			view = "last_week_";
+		}
+		else if (timeUnit == TimeSpan.MONTH) {
+			view = "last_month_";
+		}
+		else if (timeUnit == TimeSpan.YEAR) {
+			view = "last_year_";
+		}
+		else if (timeUnit == TimeSpan.EVER) {
+			view = "ever_";
+		}
+		
+		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select TOP(" + String.valueOf(Controller.getInstance().getNumToDisplay()) + ") Peep_First_Name, Peep_Last_Name, employeeID, score_avg from Metrics.dbo.people_scores_" + view + "values WHERE metricID = " + String.valueOf(metric.getID()) + " order by score_avg " + sortType);
+		return ResultSetBuilder.buildTopLeaders(r, metric.getID());
 	}
 }
