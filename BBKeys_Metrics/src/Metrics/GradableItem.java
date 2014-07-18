@@ -1,6 +1,7 @@
 package Metrics;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -53,7 +54,7 @@ public class GradableItem {
 	 * @return MetricScore
 	 */
 	public Set<MetricScore> getScores(TimeSpan span) {
-		Set<MetricScore> inTime = new TreeSet<MetricScore>();
+		Set<MetricScore> inTime = new HashSet<MetricScore>();
 		for (MetricScore m : scores) {
 			Calendar today = Calendar.getInstance();
 			if (span == TimeSpan.DAY) {
