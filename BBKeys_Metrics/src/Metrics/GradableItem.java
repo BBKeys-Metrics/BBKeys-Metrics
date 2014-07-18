@@ -66,7 +66,7 @@ public class GradableItem {
 				today.add(Calendar.MONTH, -1);
 			}
 			else if (span == TimeSpan.YEAR) {
-				today.add(Calendar.YEAR, -1);
+				today.add(Calendar.YEAR, -1); 
 			}
 			*/if (true){ // span == TimeSpan.EVER or broken
 				today.setTimeInMillis(0); // Year 0
