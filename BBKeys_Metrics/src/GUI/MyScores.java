@@ -1,6 +1,8 @@
 package GUI;
 
 
+import java.util.Set;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -71,9 +73,7 @@ public class MyScores extends Frame{
 		BorderPane root = new BorderPane();		
 		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
 		
-		metrics = Controller.getInstance().getMetrics();
-		
-		ImageView empPhoto = new ImageView(employee.getPicture().getImage());
+		ImageView empPhoto = new ImageView(Controller.getInstance().getEmployee().getPicture().getImage());
 				
 		root.setTop(this.employeeInfo());
 		root.setRight(timeUnit);
@@ -97,8 +97,8 @@ public class MyScores extends Frame{
 		employeeInfoBox.setPadding(new Insets(10, 20, 10, 20));
 		 
 		//Get employee name and ID
-		Label empName = new Label(employee.getName()); //??Controller.getInstance().getEmployee().getName(); //Not sure if controller has an employee or not...
-		Label empID = new Label(employee.getID());
+		Label empName = new Label(Controller.getInstance().getEmployee().getName()); //??Controller.getInstance().getEmployee().getName(); //Not sure if controller has an employee or not...
+		Label empID = new Label(Controller.getInstance().getEmployee().getID());
 		Label idLabel = new Label("Employee ID:");
 		
 		//Add CSS Identifiers
@@ -123,7 +123,7 @@ public class MyScores extends Frame{
 		formattedScoresBox.setAlignment(Pos.TOP_CENTER);
 		formattedScoresBox.setPadding(new Insets(10, 20, 10, 20));
 		        
-		for (Metric m : metrics){			
+		for (Metric m : Controller.getInstance().getMetrics()){			
 			formattedScoresBox.getChildren().add(this.formatMetric(m));
 		}			
 		
