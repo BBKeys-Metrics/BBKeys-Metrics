@@ -76,7 +76,7 @@ public class GradableItem {
 			}
 			if (m.getDate().compareTo(today) >= 0) {
 				inTime.add(m);
-				System.out.println("Added");
+				System.out.println("Added"); 
 			}
 			else { // remove, prevents sorting.
 				System.out.println("Not added");
