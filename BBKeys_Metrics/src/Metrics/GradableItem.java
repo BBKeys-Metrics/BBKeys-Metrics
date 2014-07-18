@@ -56,8 +56,8 @@ public class GradableItem {
 	public Set<MetricScore> getScores(TimeSpan span) {
 		Set<MetricScore> inTime = new HashSet<MetricScore>();
 		for (MetricScore m : scores) {
-			//System.out.println(m.getMetric().getName());
-			//System.out.println(m.getDate());
+			System.out.println(m.getMetric().getName());
+			System.out.println(m.getDate());
 			Calendar today = Calendar.getInstance();
 			if (span == TimeSpan.DAY) {
 				today.add(Calendar.DAY_OF_YEAR, -1);
@@ -75,13 +75,9 @@ public class GradableItem {
 				today.setTimeInMillis(0); // Year 0
 			}
 			if (m.getDate().compareTo(today) >= 0) {
-				inTime.add(m);
-				System.out.println("Added"); 
+				inTime.add(m); 
 			}
-			else { // remove, prevents sorting.
-				System.out.println("Not added");
-				inTime.add(m);
-			}
+
 		}
 		
 		return inTime;
@@ -96,14 +92,9 @@ public class GradableItem {
 	public MetricScore getAverageScore(Metric metric, TimeSpan time) {
 		double sum = 0;
 		int count = 0;
-		
-		System.out.println("\n\n\ngetting average");
 		Set<MetricScore> scores = getScores(time);
 		for (MetricScore m : scores) {
-			System.out.println(m.getMetric().getName());
-			System.out.println(metric.getName());
-			if (m.getMetric().getName().equals(metric.getName())) {
-				System.out.println("inside if");
+			if (m.equals(metric)) {
 				sum += m.getValue();
 				count++;
 			}
