@@ -190,11 +190,11 @@ public class LeaderBoard extends Frame{
 	 * Creates a VBox holding an employees name and his scores.
 	 * The scores displayed are those selected in the checkboxes.
 	 * 
-	 * @param rank -- an integer indigating the ranked position
+	 * @param rank -- an integer indicating the ranked position
 	 * of the leader for which the vbox is being created.
 	 * I.E. 1 indicates the highest ranked employee,
 	 * 4 indicates the fourth higheste employee, ect.
-	 * @return VBox
+	 * @return HBox
 	 */
 	private HBox formatLeaderScores(Leader employee){
 		HBox leaderBox = new HBox(30);

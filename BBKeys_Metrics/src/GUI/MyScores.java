@@ -117,7 +117,7 @@ public class MyScores extends Frame{
 	 * @return VBox
 	 */
 	private VBox formatScores(){
-		VBox formattedScoresBox = new VSBox(20);
+		VBox formattedScoresBox = new VBox(20);
 		
 		//Format
 		formattedScoresBox.setAlignment(Pos.TOP_CENTER);
@@ -136,7 +136,7 @@ public class MyScores extends Frame{
 	 * @param metricName
 	 * @return HBox
 	 */
-	private VBox formatMetric(Metric metric){
+	private HBox formatMetric(Metric metric){
 		HBox scoreBox = new HBox();
 		
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
