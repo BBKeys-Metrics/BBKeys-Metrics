@@ -42,3 +42,68 @@
     -fx-background-color: #0093ff;
     -fx-text-fill: white;
 }
+
+
+#employee-name{
+    -fx-font: 300% "Andalus";
+    -fx-text-fill:grey;
+    
+}
+
+/*Labels for data, i.e. labels for charts and tables holding data*/
+#data-label{
+    -fx-text-fill:#666666;
+    -fx-font-style:italic;
+    -fx-font-size:110%;
+    -fx-margin-top:90px;
+}
+
+#chart-label{
+    -fx-text-fill:#4D4D4D;
+    -fx-font-style:bold;
+    -fx-font-size:140%;
+    -fx-margin-top:90px;
+}
+
+/*page titles, i.e. the 'label' for a page set up as the title*/
+#page-title{
+    -fx-text-fill:grey;
+    -fx-font:140% "Century Gothic";
+    
+}
+
+#border-box{
+    -fx-border-style:dashed;
+    -fx-border-width:1px;
+    -fx-border-color:lightgrey;
+    -fx-padding:5px;
+    
+}
+
+#border-box1{
+    -fx-border-style:solid;
+    -fx-border-width:1px;
+    -fx-border-color:lightgrey;
+    -fx-padding:5px;
+    
+}
+
+/*Styling for the scores (numerical values) displayed*/
+#score-display{
+    -fx-text-fill:#4D4D4D;
+    -fx-font-size:120%;
+    -fx-border-style:solid;
+    -fx-border-width:1px;
+    -fx-border-color:grey;
+    -fx-text-alignment: center;
+    -fx-padding: 3px;
+    -fx-margin-top:10px;
+        
+}
+
+/*Styling for the names of the metrics when displayed as part of 
+the data*/
+#metric-name-display{
+    -fx-text-fill:#4D4D4D;
+    -fx-font-size:150%;
+}
