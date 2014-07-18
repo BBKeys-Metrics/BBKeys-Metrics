@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.geometry.Insets;
-
 import java.util.Set;
 
 import TestingMVC.TimeSpan;
@@ -65,6 +64,7 @@ abstract class Frame{
 	 * @return HBox
 	 */
 	public HBox navigationBox(){
+		timeUnit.setValue("Day");
 		HBox buttonBox = new HBox();
 		
 		//Set button text
