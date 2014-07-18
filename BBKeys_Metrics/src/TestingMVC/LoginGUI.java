@@ -125,7 +125,7 @@ final public class LoginGUI {
         Scene scene = new Scene(grid);
         
         //set the style sheets (css) for the scene 
-        //scene.getStylesheets().add(Metrics.class.getResource("../Metrics.css").toExternalForm());
+        
         String originalStyle = "-fx-background-image: url(\"background.jpg\")";
         scene.getRoot().setStyle(originalStyle);
         //start out with the text field having the focus
