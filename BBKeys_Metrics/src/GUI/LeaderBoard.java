@@ -18,6 +18,7 @@ import java.util.Set;
 import Metrics.Leader;
 import Metrics.Metric;
 import TestingMVC.Controller;
+import TestingMVC.Model;
 import TestingMVC.TimeSpan;
 
 /*
@@ -144,6 +145,7 @@ public class LeaderBoard extends Frame{
 			//Add to the vbox
 			box.getChildren().add(newRadio);
 		}       
+		
                
         //Add listener for radio buttons
         //When a radio button is selected, change the name value of member variable metric to the selected string
@@ -152,15 +154,12 @@ public class LeaderBoard extends Frame{
             public void changed(ObservableValue<? extends Toggle> ov,
                 Toggle old_toggle, Toggle new_toggle) {
                     if (group.getSelectedToggle() != null) {
-                    	metric.setName(
-                    					group.getSelectedToggle().getUserData().toString()
-                    					);
-                    
+                    	metric = Controller.getInstance().getMetricByName(group.getSelectedToggle().getUserData().toString());
+                       	System.out.println(metric.getName());
                     }
             }
             });
                     
-        
         
 		return box;
 	}
@@ -178,13 +177,13 @@ public class LeaderBoard extends Frame{
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		
 		//Get list of top employees
-		List<Leader> topEmployees = Controller.getInstance().getTopLeaders(metric,time);
+		/*List<Leader> topEmployees = Controller.getInstance().getTopLeaders(metric,time);
 		
 		for (int i = 0; i < topEmployees.size(); i++){
 			//Add each employee in a stack (horizontally)	
 			leadersBox.add(this.formatLeaderScores(topEmployees.get(i)), 0 , i);
 		}
-		
+		*/
 		return leadersBox;
 	
 	}

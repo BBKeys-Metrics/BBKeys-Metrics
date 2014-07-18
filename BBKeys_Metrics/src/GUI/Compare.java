@@ -34,7 +34,7 @@ import TestingMVC.TimeSpan;
  */
 
 
-class Compare extends Frame{
+public class Compare extends Frame{
 		
 	private static Compare instance = new Compare();
 	

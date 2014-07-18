@@ -78,6 +78,23 @@ public class Controller {
 		}
 		return null;
 	}
+
+	/**
+	 * Getter method which returns a single metric based on name
+	 * @param name
+	 * @return Metric
+	 */
+	public Metric getMetricByName(String name) {
+		if (allMetrics.isEmpty()) {
+			allMetrics = Model.getInstance().getMetrics();
+		}
+		for(Metric m : allMetrics) {
+			if (m.getName().equals(name)) {
+				return m;
+			}
+		}
+		return null;
+	}
 	
 	/**
 	 * Gets a single Employee based on username

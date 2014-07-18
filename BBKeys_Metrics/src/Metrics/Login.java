@@ -6,9 +6,10 @@ import javafx.scene.text.Text;
 
 
 import GUI.MyScores;
+import GUI.Compare;
+import GUI.LeaderBoard;
 import TestingMVC.Controller;
 import TestingMVC.LoginGUI;
-import TestingMVC.ScoresGUI;
 import TestingMVC.View;
 import TestingMVC.Model;
 
@@ -89,7 +90,7 @@ public class Login extends Thread{
 	            		Controller.getInstance().setUser(username);
 	            		
 	            		//redirect to scores
-	            		View.getInstance().setScene(MyScores.getInstance().getScene());
+	            		View.getInstance().setScene(LeaderBoard.getInstance().getScene());
 	            	}
 	            });
 			}
