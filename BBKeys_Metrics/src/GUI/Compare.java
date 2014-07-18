@@ -1,6 +1,8 @@
 package GUI;
 
 import java.util.List;
+import java.util.Set;
+
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Insets;
@@ -69,8 +71,6 @@ class Compare extends Frame{
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
 		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
-		
-		metrics = Controller.getInstance().getMetrics();
 		
 		//Call getView to find out if the view is table or scatterplot
 		//if(view.equals("plot"))
@@ -147,6 +147,7 @@ class Compare extends Frame{
 		metricTable.add(topScoreLabel, 3, 0);
 		
 		Label metricName;
+		Set<Metric> metrics = Controller.getInstance().getMetrics();
 		
 		//Add metric and comparative data
 		int i = 0;
