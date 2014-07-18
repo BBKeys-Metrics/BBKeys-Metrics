@@ -76,11 +76,7 @@ public class Controller {
 				return m;
 			}
 		}
-		Metric toAdd = Model.getInstance().getMetricByID(ID);
-		if (toAdd != null) {
-			allMetrics.add(toAdd);
-		}
-		return toAdd;
+		return null;
 	}
 	
 	/**

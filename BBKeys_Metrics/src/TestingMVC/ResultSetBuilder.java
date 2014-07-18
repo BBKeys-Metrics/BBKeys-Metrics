@@ -71,7 +71,7 @@ public class ResultSetBuilder {
 	 * @param r
 	 * @return Metric
 	 */
-	public static Metric buildMetric(ResultSet r) {
+	/*public static Metric buildMetric(ResultSet r) {
 		//"Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'"
 		try {
 			r.next();
@@ -81,7 +81,7 @@ public class ResultSetBuilder {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 	
 	/**
 	 * Builds the Set of preferences for the specified user
@@ -151,7 +151,7 @@ public class ResultSetBuilder {
 			while (r.next()) {
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(r.getDate(3));
-				MetricScore data = new MetricScore(Model.getInstance().getMetricByID(Integer.parseInt(r.getString(1))),Double.parseDouble(r.getString(2)), cal);
+				MetricScore data = new MetricScore(Controller.getInstance().getMetricByID(Integer.parseInt(r.getString(1))),Double.parseDouble(r.getString(2)), cal);
 				scores.add(data);
 			}
 			return scores;
@@ -173,7 +173,7 @@ public class ResultSetBuilder {
 		int rank = 1;
 		try {
 			while (r.next()) {
-				Metric metric = Model.getInstance().getMetricByID(Integer.valueOf(metricID));
+				Metric metric = Controller.getInstance().getMetricByID(Integer.valueOf(metricID));
 				MetricScore mScore = new MetricScore(metric, Double.valueOf(r.getString(4)), null);
 				EmployeePic pic = new EmployeePic(r.getString(3));
 				Leader leader = new Leader(r.getString(1) + " "  + r.getString(2), pic, rank, mScore);

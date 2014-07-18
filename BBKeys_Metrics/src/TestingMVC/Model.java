@@ -316,15 +316,14 @@ public class Model {
 	 * @param metricID
 	 * @return Metric
 	 */
-	public Metric getMetricByID(int metricID) {
+	/*public Metric getMetricByID(int metricID) {
 		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'");
-			return ResultSetBuilder.buildMetric(r);
+			Cont
 		}
 		else {
 			return new Metric("FakeMetric", .5, 2, "ShouldHaveEnum", metricID);
 		}
-	}
+	}*/
 
 	/**
 	 * Gets all of the Metrics in the database
