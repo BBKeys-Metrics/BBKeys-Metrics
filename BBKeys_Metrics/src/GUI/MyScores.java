@@ -44,7 +44,7 @@ public class MyScores extends Frame{
 	 * @return Scene
 	 */
 	@Override 
-	public Scene getScene(){
+	public Scene getScene(){ 
 		buildPage();
 		scene.getStylesheets().add(MyScores.class.getResource("../Metrics.css").toExternalForm());
 		return this.scene;
