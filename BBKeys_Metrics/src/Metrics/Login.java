@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 
+import GUI.MyScores;
 import TestingMVC.Controller;
 import TestingMVC.LoginGUI;
 import TestingMVC.ScoresGUI;
@@ -88,7 +89,7 @@ public class Login extends Thread{
 	            		Controller.getInstance().setUser(username);
 	            		
 	            		//redirect to scores
-	            		View.getInstance().setScene(ScoresGUI.getInstance().getScene());
+	            		View.getInstance().setScene(MyScores.getInstance().getScene());
 	            	}
 	            });
 			}

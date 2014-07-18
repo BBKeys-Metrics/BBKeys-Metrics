@@ -2,40 +2,40 @@
 <testng-results skipped="0" failed="0" total="8" passed="8">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="2393" started-at="2014-07-16T20:35:27Z" finished-at="2014-07-16T20:35:30Z">
+  <suite name="Default suite" duration-ms="3226" started-at="2014-07-18T17:24:26Z" finished-at="2014-07-18T17:24:29Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="2393" started-at="2014-07-16T20:35:27Z" finished-at="2014-07-16T20:35:30Z">
+    <test name="Default test" duration-ms="3226" started-at="2014-07-18T17:24:26Z" finished-at="2014-07-18T17:24:29Z">
       <class name="TestingMVC.ResultSetBuilderTest">
-        <test-method status="PASS" signature="buildEmployee()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildEmployee" duration-ms="1121" started-at="2014-07-16T14:35:27Z" finished-at="2014-07-16T14:35:28Z">
+        <test-method status="PASS" signature="buildEmployee()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildEmployee" duration-ms="1533" started-at="2014-07-18T11:24:26Z" finished-at="2014-07-18T11:24:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildEmployee -->
-        <test-method status="PASS" signature="buildID()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildID" duration-ms="1" started-at="2014-07-16T14:35:28Z" finished-at="2014-07-16T14:35:28Z">
+        <test-method status="PASS" signature="buildID()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildID" duration-ms="1" started-at="2014-07-18T11:24:28Z" finished-at="2014-07-18T11:24:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildID -->
-        <test-method status="PASS" signature="buildMetric()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetric" duration-ms="2" started-at="2014-07-16T14:35:28Z" finished-at="2014-07-16T14:35:28Z">
+        <test-method status="PASS" signature="buildMetric()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetric" duration-ms="2" started-at="2014-07-18T11:24:28Z" finished-at="2014-07-18T11:24:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildMetric -->
-        <test-method status="PASS" signature="buildMetricScores()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetricScores" duration-ms="24" started-at="2014-07-16T14:35:28Z" finished-at="2014-07-16T14:35:28Z">
+        <test-method status="PASS" signature="buildMetricScores()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetricScores" duration-ms="36" started-at="2014-07-18T11:24:28Z" finished-at="2014-07-18T11:24:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildMetricScores -->
-        <test-method status="PASS" signature="buildMetrics()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetrics" duration-ms="3" started-at="2014-07-16T14:35:28Z" finished-at="2014-07-16T14:35:28Z">
+        <test-method status="PASS" signature="buildMetrics()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildMetrics" duration-ms="5" started-at="2014-07-18T11:24:28Z" finished-at="2014-07-18T11:24:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildMetrics -->
-        <test-method status="PASS" signature="buildPreferences()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildPreferences" duration-ms="5" started-at="2014-07-16T14:35:28Z" finished-at="2014-07-16T14:35:28Z">
+        <test-method status="PASS" signature="buildPreferences()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildPreferences" duration-ms="6" started-at="2014-07-18T11:24:28Z" finished-at="2014-07-18T11:24:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildPreferences -->
-        <test-method status="PASS" signature="buildShowLeaderCount()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildShowLeaderCount" duration-ms="1" started-at="2014-07-16T14:35:28Z" finished-at="2014-07-16T14:35:28Z">
+        <test-method status="PASS" signature="buildShowLeaderCount()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildShowLeaderCount" duration-ms="2" started-at="2014-07-18T11:24:28Z" finished-at="2014-07-18T11:24:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildShowLeaderCount -->
-        <test-method status="PASS" signature="buildTopLeaders()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildTopLeaders" duration-ms="1213" started-at="2014-07-16T14:35:28Z" finished-at="2014-07-16T14:35:30Z">
+        <test-method status="PASS" signature="buildTopLeaders()[pri:0, instance:TestingMVC.ResultSetBuilderTest@5a42bbf4]" name="buildTopLeaders" duration-ms="1616" started-at="2014-07-18T11:24:28Z" finished-at="2014-07-18T11:24:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- buildTopLeaders -->

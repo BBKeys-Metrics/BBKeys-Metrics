@@ -38,9 +38,9 @@ import Metrics.*;
 abstract class Frame{
 	//Public variables for use in sub-classes
 	public Scene scene;
-	public Set<Metric> metrics;
-	public Employee employee;
-	public int numTopEmployeesToShow = 5;
+	//public Set<Metric> metrics;
+	//public Employee employee;
+	//public int numTopEmployeesToShow = 5;
 	public ObservableList<String> timeUnits = 
 		    FXCollections.observableArrayList(
 		            "Day",
