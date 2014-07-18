@@ -56,7 +56,7 @@ public class GradableItem {
 		Set<MetricScore> inTime = new TreeSet<MetricScore>();
 		for (MetricScore m : scores) {
 			Calendar today = Calendar.getInstance();
-			if (span == TimeSpan.DAY) {
+			/*if (span == TimeSpan.DAY) {
 				today.add(Calendar.DAY_OF_YEAR, -1);
 			}
 			else if (span == TimeSpan.WEEK) {
@@ -68,7 +68,7 @@ public class GradableItem {
 			else if (span == TimeSpan.YEAR) {
 				today.add(Calendar.YEAR, -1);
 			}
-			else { // span == TimeSpan.EVER or broken
+			*/if (true){ // span == TimeSpan.EVER or broken
 				today.setTimeInMillis(0); // Year 0
 			}
 			if (m.getDate().compareTo(today) > 0) {
