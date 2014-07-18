@@ -1,10 +1,12 @@
 package GUI;
 
 import java.util.List;
-
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -70,19 +72,40 @@ class Compare extends Frame{
 		
 		metrics = Controller.getInstance().getMetrics();
 		
-		//Label for page title
-		Label title = new Label("Compare");
-		
 		//Call getView to find out if the view is table or scatterplot
 		//if(view.equals("plot"))
 			//root.setCenter(this.plotCompare());
 		//else
-		root.setTop(title);
+		
+		root.setTop(this.topBox());
 		root.setLeft(this.tableCompare());
 		root.setBottom(this.navigationBox());
 		
 		//scene = new Scene (root, 500, 500);
 	}
+	
+	 /**
+     * Formats the top part of the scene with a title and menu
+     * @return VBox
+     */
+    private VBox topBox(){
+        VBox topBox = new VBox(5);
+        
+        HBox titleBox = new HBox();
+        titleBox.setId("border-box");
+        titleBox.setAlignment(Pos.CENTER);
+        Label title = new Label("Compare");
+        title.setId("page-title");
+        titleBox.getChildren().add(title);
+        
+        HBox dropDownBox = new HBox();
+        dropDownBox.setAlignment(Pos.CENTER_RIGHT);
+        dropDownBox.getChildren().add(timeUnit);
+        
+        topBox.getChildren().addAll(titleBox, dropDownBox);
+        
+        return topBox;            
+    }
 	
 	
 	/**
@@ -110,6 +133,13 @@ class Compare extends Frame{
 		Label averageLabel = new Label("Department Average");
 		Label topScoreLabel = new Label("Top Score");
 		
+		//Add CSS Identifiers and styling
+        metricLabel.setId("chart-label");
+        metricLabel.setMinWidth(100);
+        myScoreLabel.setId("chart-label");
+        averageLabel.setId("chart-label");
+        topScoreLabel.setId("chart-label");
+		
 		//Add all the labels to the grid
 		metricTable.add(metricLabel, 0, 0);
 		metricTable.add(myScoreLabel, 1, 0);
@@ -121,33 +151,39 @@ class Compare extends Frame{
 		//Add metric and comparative data
 		int i = 0;
 		for(Metric m : metrics){
-			//Add the metric name
+
 			Controller cont = Controller.getInstance();
-			metricName = new Label(m.getName());
-			metricTable.add(metricName, 0, i+1);
+			
+			//Get current time unit
 			TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
-		    
+			
+			//Add the metric name
+			metricName = new Label(m.getName());
+			metricName.setId("data-label");
+			metricTable.add(metricName, 0, i+1);
+				    
 			//Add employee's (current users) score
 			MetricScore employeeScore = user.getAverageScore(m, time);
 			Label empScore = new Label(((Double)(employeeScore.getValue())).toString());
+			empScore.setId("score-display");
 			metricTable.add(empScore, 1, i+1);
 			
 			//Add average score
-			//TODO who's?
+			//TODO department average (average of all the employees for the given metric for the given time frame)
 			MetricScore averageScore = user.getAverageScore(m, time);
 			Label avgScore = new Label(((Double)(averageScore.getValue())).toString());
+			avgScore.setId("score-display");
 			metricTable.add(avgScore, 2, i+1);
 			
 			//Add top score
 			List<Leader> top = cont.getTopLeaders(m, time);
 			MetricScore topScore = top.get(0).getScore();
 			Label tpScore = new Label(((Double)(topScore.getValue())).toString());
+			tpScore.setId("score-display");
 			metricTable.add(tpScore, 3, i+1);
+			
 			i++;
 		}
-		
-		//Add timeUnit drop down
-		metricTable.add(timeUnit, 4, 0);
 	
 		return metricTable;	
 	}

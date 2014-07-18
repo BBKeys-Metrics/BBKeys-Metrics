@@ -75,10 +75,13 @@ abstract class Frame{
 		compare.setText("Compare");
 		leaderBoard.setText("Leader Board");
 		
-		//Format buttons to same width for uniformity
+		//Format buttons to same width and add CSS identifiers
         myScores.setMinWidth(100);
+        myScores.setId("button");
         leaderBoard.setMinWidth(100);
+        leaderBoard.setId("button");
         compare.setMinWidth(100);
+        compare.setId("button");
 		
         
         //Set actions

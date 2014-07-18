@@ -34,11 +34,6 @@ import TestingMVC.TimeSpan;
  *   Summer Smith
  */
 
-
-//TODO: Create a listener
-// resource: see "setting the behavior"
-//http://docs.oracle.com/javafx/2/ui_controls/checkbox.htm
-
 public class LeaderBoard extends Frame{
 	private static LeaderBoard instance = new LeaderBoard();
 	
@@ -81,7 +76,7 @@ public class LeaderBoard extends Frame{
 		
 		metrics = Controller.getInstance().getMetrics();
 		
-		root.setTop(this.makeRadioButtons());
+		root.setTop(this.topBox());
 		root.setLeft(this.formatLeaders());
 		root.setBottom(this.navigationBox());
 		
@@ -89,8 +84,31 @@ public class LeaderBoard extends Frame{
 	}
 	
 	/**
-	 * Creates a series of checkboxes, one box for
-	 * each metric type.  Formats them into a vbox
+     * Formats the top part of the scene with a title and menu
+     * @return VBox
+     */
+    private VBox topBox(){
+        VBox topBox = new VBox(5);
+        
+        HBox titleBox = new HBox();
+        titleBox.setId("border-box");
+        titleBox.setAlignment(Pos.CENTER);
+        Label title = new Label("Leader Board");
+        title.setId("page-title");
+        titleBox.getChildren().add(title);
+        
+        HBox dropDownBox = new HBox();
+        dropDownBox.setAlignment(Pos.CENTER_RIGHT);
+        dropDownBox.getChildren().add(timeUnit);
+        
+        topBox.getChildren().addAll(titleBox, dropDownBox, this.makeRadioButtons());
+        
+        return topBox;            
+    }
+	
+	/**
+	 * Creates a group of radio buttons, one box for
+	 * each metric type.  Formats them into an hbox
 	 * for display purposes.
 	 * @return VBox
 	 */
@@ -101,7 +119,6 @@ public class LeaderBoard extends Frame{
 		box.setAlignment(Pos.CENTER_RIGHT);
         box.setPadding(new Insets(10, 20, 10, 20));
 		
-		RadioButton newRadio = new RadioButton();
 		int j = 0;
 		
 		//Group of radio buttons
@@ -109,6 +126,7 @@ public class LeaderBoard extends Frame{
 		
 		for (Metric m : metrics){
 			//Generate a check kbox for each metric type
+			RadioButton newRadio = new RadioButton();
 			newRadio.setText(m.getName());
 			
 			//Default is the first radio is selected
@@ -122,11 +140,7 @@ public class LeaderBoard extends Frame{
 			
 			//Add to the vbox
 			box.getChildren().add(newRadio);
-		}
-		        
-        //Add time unit dropdown
-        box.getChildren().add(timeUnit);
-        
+		}       
                
         //Add listener for radio buttons
         //When a radio button is selected, change the name value of member variable metric to the selected string
@@ -151,7 +165,7 @@ public class LeaderBoard extends Frame{
 
 	/**
 	 * Formats the top x leaders, each leader in their own VBox.
-	 * Returns an hbox holding all of the leader sub-boxes.
+	 * Returns an grid pane holding all of the leader sub-boxes.
 	 * 
 	 * @return GridPane
 	 */
@@ -182,8 +196,11 @@ public class LeaderBoard extends Frame{
 	 * 4 indicates the fourth higheste employee, ect.
 	 * @return VBox
 	 */
-	private VBox formatLeaderScores(Leader employee){
-		VBox leaderBox = new VBox();
+	private HBox formatLeaderScores(Leader employee){
+		HBox leaderBox = new HBox(30);
+        leaderBox.setAlignment(Pos.CENTER);
+        leaderBox.setId("border-box1");
+        leaderBox.setMinWidth(500);
 		
 		Label empName;
 		Label empScore;
@@ -191,15 +208,19 @@ public class LeaderBoard extends Frame{
 		
 		//Get data
 		empName = new Label(employee.getName());
-		//Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		
 		empScore = new Label(((Double)(employee.getScore().getValue())).toString());
 
 		empPic = new ImageView(employee.getPicture().getImage());
-			
-		leaderBox.getChildren().addAll(empPic, empName, empScore);
-		
-	
+					
+		//Add formatting
+		empName.setId("employee-name");
+        empName.setMinWidth(250);
+        empScore.setId("score-display");
+        empScore.setMinWidth(50);
+        
+        leaderBox.getChildren().addAll(empPic, empName, empScore);
+        
 		return leaderBox;		
 	}
 	

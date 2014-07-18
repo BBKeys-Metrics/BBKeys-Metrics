@@ -72,9 +72,12 @@ public class MyScores extends Frame{
 		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
 		
 		metrics = Controller.getInstance().getMetrics();
+		
+		ImageView empPhoto = new ImageView(employee.getPicture().getImage());
 				
 		root.setTop(this.employeeInfo());
-		root.setLeft(timeUnit);
+		root.setRight(timeUnit);
+        root.setLeft(empPhoto);
 		root.setCenter(this.formatScores());
 		root.setBottom(this.navigationBox()); 
 		
@@ -83,10 +86,10 @@ public class MyScores extends Frame{
 	
 	/**
 	 * Formats employee into a VBox for display
-	 * @return VBox
+	 * @return HBox
 	 */
-	private VBox employeeInfo(){
-		VBox employeeInfoBox = new VBox();
+	private HBox employeeInfo(){
+		HBox employeeInfoBox = new HBox();
 		
 		//Formatting
 		employeeInfoBox.setSpacing(10);
@@ -96,14 +99,13 @@ public class MyScores extends Frame{
 		//Get employee name and ID
 		Label empName = new Label(employee.getName()); //??Controller.getInstance().getEmployee().getName(); //Not sure if controller has an employee or not...
 		Label empID = new Label(employee.getID());
+		Label idLabel = new Label("Employee ID:");
 		
-		
-		VBox namesBox = new VBox(5);
-        namesBox.getChildren().addAll(empName, empID);
-		
-		ImageView empPhoto = new ImageView(employee.getPicture().getImage());
-	
-		employeeInfoBox.getChildren().addAll(empPhoto, namesBox);
+		//Add CSS Identifiers
+		empName.setId("employee-name");
+		idLabel.setId("data-label");
+			
+		employeeInfoBox.getChildren().addAll(empName, idLabel, empID);
 	        
 		return employeeInfoBox;
 	}
@@ -112,24 +114,15 @@ public class MyScores extends Frame{
 	/**
 	 * For each metric in the metricNames array list,
 	 * a vbox is created and added into the hbox.
-	 * @return HBox
+	 * @return VBox
 	 */
-	private HBox formatScores(){
-		HBox formattedScoresBox = new HBox(20);
+	private VBox formatScores(){
+		VBox formattedScoresBox = new VSBox(20);
 		
 		//Format
-		formattedScoresBox.setAlignment(Pos.CENTER);
-		formattedScoresBox.setPadding(new Insets(0, 20, 10, 20));
-		
-		//Add data labels into their own vbox
-		Label metricName = new Label("Metric Name:");
-        Label metricScore = new Label("Metric Score:");
-        
-        VBox elementLables = new VBox();
-        elementLables.getChildren().addAll(metricName, metricScore);
-        
-        formattedScoresBox.getChildren().add(elementLables);
-        
+		formattedScoresBox.setAlignment(Pos.TOP_CENTER);
+		formattedScoresBox.setPadding(new Insets(10, 20, 10, 20));
+		        
 		for (Metric m : metrics){			
 			formattedScoresBox.getChildren().add(this.formatMetric(m));
 		}			
@@ -141,15 +134,25 @@ public class MyScores extends Frame{
 	 * Returns a vbox holding the metric name and the score the
 	 * employee recieved on that metric.
 	 * @param metricName
-	 * @return VBox
+	 * @return HBox
 	 */
 	private VBox formatMetric(Metric metric){
-		VBox scoreBox = new VBox();
+		HBox scoreBox = new HBox();
+		
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		MetricScore employeeScore = Controller.getInstance().getEmployee().getAverageScore(metric, time);
-		Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		
+		//Make Labels
+		Label score = new Label(((Double)(employeeScore.getValue())).toString());
 		Label name = new Label(metric.getName());
+		
+		//Add CSS Identifiers and styling              
+        score.setId("score-display");
+        score.setMinWidth(50);
+        
+        name.setId("metric-name-display");
+        name.setMinWidth(150);
+        
 				
 		scoreBox.getChildren().addAll(name,score);
 		
