@@ -44,11 +44,12 @@ public class MyScores extends Frame{
 	 * @return Scene
 	 */
 	@Override 
-	public Scene getScene(){
+	public Scene getScene(){ 
 		buildPage();
+		scene.getStylesheets().add(MyScores.class.getResource("../Metrics.css").toExternalForm());
 		return this.scene;
 	}
-	
+	 
 	/**
 	 * Singleton 
 	 * @return MyScores Object Instance
@@ -100,7 +101,7 @@ public class MyScores extends Frame{
 		
 		//Formatting
 		employeeInfoBox.setSpacing(10);
-		employeeInfoBox.setAlignment(Pos.TOP_LEFT);
+		employeeInfoBox.setAlignment(Pos.BASELINE_CENTER);
 		employeeInfoBox.setPadding(new Insets(10, 20, 10, 20));
 		 
 		//Get employee name and ID
