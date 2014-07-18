@@ -58,7 +58,7 @@ public class Controller {
 	/**
 	 * Get the number of people to display in the leaderboard
 	 */
-	private void getSettings() {
+	public void getSettings() {
 		numToDisplay = Model.getInstance().getSettings();
 	}
 	

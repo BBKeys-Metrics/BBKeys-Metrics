@@ -3,11 +3,21 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="TestingMVC.ResultSetBuilderTest">
+      <class name="TestingMVC.ControllerTest">
         <methods>
-          <include name="buildTopLeaders"/>
+          <include name="getNumToDisplay"/>
+          <include name="setConnectionStrings"/>
+          <include name="setUser"/>
+          <include name="getEmployeeByName"/>
+          <include name="getMetrics"/>
+          <include name="initialize"/>
+          <include name="getEmployee"/>
+          <include name="getInstance"/>
+          <include name="getTopLeaders"/>
+          <include name="Controller"/>
+          <include name="getMetricByID"/>
         </methods>
-      </class> <!-- TestingMVC.ResultSetBuilderTest -->
+      </class> <!-- TestingMVC.ControllerTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

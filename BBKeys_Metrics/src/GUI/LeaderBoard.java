@@ -52,7 +52,7 @@ public class LeaderBoard extends Frame{
 	@Override 
 	public Scene getScene(){
 		buildPage();
-		scene.getStylesheets().add(MyScores.class.getResource("../Metrics.css").toExternalForm());
+		scene.getStylesheets().add(LeaderBoard.class.getResource("../Metrics.css").toExternalForm());
 		return this.scene;
 	}
 
@@ -76,6 +76,7 @@ public class LeaderBoard extends Frame{
 	 * Loads elements into the scene
 	 */
 	public void buildPage(){
+		timeUnit.setValue("YEAR");
 		BorderPane root = new BorderPane();		
 				
 		root.setTop(this.topBox());

@@ -46,7 +46,7 @@ class Compare extends Frame{
 	@Override 
 	public Scene getScene(){
 		buildPage();
-		scene.getStylesheets().add(MyScores.class.getResource("../Metrics.css").toExternalForm());
+		//scene.getStylesheets().add(Compare.class.getResource("../Metrics.css").toExternalForm());
 		return this.scene;
 	}
 	
@@ -70,6 +70,7 @@ class Compare extends Frame{
 	 */
 	@Override
 	public void buildPage(){
+		timeUnit.setValue("YEAR");
 		BorderPane root = new BorderPane();		
 		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
 		
@@ -179,11 +180,13 @@ class Compare extends Frame{
 			
 			//Add top score
 			List<Leader> top = cont.getTopLeaders(m, time);
-			MetricScore topScore = top.get(0).getScore();
-			Label tpScore = new Label(((Double)(topScore.getValue())).toString());
+			double topScore = 0.0;
+			if (!top.isEmpty()) {
+				topScore = top.get(0).getScore().getValue();
+			}
+			Label tpScore = new Label(String.valueOf(topScore));
 			tpScore.setId("score-display");
 			metricTable.add(tpScore, 3, i+1);
-			
 			i++;
 		}
 	

@@ -38,23 +38,7 @@ public class ResultSetBuilderTest {
 	Assert.assertEquals(id, "1");
   }
 
-  @Test
-  public void buildMetric() {
-	  ResultSet r = DatabaseConnection.getInstance().executeQuery("Select * FROM Metrics.dbo.Metrics WHERE id = '2'");
-	  Metric m =  ResultSetBuilder.buildMetric(r);
-	  int id = m.getID();
-	  String name = m.getName();
-	  int precision = m.getPrecision();
-	  String sortType = m.getSortType();
-	  double weight = m.getWeight();
-	  
-	  Assert.assertEquals(id, 2);
-	  Assert.assertEquals(name, "CreditsCompleted");
-	  Assert.assertEquals(precision, 0);
-	  Assert.assertEquals(sortType, "4");
-	  Assert.assertEquals(weight, 1.0);
-  }
-
+  
   @Test
   public void buildMetricScores() {
 	ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '1'");
