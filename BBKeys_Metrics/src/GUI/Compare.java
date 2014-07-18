@@ -46,6 +46,7 @@ class Compare extends Frame{
 	@Override 
 	public Scene getScene(){
 		buildPage();
+		scene.getStylesheets().add(MyScores.class.getResource("../Metrics.css").toExternalForm());
 		return this.scene;
 	}
 	
