@@ -132,6 +132,7 @@ public class LeaderBoard extends Frame{
 			//Generate a check kbox for each metric type
 			RadioButton newRadio = new RadioButton();
 			newRadio.setText(m.getName());
+			newRadio.setUserData(m.getName());
 			
 			//Default is the first radio is selected
 			if (j == 0){
@@ -155,7 +156,8 @@ public class LeaderBoard extends Frame{
                 Toggle old_toggle, Toggle new_toggle) {
                     if (group.getSelectedToggle() != null) {
                     	metric = Controller.getInstance().getMetricByName(group.getSelectedToggle().getUserData().toString());
-                       	System.out.println(metric.getName());
+                       	//System.out.println(group.getSelectedToggle().getUserData());
+                    	System.out.println(metric.getName());
                     }
             }
             });
