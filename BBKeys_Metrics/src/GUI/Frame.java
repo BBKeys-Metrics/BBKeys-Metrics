@@ -64,7 +64,7 @@ abstract class Frame{
 	 * @return HBox
 	 */
 	public HBox navigationBox(){
-		timeUnit.setValue("Day");
+		
 		HBox buttonBox = new HBox();
 		
 		//Set button text
