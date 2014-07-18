@@ -13,6 +13,7 @@
     -fx-font-style:italic;
     -fx-font-size:110%;
     -fx-margin-top:90px;
+    -fx-text-wrap:true;
 }
 
 #chart-label{
@@ -54,6 +55,7 @@
     -fx-text-alignment: center;
     -fx-padding: 3px;
     -fx-margin-top:10px;
+    -fx-text-wrap:true;
         
 }
 
@@ -62,4 +64,5 @@ the data*/
 #metric-name-display{
     -fx-text-fill:#4D4D4D;
     -fx-font-size:150%;
+    -fx-text-wrap:true;
 }
