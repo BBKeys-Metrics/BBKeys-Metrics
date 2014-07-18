@@ -49,7 +49,7 @@ public class MyScores extends Frame{
 		scene.getStylesheets().add(MyScores.class.getResource("../Metrics.css").toExternalForm());
 		return this.scene;
 	}
-	
+	 
 	/**
 	 * Singleton 
 	 * @return MyScores Object Instance
