@@ -11,7 +11,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import java.util.List;
+import java.util.Set;
+
 import Metrics.Leader;
 import Metrics.Metric;
 import TestingMVC.Controller;
@@ -73,9 +76,7 @@ public class LeaderBoard extends Frame{
 	 */
 	public void buildPage(){
 		BorderPane root = new BorderPane();		
-		
-		metrics = Controller.getInstance().getMetrics();
-		
+				
 		root.setTop(this.topBox());
 		root.setLeft(this.formatLeaders());
 		root.setBottom(this.navigationBox());
@@ -124,7 +125,7 @@ public class LeaderBoard extends Frame{
 		//Group of radio buttons
         final ToggleGroup group = new ToggleGroup();
 		
-		for (Metric m : metrics){
+		for (Metric m : Controller.getInstance().getMetrics()){
 			//Generate a check kbox for each metric type
 			RadioButton newRadio = new RadioButton();
 			newRadio.setText(m.getName());
