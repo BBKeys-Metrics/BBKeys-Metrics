@@ -71,7 +71,7 @@ public class MyScores extends Frame{
 	 */
 	@Override
 	public void buildPage(){
-		timeUnit.setValue("DAY");
+		timeUnit.setValue("YEAR");
 		BorderPane root = new BorderPane();		
 		root.setPadding(new Insets(10, 20, 10, 20)); //Formatting
 		
