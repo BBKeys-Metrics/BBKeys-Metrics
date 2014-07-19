@@ -152,14 +152,18 @@ public class LeaderBoard extends Frame{
 			}
 			//Add to group
 			newRadio.setToggleGroup(group);
+
+			//Add to box
+			box.add(newRadio, col, row);
 			
 			if(col % 3 == 0 && col != 0)
 			{
-				box.add(newRadio, col, row);
 				col = 0;
 				row++;
 			}
+			
 		}       
+		
 		
                
         //Add listener for radio buttons
