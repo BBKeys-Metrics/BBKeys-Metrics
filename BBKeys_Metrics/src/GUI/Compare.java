@@ -1,7 +1,6 @@
 package GUI;
 
 import java.util.List;
-import java.util.Set;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -151,7 +150,7 @@ public class Compare extends Frame{
 		metricTable.add(topScoreLabel, 3, 0);
 		
 		Label metricName;
-		Set<Metric> metrics = Controller.getInstance().getMetrics();
+		List<Metric> metrics = Controller.getInstance().getMetrics();
 		
 		//Add metric and comparative data
 		int i = 0;

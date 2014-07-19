@@ -62,7 +62,7 @@ public class ResultSetBuilderTest {
   @Test
   public void buildMetrics() {
 	ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics");
-	Set<Metric> metrics = ResultSetBuilder.buildMetrics(r);
+	List<Metric> metrics = ResultSetBuilder.buildMetrics(r);
 	
 	for (Metric metric : metrics) {
 		int id = metric.getID();

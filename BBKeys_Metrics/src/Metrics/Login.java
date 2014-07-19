@@ -6,8 +6,6 @@ import javafx.scene.text.Text;
 
 
 import GUI.MyScores;
-import GUI.Compare;
-import GUI.LeaderBoard;
 import TestingMVC.Controller;
 import TestingMVC.LoginGUI;
 import TestingMVC.View;

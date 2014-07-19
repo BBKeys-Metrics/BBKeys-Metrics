@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +17,6 @@ import Metrics.MetricScore;
 
 public class Model {
 	private static final Model instance = new Model();
-	private boolean fakeDatabase = false;
 
 	/**
 	 * private Default Constructor
@@ -41,12 +38,8 @@ public class Model {
 	 * @return Employee
 	 */
 	public Employee getEmployeeByID(String empID) {
-		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
-			return ResultSetBuilder.buildEmployee(r, empID);
-		} else {
-			return new Employee("FakeName", empID, getMetricScores(empID));
-		}
+		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select Peep_First_Name, Peep_Last_Name FROM Metrics.dbo.People WHERE Peep_ID = '" + empID + "'");
+		return ResultSetBuilder.buildEmployee(r, empID);
 	}
 	
 	/**
@@ -55,12 +48,8 @@ public class Model {
 	 * @return String
 	 */
 	public String getEmployeeIDByUsername(String username) {
-		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'");
-			return ResultSetBuilder.buildID(r);
-		} else {
-			return "FakeID";
-		}
+		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select EmployeeID FROM Metrics.dbo.Users WHERE username = '" + username + "'");
+		return ResultSetBuilder.buildID(r);
 	}
 	
 	/**
@@ -69,18 +58,8 @@ public class Model {
 	 * @return Set<MetricScore>
 	 */
 	public Set<MetricScore> getMetricScores(String id) {
-		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '" + id + "'");
-			return ResultSetBuilder.buildMetricScores(r);
-		} else {
-			Set<MetricScore> set = new HashSet<MetricScore>();
-			Set<Metric> metrics = Controller.getInstance().getMetrics();
-			for (Metric m : metrics) {
-				set.add(new MetricScore(m, Math.random() * 100, Calendar.getInstance()));
-				set.add(new MetricScore(m, Math.random() * 100, Calendar.getInstance()));
-			}
-			return set;
-		}
+		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, score, date FROM Metrics.dbo.Scores WHERE employeeID = '" + id + "'");
+		return ResultSetBuilder.buildMetricScores(r);
 	}
 	
 	/**
@@ -90,16 +69,8 @@ public class Model {
 	 * @return Set<Preference>
 	 */
 	public Set<Preference> getPreferences(Employee employee, String employeeID) {
-		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Preferences  where employeeID = '" + employeeID + "'");
-			return ResultSetBuilder.buildPreferences(r);
-		} else {
-			Set<Preference> prefs = new HashSet<Preference>();
-			Set<Metric> metrics = Controller.getInstance().getMetrics();
-			for (Metric m : metrics)
-				prefs.add(new Preference(m, Math.random() > 0.5));
-			return prefs;
-		}
+		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select metricID, display from Metrics.dbo.Preferences  where employeeID = '" + employeeID + "'");
+		return ResultSetBuilder.buildPreferences(r);
 	}
 	
 	/**
@@ -107,12 +78,8 @@ public class Model {
 	 * @return int
 	 */
 	public int getSettings() {
-		if (!fakeDatabase) {
-			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
-			return ResultSetBuilder.buildShowLeaderCount(r);
-		} else {
-			return 3;
-		}
+		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select numToShowInLeaderboard from Settings");
+		return ResultSetBuilder.buildShowLeaderCount(r);
 	}
 	
 	/**
@@ -121,26 +88,21 @@ public class Model {
 	 * @return boolean: true if there is a user with the specified username in the database
 	 */
 	public boolean usernameExists(String username) {
-		if (!fakeDatabase) {
-			try {
-				//connect to the database
-				//check that the username exists
-				ResultSet r = DatabaseConnection.getInstance().executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username + "'");
-				r.next();
-				
-				if (!r.getString(1).equals("1")) { //if there were no users with the specified username
-					return false;
-				}
-				else { //there is a user with the specified username
-					return true;
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+		try {
+			//connect to the database
+			//check that the username exists
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select COUNT(employeeID) FROM Metrics.dbo.Users WHERE username = '" + username + "'");
+			r.next();
+			
+			if (!r.getString(1).equals("1")) { //if there were no users with the specified username
 				return false;
 			}
-		}
-		else {
-			return true;
+			else { //there is a user with the specified username
+				return true;
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -151,29 +113,23 @@ public class Model {
 	 * @return boolean: true is the username and password combination is valid
 	 */
 	public boolean correctLogin(String username, String password) {
-		if (!fakeDatabase) {
-			try {
-				//get the password for the specifiec user
-				ResultSet r = DatabaseConnection.getInstance().executeQuery("Select password from Metrics.dbo.Users where username = '" + username + "'");
-				r.next();
-				String passwordFromDB = r.getString(1);
-				
-				//Check that an unencrypted password matches one that has previously been hashed
-				if (!BCrypt.checkpw(password, passwordFromDB)) { //if the username and password combination were invalid
-					//display error message "Invalid Password"
-					return false;
-				}
-				else { //Username and Password combination were valid
-					return true;
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+		try {
+			//get the password for the specifiec user
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select password from Metrics.dbo.Users where username = '" + username + "'");
+			r.next();
+			String passwordFromDB = r.getString(1);
+			
+			//Check that an unencrypted password matches one that has previously been hashed
+			if (!BCrypt.checkpw(password, passwordFromDB)) { //if the username and password combination were invalid
+				//display error message "Invalid Password"
 				return false;
 			}
-		}
-		
-		else {
-			return true;
+			else { //Username and Password combination were valid
+				return true;
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
 		}
 	}
 
@@ -218,24 +174,19 @@ public class Model {
 	 * @return boolean: true if the userID has already been used
 	 */
 	public boolean duplicateIDFound(String userID) {
-		if (!fakeDatabase) {
-			try {
-				ResultSet r = DatabaseConnection.getInstance().executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where employeeID = '" + userID + "'");
-				r.next();
-				
-				if (!r.getString(1).equals("0")) { //duplicate id found
-					return true;
-				}
-				else {
-					return false;
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+		try {
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where employeeID = '" + userID + "'");
+			r.next();
+			
+			if (!r.getString(1).equals("0")) { //duplicate id found
 				return true;
 			}
-		}
-		else {
-			return false;
+			else {
+				return false;
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return true;
 		}
 	}
 
@@ -245,23 +196,18 @@ public class Model {
 	 * @return boolean: true if the userID exists
 	 */
 	public boolean validID(String userID) {
-		if (!fakeDatabase) {
-			try {
-				ResultSet r = DatabaseConnection.getInstance().executeQuery("SELECT COUNT(Peep_ID) FROM Metrics.dbo.People where Peep_ID = '" + userID + "'");
-    			r.next();
-        		if (!r.getString(1).equals("1")) {
-        			return false;
-        		}
-        		else {
-        			return true;
-        		}
-    		} catch (SQLException e1) {
-				e1.printStackTrace();
-				return false;
-			}
-		}
-		else {
-			return true;
+		try {
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("SELECT COUNT(Peep_ID) FROM Metrics.dbo.People where Peep_ID = '" + userID + "'");
+			r.next();
+    		if (!r.getString(1).equals("1")) {
+    			return false;
+    		}
+    		else {
+    			return true;
+    		}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return false;
 		}
 	}
 
@@ -271,24 +217,19 @@ public class Model {
 	 * @return boolean: true if duplicate found
 	 */
 	public boolean duplicateUsername(String username) {
-		if (!fakeDatabase) {
-			//check database for duplicate username	
-			try {
-				ResultSet r = DatabaseConnection.getInstance().executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where username = '" + username + "'");
-    			r.next();
-    			if (!r.getString(1).equals("0")) {
-    				return true;
-    			}
-    			else {
-    				return false;
-    			}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
+		//check database for duplicate username	
+		try {
+			ResultSet r = DatabaseConnection.getInstance().executeQuery("SELECT COUNT(employeeID) FROM Metrics.dbo.Users where username = '" + username + "'");
+			r.next();
+			if (!r.getString(1).equals("0")) {
 				return true;
 			}
-		}
-		else {
-			return false;
+			else {
+				return false;
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return true;
 		}
 	}
 
@@ -299,15 +240,10 @@ public class Model {
 	 * @param encryptedPassword
 	 */
 	public void addNewUser(String userID, String username, String encryptedPassword) {
-		if (!fakeDatabase) {
-			try {
-				DatabaseConnection.getInstance().executeUpdate("INSERT INTO Metrics.dbo.Users (employeeID, username, password) VALUES (" + userID + ", '" + username + "', '" + encryptedPassword + "')");
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		}
-		else {
-			
+		try {
+			DatabaseConnection.getInstance().executeUpdate("INSERT INTO Metrics.dbo.Users (employeeID, username, password) VALUES (" + userID + ", '" + username + "', '" + encryptedPassword + "')");
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 	}
 
@@ -329,17 +265,9 @@ public class Model {
 	 * Gets all of the Metrics in the database
 	 * @return Set<Metric>
 	 */
-	public Set<Metric> getMetrics() {
-		if (!fakeDatabase) {
+	public List<Metric> getMetrics() {
 			ResultSet r = DatabaseConnection.getInstance().executeQuery("Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics");
 			return ResultSetBuilder.buildMetrics(r);
-		} else {
-			Set<Metric> metrics = new HashSet<Metric>();
-			metrics.add(new Metric("Speed", 0, 0, "Low", 0));
-			metrics.add(new Metric("Accuracy", 0, 0, "High", 1));
-			metrics.add(new Metric("Helpfulness", 0, 0, "High", 2));
-			return metrics;
-		}
 	}
 
 	/**

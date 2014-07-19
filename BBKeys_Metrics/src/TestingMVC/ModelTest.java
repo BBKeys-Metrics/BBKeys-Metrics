@@ -1,7 +1,6 @@
 package TestingMVC;
 
 import java.util.List;
-import java.util.Set;
 
 import org.testng.annotations.Test;
 
@@ -12,7 +11,7 @@ public class ModelTest {
 
   @Test
   public void getTopLeaders() {
-	Set<Metric> metrics = Model.getInstance().getMetrics();
+	List<Metric> metrics = Model.getInstance().getMetrics();
 	Controller.getInstance().getSettings();
 	for (Metric metric : metrics) {
 		System.out.println(metric.getName());

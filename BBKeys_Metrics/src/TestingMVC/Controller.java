@@ -1,9 +1,8 @@
 package TestingMVC;
 
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import Metrics.Employee;
 import Metrics.Leader;
@@ -14,7 +13,7 @@ public class Controller {
 	private static final Controller instance = new Controller();
 	private Employee user;	
 	private int numToDisplay;
-	private Set<Metric> allMetrics = new HashSet<Metric>();
+	private List<Metric> allMetrics = new ArrayList<Metric>();
 	
 	/**
 	 * Gets the number of people to display in the leaderboard
@@ -131,7 +130,7 @@ public class Controller {
 	 * Gets the Set of Metrics
 	 * @return Set<Metric>
 	 */
-	public Set<Metric> getMetrics() {
+	public List<Metric> getMetrics() {
 		if (allMetrics.isEmpty()) {
 			allMetrics = Model.getInstance().getMetrics();
 		}

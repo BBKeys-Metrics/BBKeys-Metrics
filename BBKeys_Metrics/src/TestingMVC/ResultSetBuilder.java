@@ -66,23 +66,6 @@ public class ResultSetBuilder {
 	}
 	
 	/**
-	 * Builds a single Metric based on metric id
-	 * @param r
-	 * @return Metric
-	 */
-	/*public static Metric buildMetric(ResultSet r) {
-		//"Select id, name, weight, precision, sorttype FROM Metrics.dbo.Metrics WHERE id = '" + metricID + "'"
-		try {
-			r.next();
-			Metric m = new Metric(r.getString(2), r.getDouble(3), r.getInt(4), r.getString(5), r.getInt(1));
-			return m;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}*/
-	
-	/**
 	 * Builds the Set of preferences for the specified user
 	 * @param r
 	 * @return Set<Preference>
@@ -123,9 +106,9 @@ public class ResultSetBuilder {
 	 * @param r
 	 * @return Set<Metric>
 	 */
-	public static Set<Metric> buildMetrics(ResultSet r) {
+	public static List<Metric> buildMetrics(ResultSet r) {
 		//"Select id, name, weight, precision, sorttype from Metrics.DBO.Metrics"
-		Set<Metric> metrics = new HashSet<Metric>();
+		List<Metric> metrics = new ArrayList<Metric>();
 		try {
 			while (r.next()) {
 				Metric data = new Metric(r.getString(2), r.getDouble(3), r.getInt(4), r.getString(5), r.getInt(1));
