@@ -115,20 +115,22 @@ public class LeaderBoard extends Frame{
 	 * for display purposes.
 	 * @return VBox
 	 */
-	private HBox makeRadioButtons(){
-		HBox box = new HBox(10);
+	private GridPane makeRadioButtons(){
+		GridPane box = new GridPane();
 		
 		//Formatting
 		box.setAlignment(Pos.CENTER_RIGHT);
         box.setPadding(new Insets(10, 20, 10, 20));
 		
 		int j = 0;
+		int row = 0;
+		int col = 0;
 		
 		//Group of radio buttons
         final ToggleGroup group = new ToggleGroup();
 		
 		for (Metric m : Controller.getInstance().getMetrics()){
-			//Generate a check kbox for each metric type
+			//Generate a check hbox for each metric type
 			RadioButton newRadio = new RadioButton();
 			newRadio.setText(m.getName());
 			newRadio.setUserData(m.getName());
@@ -151,8 +153,12 @@ public class LeaderBoard extends Frame{
 			//Add to group
 			newRadio.setToggleGroup(group);
 			
-			//Add to the vbox
-			box.getChildren().add(newRadio);
+			if(col % 3 == 0 && col != 0)
+			{
+				box.add(newRadio, col, row);
+				col = 0;
+				row++;
+			}
 		}       
 		
                
