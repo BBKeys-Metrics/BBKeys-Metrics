@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.geometry.Insets;
 import java.util.Set;
-
+import javafx.beans.value.ChangeListener;
 import TestingMVC.TimeSpan;
 import TestingMVC.View;
 import Metrics.*;
@@ -37,6 +37,8 @@ import Metrics.*;
 abstract class Frame{
 	//Public variables for use in sub-classes
 	public Scene scene;
+	
+	//Time unit dropdown box
 	public ObservableList<String> timeUnits = 
 		    FXCollections.observableArrayList(
 		            "Day",
@@ -46,6 +48,8 @@ abstract class Frame{
 		            "Ever"
 		        );
 	final ComboBox<String> timeUnit = new ComboBox<String>(timeUnits);
+	
+	
 	
 	//The three navigation buttons
 	private Button myScores = new Button();
@@ -80,6 +84,14 @@ abstract class Frame{
         compare.setMinWidth(100);
         compare.setId("button");
 		
+        
+        timeUnit.setOnAction(new EventHandler<ActionEvent>() {
+        	 @Override 
+             public void handle(ActionEvent event) { 
+        		 String selection = timeUnit.getSelectionModel().getSelectedItem();
+        		 timeUnit.setValue(selection);
+        	 }
+    	});
         
         //Set actions
 		myScores.setOnAction(new EventHandler<ActionEvent>() {
