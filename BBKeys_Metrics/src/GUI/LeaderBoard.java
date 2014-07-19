@@ -134,10 +134,12 @@ public class LeaderBoard extends Frame{
 			newRadio.setText(m.getName());
 			newRadio.setUserData(m.getName());
 			
+			
 			//Default is the first radio is selected
 			if (j == 0){
 				newRadio.setSelected(true);
 				j++;
+				metric = Controller.getInstance().getMetricByName(newRadio.getUserData().toString());
 			}
 			
 			//Add to group
@@ -179,13 +181,13 @@ public class LeaderBoard extends Frame{
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
 		
 		//Get list of top employees
-		/*List<Leader> topEmployees = Controller.getInstance().getTopLeaders(metric,time);
+		List<Leader> topEmployees = Controller.getInstance().getTopLeaders(metric,time);
 		
 		for (int i = 0; i < topEmployees.size(); i++){
 			//Add each employee in a stack (horizontally)	
 			leadersBox.add(this.formatLeaderScores(topEmployees.get(i)), 0 , i);
 		}
-		*/
+		
 		return leadersBox;
 	
 	}
@@ -216,6 +218,12 @@ public class LeaderBoard extends Frame{
 		empScore = new Label(((Double)(employee.getScore().getValue())).toString());
 
 		empPic = new ImageView(employee.getPicture().getImage());
+		
+		//set width of image
+        empPic.setFitWidth(100);
+        
+        //keep scaling of image
+        empPic.setPreserveRatio(true);
 					
 		//Add formatting
 		empName.setId("employee-name");
