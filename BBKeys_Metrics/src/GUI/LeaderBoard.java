@@ -20,6 +20,7 @@ import Metrics.Metric;
 import TestingMVC.Controller;
 import TestingMVC.Model;
 import TestingMVC.TimeSpan;
+import TestingMVC.View;
 
 /*
  * Project: BBKeys-Metrics
@@ -136,12 +137,19 @@ public class LeaderBoard extends Frame{
 			
 			
 			//Default is the first radio is selected
-			if (j == 0){
-				newRadio.setSelected(true);
-				j++;
-				metric = Controller.getInstance().getMetricByName(newRadio.getUserData().toString());
+			if (metric == null) {
+				if (j == 0){
+					newRadio.setSelected(true);
+					j++;
+					metric = Controller.getInstance().getMetricByName(newRadio.getUserData().toString());
+				}
 			}
-			
+			else {
+				if (newRadio.getUserData().toString().equals(metric.getName())) {
+					newRadio.setSelected(true);
+					newRadio.requestFocus();
+				}
+			}
 			//Add to group
 			newRadio.setToggleGroup(group);
 			
@@ -158,8 +166,7 @@ public class LeaderBoard extends Frame{
                 Toggle old_toggle, Toggle new_toggle) {
                     if (group.getSelectedToggle() != null) {
                     	metric = Controller.getInstance().getMetricByName(group.getSelectedToggle().getUserData().toString());
-                       	//System.out.println(group.getSelectedToggle().getUserData());
-                    	System.out.println(metric.getName());
+                    	View.getInstance().setScene(getScene());
                     }
             }
             });
@@ -176,6 +183,7 @@ public class LeaderBoard extends Frame{
 	 * @return GridPane
 	 */
 	private GridPane formatLeaders(){
+		System.out.println("inside format");
 		GridPane leadersBox = new GridPane();
 		
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
@@ -188,6 +196,7 @@ public class LeaderBoard extends Frame{
 			leadersBox.add(this.formatLeaderScores(topEmployees.get(i)), 0 , i);
 		}
 		
+		System.out.println("format return");
 		return leadersBox;
 	
 	}
