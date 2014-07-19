@@ -90,7 +90,7 @@ public class Login extends Thread{
 	            		Controller.getInstance().setUser(username);
 	            		
 	            		//redirect to scores
-	            		View.getInstance().setScene(LeaderBoard.getInstance().getScene());
+	            		View.getInstance().setScene(MyScores.getInstance().getScene());
 	            	}
 	            });
 			}
