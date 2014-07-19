@@ -46,7 +46,7 @@ public class Compare extends Frame{
 	@Override 
 	public Scene getScene(){
 		buildPage();
-		//scene.getStylesheets().add(Compare.class.getResource("../Metrics.css").toExternalForm());
+		scene.getStylesheets().add(Compare.class.getResource("../Metrics.css").toExternalForm());
 		return this.scene;
 	}
 	
@@ -85,7 +85,7 @@ public class Compare extends Frame{
 		root.setLeft(this.tableCompare());
 		root.setBottom(this.navigationBox());
 		
-		//scene = new Scene (root, 500, 500);
+		scene = new Scene (root, 500, 500);
 	}
 	
 	 /**
