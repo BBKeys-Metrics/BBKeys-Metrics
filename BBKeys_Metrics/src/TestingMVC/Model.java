@@ -387,7 +387,6 @@ public class Model {
 		else if (timeUnit == TimeSpan.EVER) {
 			view = "ever_";
 		}
-		System.out.println(String.valueOf(Controller.getInstance().getNumToDisplay()));
 		ResultSet r = DatabaseConnection.getInstance().executeQuery("Select TOP(" + String.valueOf(Controller.getInstance().getNumToDisplay()) + ") Peep_First_Name, Peep_Last_Name, employeeID, score_avg from Metrics.dbo.people_scores_" + view + "values WHERE metricID = " + String.valueOf(metric.getID()) + " order by score_avg " + sortType);
 		return ResultSetBuilder.buildTopLeaders(r, metric.getID());
 	}

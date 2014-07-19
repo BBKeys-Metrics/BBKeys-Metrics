@@ -56,8 +56,6 @@ public class GradableItem {
 	public Set<MetricScore> getScores(TimeSpan span) {
 		Set<MetricScore> inTime = new HashSet<MetricScore>();
 		for (MetricScore m : scores) {
-			//System.out.println(m.getMetric().getName());
-			//System.out.println(m.getDate());
 			Calendar today = Calendar.getInstance();
 			if (span == TimeSpan.DAY) {
 				today.add(Calendar.DAY_OF_YEAR, -1);

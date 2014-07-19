@@ -185,7 +185,6 @@ public class LeaderBoard extends Frame{
 	 * @return GridPane
 	 */
 	private GridPane formatLeaders(){
-		System.out.println("inside format");
 		GridPane leadersBox = new GridPane();
 		
 		TimeSpan time = convertStringToTimeSpan(timeUnit.getValue());
@@ -198,7 +197,6 @@ public class LeaderBoard extends Frame{
 			leadersBox.add(this.formatLeaderScores(topEmployees.get(i)), 0 , i);
 		}
 		
-		System.out.println("format return");
 		return leadersBox;
 	
 	}
