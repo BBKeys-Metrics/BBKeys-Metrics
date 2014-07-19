@@ -10,12 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.geometry.Insets;
-import java.util.Set;
-import javafx.beans.value.ChangeListener;
 import TestingMVC.TimeSpan;
 import TestingMVC.View;
-import Metrics.*;
-
 
 /*
  * Project: BBKeys-Metrics
