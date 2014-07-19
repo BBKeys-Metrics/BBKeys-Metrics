@@ -41,11 +41,11 @@ abstract class Frame{
 	//Time unit dropdown box
 	public ObservableList<String> timeUnits = 
 		    FXCollections.observableArrayList(
-		            "Day",
-		            "Week",
-		            "Month",
-		            "Year",
-		            "Ever"
+		            "DAY",
+		            "WEEK",
+		            "MONTH",
+		            "YEAR",
+		            "EVER"
 		        );
 	final ComboBox<String> timeUnit = new ComboBox<String>(timeUnits);
 	
@@ -90,6 +90,7 @@ abstract class Frame{
              public void handle(ActionEvent event) { 
         		 String selection = timeUnit.getSelectionModel().getSelectedItem();
         		 timeUnit.setValue(selection);
+        		 View.getInstance().setScene(getScene());
         	 }
     	});
         

@@ -78,7 +78,9 @@ public class LeaderBoard extends Frame{
 	 * Loads elements into the scene
 	 */
 	public void buildPage(){
-		timeUnit.setValue("YEAR");
+		if (timeUnit.getValue() == null) {
+			timeUnit.setValue("YEAR");
+		}
 		BorderPane root = new BorderPane();		
 				
 		root.setTop(this.topBox());
