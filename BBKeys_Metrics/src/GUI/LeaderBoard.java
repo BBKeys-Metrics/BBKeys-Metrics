@@ -156,11 +156,12 @@ public class LeaderBoard extends Frame{
 			//Add to box
 			box.add(newRadio, col, row);
 			
-			if(col % 3 == 0 && col != 0)
-			{
+			if(col % 3 == 0 && col != 0){
 				col = 0;
 				row++;
 			}
+			else
+				col++;
 			
 		}       
 		
